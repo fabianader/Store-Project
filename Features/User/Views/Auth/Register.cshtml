@@ -1,0 +1,57 @@
+﻿@model StoreProject.Features.User.Model.RegisterModel
+@{
+    Layout = "_AuthLayout";
+    ViewData["Title"] = "Register";
+}
+<section class="login_part padding_top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-6">
+                <div class="login_part_form">
+                    <div class="login_part_form_iner">
+                        <form class="row contact_form" method="post" asp-controller="Auth" asp-action="Register">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" asp-for="UserName" placeholder="Username">
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 form-group p_star">
+                                <input type="text" class="form-control" asp-for="FullName" placeholder="Full Name">
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 form-group p_star">
+                                <input class="form-control" asp-for="Email" placeholder="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 form-group p_star">
+                                <input class="form-control" asp-for="PhoneNumber" placeholder="PhoneNumber">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 form-group p_star">
+                                <input type="password" class="form-control" asp-for="Password" placeholder="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 form-group p_star">
+                                <input type="password" class="form-control" asp-for="RePassword" placeholder="Repeat Password">
+                                <span asp-validation-for="RePassword" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <button type="submit" value="submit" class="btn_3">
+                                    Send Code
+                                </button>
+                                <a class="lost_pass" asp-controller="Auth" asp-action="Login">Login</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
