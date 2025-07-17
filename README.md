@@ -80,8 +80,8 @@ The solution follows a clean separation of concerns via:
    - `git clone https://github.com/fabianader/StoreProject.git`
 
 2. Navigate to the directory and build:
-   - ```cd StoreProject
-   - dotnet build```
+   - `cd StoreProject`
+   - `dotnet build`
 
 3. Update the database:
    - `dotnet ef database update`
