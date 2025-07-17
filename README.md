@@ -71,9 +71,9 @@ The solution follows a clean separation of concerns via:
 ⚠️ This project is not yet complete, but to run the current version:
 
 ## Prerequisites
-    - .NET 8 SDK
-    - SQL Server LocalDB or SQL Server Express
-    - Visual Studio 2022 or later
+   - .NET 8 SDK
+   - SQL Server LocalDB or SQL Server Express
+   - Visual Studio 2022 or later
 
 ## Run Locally
 1. Clone the repo:
