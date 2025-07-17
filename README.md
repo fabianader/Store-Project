@@ -70,12 +70,12 @@ The solution follows a clean separation of concerns via:
 # Getting Started
 ⚠️ This project is not yet complete, but to run the current version:
 
-- Prerequisites
+## Prerequisites
     - .NET 8 SDK
     - SQL Server LocalDB or SQL Server Express
     - Visual Studio 2022 or later
 
-- Run Locally
+## Run Locally
 1. Clone the repo:
    - git clone https://github.com/fabianader/StoreProject.git
 
