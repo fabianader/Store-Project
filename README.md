@@ -61,7 +61,7 @@ The solution follows a clean separation of concerns via:
 |ASP.NET Core Identity	   |  Authentication & Authorization |
 |Entity Framework Core	   |  Data Access                    |
 |SQL Server	               |  Database                       |
-|HTML/CSS + Bootstrap	     |  Front-End UI                   |
+|HTML/CSS + Bootstrap	   |  Front-End UI                   |
 |AdminLTE Template         |	Admin Panel                    |
 |jQuery, SweetAlert2       |	UI Enhancements                |
 |DTOs                      |	Data Encapsulation             |
