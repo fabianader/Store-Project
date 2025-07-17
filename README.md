@@ -19,32 +19,32 @@ The goal is to build a modern, extensible online store using:
 - The project is currently under development.
 
 # Features
-✅ Modular Feature Folder Structure
+#### ✅ Modular Feature Folder Structure
 Each domain (User, Product, Category, etc.) is separated into its own folder with its own controllers, services, views, models, and DTOs.
 
-✅ ASP.NET Core Identity Integration
+#### ✅ ASP.NET Core Identity Integration
 Secure user authentication and role management via Identity.
 
-✅ DTO-based Input/Output Models
+#### ✅ DTO-based Input/Output Models
 All data passed between UI and logic layers are secured and shaped via Data Transfer Objects.
 
-✅ Admin Area
+#### ✅ Admin Area
    - User management via modals and SweetAlert2
    - Layouts and partial views optimized for reusability
    - HTML-based AdminLTE UI templates
 
-✅ Responsive Front-End
+#### ✅ Responsive Front-End
 The UI uses responsive HTML5/CSS3 templates for the public-facing store.
 
-🔒 Validation & Security
+#### 🔒 Validation & Security
    - Email validation attribute
    - Anti-forgery protection
    - Secure password reset workflows
 
-📦 Entity & Domain Models
+#### 📦 Entity & Domain Models
 Users, Products, Orders, Carts, Categories, Posts, Messages, etc.
 
-🗂️ Architecture & Structure
+#### 🗂️ Architecture & Structure
 The solution follows a clean separation of concerns via:
    - Features/ (modular areas)
    - Entities/ (domain models)
