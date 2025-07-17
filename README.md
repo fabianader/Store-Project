@@ -77,17 +77,17 @@ The solution follows a clean separation of concerns via:
 
 ####  Run Locally
 1. Clone the repo:
-   - git clone https://github.com/fabianader/StoreProject.git
+   - `git clone https://github.com/fabianader/StoreProject.git`
 
 2. Navigate to the directory and build:
-   - cd StoreProject
-   - dotnet build
+   - ```cd StoreProject
+   - dotnet build```
 
 3. Update the database:
-   - dotnet ef database update
+   - `dotnet ef database update`
 
 4. Run the app:
-   - dotnet run
+   - `dotnet run`
 
 
 # Status
