@@ -1,22 +1,22 @@
-## Store Project
+# Store Project
 ASP.NET Core MVC Modular E-Commerce App (In Progress)
 
 # Overview
-- Store Project is an ASP.NET Core MVC web application structured using the Feature Folder Architecture (modular pattern). This project is built with scalability and maintainability in mind, making it suitable for medium to large-sized web applications.
+Store Project is an ASP.NET Core MVC web application structured using the Feature Folder Architecture (modular pattern). This project is built with scalability and maintainability in mind, making it suitable for medium to large-sized web applications.
 
-- The goal is to build a modern, extensible online store using:
+The goal is to build a modern, extensible online store using:
 
-ASP.NET Core MVC (.NET 8)
+- ASP.NET Core MVC (.NET 8)
 
-ASP.NET Core Identity for authentication
+- ASP.NET Core Identity for authentication
 
-Clean architecture practices (DTOs, services, etc.)
+- Clean architecture practices (DTOs, services, etc.)
 
-Modals and SweetAlert2 for dynamic admin UX
+- Modals and SweetAlert2 for dynamic admin UX
 
-HTML5-based admin and front-end templates
+- HTML5-based admin and front-end templates
 
-The project is currently under development.
+- The project is currently under development.
 
 # Features
 ✅ Modular Feature Folder Structure
