@@ -46,12 +46,12 @@ Users, Products, Orders, Carts, Categories, Posts, Messages, etc.
 
 #### 🗂️ Architecture & Structure
 The solution follows a clean separation of concerns via:
-   - Features/ (modular areas)
-   - Entities/ (domain models)
-   - DTOs/ (for secure communication)
-   - Common/ (shared helpers, services, attributes)
-   - Infrastructure/Data/ (DbContext, initializers, EF migrations)
-   - wwwroot/ (static assets: JS, CSS, images)
+   - `Features/` (modular areas)
+   - `Entities/` (domain models)
+   - `DTOs/` (for secure communication)
+   - `Common/` (shared helpers, services, attributes)
+   - `Infrastructure/Data/` (DbContext, initializers, EF migrations)
+   - `wwwroot/` (static assets: JS, CSS, images)
 
 
 # Tech Stack
