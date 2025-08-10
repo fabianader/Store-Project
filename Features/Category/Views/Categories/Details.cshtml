@@ -1,0 +1,177 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Product.Services
+@model StoreProject.Features.Category.Model.DetailsModel
+@inject IProductManagementService _productManagementService
+
+<section>
+    <div class="container" style="margin-top: 200px; margin-bottom: 20px;">
+        <center>
+            <div>
+                <h2>@Model.Title</h2>
+            </div>
+        </center>
+    </div>
+</section>
+
+<!--================Category Product Area =================-->
+<section class="cat_product_area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="left_sidebar_area">
+
+                    <vc:browse-categories></vc:browse-categories>
+
+                    <aside class="left_widgets p_filter_widgets price_range_aside">
+                        <div class="l_w_title">
+                            <h3>Price Filter</h3>
+                        </div>
+                        <div class="widgets_inner">
+                            <div class="range_item">
+                                <div id="slider-range"></div>
+                                <span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: hidden;">tk. 0</span><span class="irs-max" style="visibility: hidden;">tk. 1.000</span><span class="irs-from" style="visibility: visible; left: 0%;">tk. 0</span><span class="irs-to" style="visibility: visible; left: 35%;">tk. 500</span><span class="irs-single" style="visibility: hidden; left: 3.16667%;">tk. 0 - tk. 500</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 5%; width: 45%;"></span><span class="irs-shadow shadow-from" style="display: none;"></span><span class="irs-shadow shadow-to" style="display: none;"></span><span class="irs-slider from" style="left: 0%;"></span><span class="irs-slider to type_last" style="left: 45%;"></span></span><input type="text" class="js-range-slider irs-hidden-input" value="" readonly="">
+                                <div class="d-flex">
+                                    <div class="price_text">
+                                        <p>Price :</p>
+                                    </div>
+                                    <div class="price_value d-flex justify-content-center">
+                                        <input type="text" class="js-input-from" id="amount" readonly="">
+                                        <span>to</span>
+                                        <input type="text" class="js-input-to" id="amount" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product_top_bar d-flex justify-content-between align-items-center">
+                            <div class="single_product_menu">
+                                <p><span>@Model.ProductsCount </span> Product Found</p>
+                            </div>
+
+                            <form method="get" asp-controller="Categories" asp-action="Details">
+                                <div class="single_product_menu d-flex align-items-center gap-2">
+
+                                    <!-- Min Price -->
+                                    <input type="number" class="form-control" value="@Model.Filter.ProductFilterParams.MinPrice" name="minPrice" placeholder="Min" min="0" step="0.01" style="max-width: 100px;">
+
+                                    <!-- Max Price -->
+                                    <input type="number" class="form-control" value="@Model.Filter.ProductFilterParams.MaxPrice" name="maxPrice" placeholder="Max" min="0" step="0.01" style="max-width: 100px;">
+
+                                    <!-- Search Input -->
+                                    <div class="input-group" style="flex: 1;">
+                                        <input type="text" class="form-control" value="@Model.Filter.ProductFilterParams.Title" name="productTitle" placeholder="search" aria-describedby="inputGroupPrepend">
+                                        <div class="input-group-prepend">
+                                            <button type="submit" class="input-group-text" id="inputGroupPrepend">
+                                                <i class="ti-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center latest_product_inner">
+                    @if (Model.Filter.Products.Count != 0)
+                    {
+                        @foreach (var product in Model.Filter.Products)
+                        {
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="single_product_item">
+                                    <img src="@Directories.GetProductImage(product.ImageUrl)" height="109px" alt="Product Image">
+                                    <div class="single_product_text">
+                                        <h4>@product.Title</h4>
+                                        <h3>@product.Price</h3>
+                                        <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <h3>
+                            <center>
+                                Oops! No product found.
+                            </center>
+                            
+                        </h3>
+                            <center>
+                            <div>
+                                <h2>@Model.Title</h2>
+                            </div>
+                        </center>
+                    }
+
+                    <partial name="_Pagination" model="Model.Filter"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Category Product Area =================-->
+
+<!-- product_list part start-->
+@* <section class="product_list best_seller">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="section_tittle text-center">
+                    <h2>Best Sellers <span>shop</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-12">
+                <div class="best_product_slider owl-carousel">
+                    <div class="single_product_item">
+                        <img src="img/product/product_1.png" alt="">
+                        <div class="single_product_text">
+                            <h4>Quartz Belt Watch</h4>
+                            <h3>$150.00</h3>
+                        </div>
+                    </div>
+                    <div class="single_product_item">
+                        <img src="img/product/product_2.png" alt="">
+                        <div class="single_product_text">
+                            <h4>Quartz Belt Watch</h4>
+                            <h3>$150.00</h3>
+                        </div>
+                    </div>
+                    <div class="single_product_item">
+                        <img src="img/product/product_3.png" alt="">
+                        <div class="single_product_text">
+                            <h4>Quartz Belt Watch</h4>
+                            <h3>$150.00</h3>
+                        </div>
+                    </div>
+                    <div class="single_product_item">
+                        <img src="img/product/product_4.png" alt="">
+                        <div class="single_product_text">
+                            <h4>Quartz Belt Watch</h4>
+                            <h3>$150.00</h3>
+                        </div>
+                    </div>
+                    <div class="single_product_item">
+                        <img src="img/product/product_5.png" alt="">
+                        <div class="single_product_text">
+                            <h4>Quartz Belt Watch</h4>
+                            <h3>$150.00</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product_list part end-->
+ *@
+ <script src="js/stellar.js"></script>
+ <script src="js/price_rangs.js"></script>

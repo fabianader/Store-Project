@@ -2,8 +2,12 @@
 {
     public class Directories
     {
-        public const string DefaultUserProfilePicture = "wwwroot/images/user";
-        public static string GetUserProfilePicture(string ProfilePicture) => $"{DefaultUserProfilePicture.Replace("wwwroot", "")}/{ProfilePicture}";
+        public const string UserProfilePicture = "wwwroot/images/users";
+        public const string ProductImage = "wwwroot/images/products";
+        public static string GetUserProfilePicture(string ProfilePicture) => $"{UserProfilePicture.Replace("wwwroot", "")}/{ProfilePicture}";
+        public static string GetProductImage(string ProductImageUrl) => $"{ProductImage.Replace("wwwroot", "")}/{ProductImageUrl}";
+
+
 
     }
 }

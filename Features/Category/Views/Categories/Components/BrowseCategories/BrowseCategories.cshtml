@@ -1,0 +1,21 @@
+﻿@using StoreProject.Features.Category.Model
+@model List<BrowseCategoriesModel>
+<aside class="left_widgets p_filter_widgets">
+    <div class="l_w_title">
+        <h3>Browse Categories</h3>
+    </div>
+    <div class="widgets_inner">
+        <ul class="list">
+            @foreach(var category in Model)
+            {
+                <li>
+                    <a asp-controller="Categories" asp-action="Details" asp-route-slug = "@category.Slug">
+                        @category.Title
+                    </a>
+                    <span>(@category.ProductsCount)</span>
+                </li>
+            }
+            
+        </ul>
+    </div>  
+</aside>

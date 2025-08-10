@@ -1,0 +1,18 @@
+﻿@using StoreProject.Common
+
+@if(Model.Filter.Products != null)
+{
+    @foreach (var product in Model.Filter.Products)
+    {
+        <div class="col-lg-4 col-sm-6">
+            <div class="single_product_item">
+                <img src="@Directories.GetProductImage(product.ImageUrl)" height="109px" alt="Product Image">
+                <div class="single_product_text">
+                    <h4>@product.Title</h4>
+                    <h3>@product.Price</h3>
+                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                </div>
+            </div>
+        </div>
+    }
+}

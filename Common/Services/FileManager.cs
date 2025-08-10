@@ -5,8 +5,8 @@
         public string SaveFileAndReturnName(IFormFile file, string savePath)
         {
             if (file == null)
-                return null;
-                //throw new Exception("File Is Null");
+                // return null;
+                throw new Exception("File Is Null");
 
             var fileName = $"{Guid.NewGuid()}{file.FileName}";
 
@@ -31,9 +31,9 @@
 
         public string SaveImageAndReturnImageName(IFormFile file, string savePath)
         {
-            //var IsImage = ImageValidation.Validate(file);
-            //if (!IsImage)
-            //    throw new Exception();
+            var IsImage = ImageValidation.Validate(file);
+            if (!IsImage)
+                throw new Exception();
 
             return SaveFileAndReturnName(file, savePath);
         }

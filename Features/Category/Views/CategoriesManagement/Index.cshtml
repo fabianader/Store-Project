@@ -1,0 +1,105 @@
+﻿@using StoreProject.Features.Category.Services
+@using StoreProject.Features.Category.Model
+@using StoreProject.Features.Shared
+@inject ICategoryManagementService _categoryManagementService
+@model List<CategoryModel>
+@{
+    Layout = "_AdminLayout";
+    ViewData["selected"] = "categories";
+    ViewData["Title"] = "Categories Management";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-secondary" asp-controller="CategoriesManagement" asp-action="CategoryTree">
+                    Category Tree
+                </a>
+                <open-modal
+                    class="btn btn-success" title="Create Category" url="@Url.Action("CreateCategory", "CategoriesManagement")">
+                    Create Category
+                </open-modal>
+                @if (!ViewBag.ShowDeletedCategories)
+                {
+                    <a class="btn btn-danger" asp-controller="CategoriesManagement" asp-action="Index" asp-route-showDeletedCategories=@true>
+                        Deleted Categories
+                    </a>
+                }
+                else
+                {
+                     <a class="btn btn-primary" asp-controller="CategoriesManagement" asp-action="Index">
+                        In Use Categories
+                    </a>
+                }
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Slug</th>
+                            <th>Creation Date</th>
+                            <th>Parent Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var category in Model)
+                        {
+                                <tr>
+                                    <th>@category.Id</th>
+                                    <td>@category.Title</td>
+                                    <td>@category.Slug</td>
+                                    <td>@category.CreationDate.ToShortDateString()</td>
+
+                                    @if (category.ParentId != null)
+                                    {
+                                        <td>@(_categoryManagementService.GetCategoryBy(category.ParentId).Title)</td>
+                                    }
+                                    else
+                                    {
+                                        <td> - </td>    
+                                    }
+
+
+                                    @if(category.IsDeleted == false)
+                                    {
+                                        <td class="text-success">Active</td>
+                                    }
+
+                                    else
+                                    {
+                                        <td class="text-danger">Inactive</td>
+                                    }
+
+                                    <td>
+                                        <open-modal 
+                                            title="Edit Category" url="@Url.Action("EditCategory", "CategoriesManagement", new{id=category.Id})">
+                                            Edit Category
+                                        </open-modal>
+                                    </td>
+                                </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

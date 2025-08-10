@@ -1,0 +1,35 @@
+﻿@using StoreProject.Features.Shared.Model
+@model List<CategoryTreeModel>
+
+
+<div class="container-fluid">
+    <a class="navbar-brand" href="#">Store</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+        @foreach (var category in Model)
+        {
+            if(category.ChildCategories.Count != 0)
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                        asp-controller="Categories" asp-action="Details" asp-route-slug="@category.Slug">
+                            @category.Title
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach (var child in category.ChildCategories)
+                        {
+                            <a class="nav-link" asp-controller="Categories" asp-action="Details" asp-route-slug="@child.Slug">@child.Title</a>
+                        }
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Categories" asp-action="Details" asp-route-slug="@category.Slug">@category.Title<span class="sr-only">(current)</span></a>
+                </li>  
+            }
+        }
+        </ul>
+    </div>
+</div>

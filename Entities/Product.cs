@@ -19,6 +19,9 @@ namespace StoreProject.Entities
         public string Slug { get; set; }
 
         [Required]
+        public DateTime CreationDate { get; set; }
+
+        [Required]
         public string Description { get; set; }
 
         [Required]
@@ -31,6 +34,8 @@ namespace StoreProject.Entities
         [Required]
         public int Stock { get; set; }
 
+        [Required]
+        public bool IsDeleted { get; set; }
 
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }

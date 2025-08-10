@@ -1,4 +1,8 @@
-﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
+﻿@{
+    var selected = ViewData["selected"]?.ToString()?.ToLower();
+}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
       <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -63,10 +67,28 @@
           </li>
 
           <li class="nav-item">
-            <a asp-controller="Users" asp-action="Index" class="nav-link">
+            <a asp-controller="Users" asp-action="Index" class="nav-link @(selected == "users" ? "active" : null)">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Users Management
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a asp-controller="CategoriesManagement" asp-action="Index" class="nav-link @(selected == "categories" ? "active" : null)">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Categories Management
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a asp-controller="Products" asp-action="Index" class="nav-link @(selected == "products" ? "active" : null)">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Products Management
               </p>
             </a>
           </li>

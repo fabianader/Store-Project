@@ -31,7 +31,7 @@ namespace StoreProject.Infrastructure.Data
         {
             base.OnModelCreating(builder);
             builder.Entity<ApplicationUser>(b =>
-             {
+            {
                 // Each User can have many UserClaims
                 b.HasMany(e => e.Claims)
                     .WithOne()
@@ -55,7 +55,13 @@ namespace StoreProject.Infrastructure.Data
                     .WithOne()
                     .HasForeignKey(ur => ur.UserId)
                     .IsRequired();
-             });
+            });
+
+            builder.Entity<Category>()
+                .HasOne(c => c.Parent)
+                .WithMany(c => c.Children)
+                .HasForeignKey(c => c.ParentId)
+                .OnDelete(DeleteBehavior.Restrict);
 
         }
         //    base.OnModelCreating(builder);

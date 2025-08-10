@@ -14,6 +14,19 @@ namespace StoreProject.Common
 
             return redirectPath;
         }
+        protected IActionResult PartialViewAndShowErrorAlert(PartialViewResult partialViewName, List<string>? ErrorMessages=null)
+        {
+            //var model = JsonConvert.SerializeObject(result);
+            //HttpContext.Response.Cookies.Append("SystemAlert", model);
+            ErrorAlert(ErrorMessages);
+            return partialViewName;
+        }
+        //protected IActionResult ViewAndShowErrorAlert(ViewResult ViewName, List<string>? ErrorMessages = null)
+        //{
+        //    ErrorAlert(ErrorMessages);
+        //    return ViewName;
+        //}
+
         protected void SuccessAlert()
         {
             var model = JsonConvert.SerializeObject(OperationResult.Success());

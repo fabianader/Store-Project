@@ -1,0 +1,91 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Product.Services
+@model StoreProject.Features.Product.DTOs.ProductFilterDto
+@inject IProductManagementService _productManagementService
+@{
+    int Count = 1;
+    Layout = "_AdminLayout";
+	ViewData["selected"] = "products";
+	ViewData["Title"] = "Products Management";
+	ViewData["ControllerName"] = "Products";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <a class="btn btn-success" asp-controller="Products" asp-action="CreateProduct">Create Product</a>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Product Image</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Creation Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <th>@Count</th>
+                                <td>
+                                    <img style="max-width: 150px" src="@Directories.GetProductImage(product.ImageUrl)" alt="Product Image"/>
+                                </td>
+                                <td>@product.Title</td>
+                                <td>@product.Category.Title</td>
+                                <td>@product.Price</td>
+
+                                @if (_productManagementService.IsInStock(product.Id))
+                                {
+                                    <td>@product.Stock</td>
+                                }
+                                else
+                                {
+                                    <td class=text-danger>Out of stock</td>
+                                }
+
+                                <td>@product.CreationDate.ToShortDateString()</td>
+                                    
+                                @if (product.IsDeleted == false) 
+                                { <td class="text-success">Active</td> }
+                                else 
+                                { <td class="text-danger">Inactive</td> }
+
+                                <td>
+                                        <a class="btn btn-info" asp-controller="Products" asp-action="EditProduct" asp-route-id="@product.Id" asp-route-imageUrl="@product.ImageUrl">Edit Product</a>
+                                </td>
+                            </tr>
+
+                            Count++;
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<center>
+    <partial name="_AdminPagination" />
+</center>

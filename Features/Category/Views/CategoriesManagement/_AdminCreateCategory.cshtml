@@ -1,0 +1,59 @@
+﻿@using StoreProject.Common
+@using StoreProject.Common.Services
+@using StoreProject.Features.Category.DTOs
+@using StoreProject.Features.Category.Services
+@using StoreProject.Features.Shared
+@inject ICategoryManagementService _categoryManagementService
+@model StoreProject.Features.Category.Model.CategoryCreateModel
+@{
+    Layout = ViewBag.Layout;
+    List<CategoryDto> AllCategories = _categoryManagementService.GetExistedCategories();
+
+    if (Layout != "")
+    {
+        ViewData["selected"] = "categories";
+        ViewData["Title"] = "Categories Management";
+        ViewData["ActionName"] = "Create Category";
+    }
+}
+
+<div class="card card-info">
+
+    <form asp-controller="CategoriesManagement" asp-action="CreateCategory" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Title"></label>
+                    <input type="text" class="form-control" asp-for="Title">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Slug"></label>
+                    <input type="text" class="form-control" asp-for="Slug">
+                    <span asp-validation-for="Slug" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="ParentId"></label>
+                <select asp-for="ParentId" class="form-control">Parent Category
+                    <option value="0">Choose:</option>
+                    @foreach (var category in AllCategories)
+                    {
+                        <option value="@category.Id">@category.Title</option>
+                    }
+                </select>
+                <span asp-validation-for="ParentId" class="text-danger"></span>
+            </div><br />
+
+            <center>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Create Category</button>
+                </div>
+            </center>
+    </form>        
+</div>
+

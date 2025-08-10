@@ -1,0 +1,15 @@
+﻿@using StoreProject.Features.Category.Model
+@model List<CategoryModel>
+@{
+    Layout = "_AdminLayout";
+    ViewData["selected"] = "categories";
+    ViewData["Title"] = "Categories Management";
+    ViewData["ActionName"] = "Categories Tree";
+}
+
+<ul>
+    @foreach (var category in Model)
+    {
+        <partial name="_CategoryNode" model=category />
+    }
+</ul>

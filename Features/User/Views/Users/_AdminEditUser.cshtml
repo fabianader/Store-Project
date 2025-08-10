@@ -1,0 +1,99 @@
+﻿@using StoreProject.Common
+@using StoreProject.Common.Services
+@using StoreProject.Features.User.Services
+@inject IUserManagementService _userManagementService
+@model StoreProject.Features.User.Model.UserEditModel
+@{
+    Layout = ViewBag.Layout;
+    List<string> rolesName = _userManagementService.GetAllRolesName();
+    int rolesCount = _userManagementService.GetAllRolesCount();
+    List<string> userRoles = await _userManagementService.GetUserRolesAsync(Model.Id);
+
+    if(Layout != "")
+    {
+        ViewData["selected"] = "users";
+        ViewData["Title"] = "Users Management";
+        ViewData["ControllerName"] = "Users";
+        ViewData["ActionName"] = "Edit User";
+    }
+}
+<img class="rounded-circle" src="@Directories.GetUserProfilePicture(Model.ProfilePictureName)" alt="Profile Picture" width="100" height="100" >
+<br /><br />
+
+<div class="card card-info">
+
+    <form asp-controller="Users" asp-action="EditUser" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card-body">
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ProfilePictureName" value="@Model.ProfilePictureName" />
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="UserName"></label>
+                    <input type="text" class="form-control" asp-for="UserName">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="FullName"></label>
+                    <input type="text" class="form-control" asp-for="FullName">
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Email"></label>
+                    <input type="text" class="form-control" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="PhoneNumber"></label>
+                    <input type="text" class="form-control" asp-for="PhoneNumber">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+                
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="IsDeleted"></label>
+                    <select asp-for="IsDeleted" class="form-control">
+                        <option value="null">Select</option>
+                        <option value=@false class="text-success">Active</option>
+                        <option value=@true class="text-danger">Inactive</option>
+                    </select>
+                    <span asp-validation-for="IsDeleted"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="ProfilePictureFile"></label>
+                    <input type="file" asp-for="ProfilePictureFile" class="form-control"/>
+                    <span asp-validation-for="ProfilePictureFile" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>User Roles:</label><br />
+                @foreach (var role in rolesName)
+                {
+                    var isChecked = Model.UserRoles.Contains(role);
+                    <label>
+                        <input type="checkbox" name="UserRoles" value="@role" @(isChecked ? "checked" : "") />
+                        @role
+                    </label><br />
+                }
+                <span asp-validation-for="UserRoles" class="text-danger"></span>
+            </div>
+            
+            <center>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">Edit User</button>
+                </div>
+            </center>
+    </form>        
+</div>

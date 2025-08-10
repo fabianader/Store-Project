@@ -1,0 +1,88 @@
+﻿@using StoreProject.Common
+@using StoreProject.Common.Services
+@using StoreProject.Features.Category.DTOs
+@using StoreProject.Features.Category.Services
+@using StoreProject.Features.Product.Services
+@using StoreProject.Features.Shared
+@inject ICategoryManagementService _categoryManagementService
+@inject IProductManagementService _productManagementService
+@model StoreProject.Features.Product.Model.ProductCreateModel
+@{
+    Layout = "_AdminLayout";
+    List<CategoryDto> Categories = _categoryManagementService.GetExistedCategories();
+
+    ViewData["selected"] = "products";
+    ViewData["Title"] = "Products Management";
+    ViewData["ControllerName"] = "Products";
+    ViewData["ActionName"] = "Create Product";
+}
+
+<div class="card card-info">
+
+    <form asp-controller="Products" asp-action="CreateProduct" asp-antiforgery="true" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Title"></label>
+                    <input type="text" class="form-control" asp-for="Title">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Slug"></label>
+                    <input type="text" class="form-control" asp-for="Slug">
+                    <span asp-validation-for="Slug" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Price"></label>
+                    <input class="form-control" asp-for="Price">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Stock"></label>
+                    <input class="form-control" asp-for="Stock">
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="ProductImage"></label>
+                    <input type="file" asp-for="ProductImage" class="form-control"/>
+                    <span asp-validation-for="ProductImage" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="CategoryId"></label>
+                    <select asp-for="CategoryId" class="form-control">Category
+                        <option value="0">Choose:</option>
+                        @foreach (var category in Categories)
+                        {
+                            <option value="@category.Id">@category.Title</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div><br />
+            </div>
+            
+
+            <div class="form-group col-md-6">
+                <label asp-for="Description"></label>
+                <textarea type="text" class="form-control" asp-for="Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <center>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Create Product</button>
+                </div>
+            </center>
+    </form>        
+</div>
+

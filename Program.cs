@@ -3,8 +3,9 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using StoreProject.Common.Services;
 using StoreProject.Entities;
-using StoreProject.Features.Admin.Services;
 using StoreProject.Features.Category.Services;
+using StoreProject.Features.Product.Services;
+using StoreProject.Features.Shared;
 using StoreProject.Features.User.Services;
 using StoreProject.Infrastructure.Data;
 
@@ -21,7 +22,8 @@ builder.Services.AddControllersWithViews()
     });
 
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryManagementService, CategoryManagementService>();
+builder.Services.AddScoped<IProductManagementService, ProductManagementService>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<IFileManager, FileManager>();

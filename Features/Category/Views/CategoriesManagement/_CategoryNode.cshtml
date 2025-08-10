@@ -1,0 +1,25 @@
+﻿@using StoreProject.Features.Category.Mapper
+@using StoreProject.Features.Shared
+@model StoreProject.Features.Category.Model.CategoryModel
+@inject ICategoryManagementService _categoryServiceManager
+@{
+	var childCategories = _categoryServiceManager.GetChildCategories(Model.Id)
+		.Select(category => CategoryMapper.MapCategoryDtoToCategoryModel(category));
+}
+
+
+
+<li style="margin: 4px 0;">
+	@Model.Title
+
+	@if(childCategories.Any())
+	{
+		<ul style="list-style-type: none;padding-left: 20px;">
+			@foreach(var child in childCategories)
+			{
+				<partial name="_CategoryNode", model="child"/>
+				//@Html.Partial("_CategoryNode", child)
+			}
+		</ul>
+	}
+</li>
