@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StoreProject.Common;
+using StoreProject.Features.Category.Services;
 using StoreProject.Features.Product.DTOs;
 using StoreProject.Features.Product.Mapper;
-using StoreProject.Features.Shared;
 using StoreProject.Infrastructure.Data;
 
 namespace StoreProject.Features.Product.Services

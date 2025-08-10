@@ -5,7 +5,6 @@ using StoreProject.Common.Services;
 using StoreProject.Entities;
 using StoreProject.Features.Category.Services;
 using StoreProject.Features.Product.Services;
-using StoreProject.Features.Shared;
 using StoreProject.Features.User.Services;
 using StoreProject.Infrastructure.Data;
 

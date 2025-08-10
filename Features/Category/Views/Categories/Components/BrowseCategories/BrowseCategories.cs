@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StoreProject.Features.Category.Model;
+using StoreProject.Features.Category.Services;
 using StoreProject.Features.Product.Services;
-using StoreProject.Features.Shared;
 
 namespace StoreProject.Features.Category.Views.Categories.Components.BrowseCategories
 {

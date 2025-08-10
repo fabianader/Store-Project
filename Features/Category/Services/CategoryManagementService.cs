@@ -1,7 +1,6 @@
 ﻿using StoreProject.Common;
 using StoreProject.Features.Category.DTOs;
 using StoreProject.Features.Category.Mapper;
-using StoreProject.Features.Shared;
 using StoreProject.Infrastructure.Data;
 
 namespace StoreProject.Features.Category.Services

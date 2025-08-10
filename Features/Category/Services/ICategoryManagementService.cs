@@ -1,7 +1,7 @@
 ﻿using StoreProject.Common;
 using StoreProject.Features.Category.DTOs;
 
-namespace StoreProject.Features.Shared
+namespace StoreProject.Features.Category.Services
 {
     public interface ICategoryManagementService
     {

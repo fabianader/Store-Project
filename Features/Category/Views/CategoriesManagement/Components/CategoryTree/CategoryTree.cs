@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StoreProject.Features.Category.Mapper;
-using StoreProject.Features.Shared;
+using StoreProject.Features.Category.Services;
 
 namespace StoreProject.Features.Category.Views.Categories.Components.CategoryTree
 {

@@ -3,7 +3,7 @@ using StoreProject.Common;
 using StoreProject.Features.Category.DTOs;
 using StoreProject.Features.Category.Mapper;
 using StoreProject.Features.Category.Model;
-using StoreProject.Features.Shared;
+using StoreProject.Features.Category.Services;
 using StoreProject.Features.Shared.Model;
 
 namespace StoreProject.Features.Category.Controllers
