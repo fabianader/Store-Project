@@ -1,0 +1,126 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Cart.Model
+@using StoreProject.Features.Product.Services
+@inject IProductManagementService _productManagementService;
+@model CartModel
+@{
+    int productStock;
+    var currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+    Layout = "_Layout";
+}
+
+<section class="cart_area padding_top">
+  <div class="container">
+    @if (ViewBag.CartIsEmpty)
+    {
+        <h2 style="padding-bottom: 220px;">Oops! Cart is empty.</h2>
+    }
+    else
+    {
+        <div class="cart_inner">
+            <div class="table-responsive">
+              <table class="table" id="cartTable">
+                <thead>
+                  <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Product Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                @foreach (var product in Model.CartProducts)
+                  {
+                      productStock = _productManagementService.GetProductStock(product.Id);
+                      <tr data-product-id="@product.Id">
+                        <td>
+                          <div class="media">
+                            <div class="d-flex">
+                              <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug">
+                                <img style="max-width: 150px" src="@Directories.GetProductImage(product.ImageUrl)" alt="Product Image">
+                              </a>
+                            </div>
+                            <div>
+                              <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug">
+                                <h5 style="margin-top: 25px">@product.Title</h5>
+                              </a>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="unit-price">$@product.UnitPrice</td>
+                        <td>
+                            <input type="number" class="quantity-input" value="@product.Quantity" min="1" max="@(productStock < 10 ? productStock : 10)" />
+                            <a asp-controller="Cart" asp-action="DeleteFromCart" asp-route-productId="@product.Id" asp-route-callBackUrl="@currentUrl">
+                                <img style="max-width: 20px" src="@Directories.GetIconImage("recycle-bin.png")" alt="Recycle bin Image" />
+                            </a>
+                        </td>
+                        <td class="product-total">$@(product.UnitPrice * product.Quantity)</td>
+                      </tr>       
+                  }
+                </tbody>
+              </table>
+               <h3>
+                    Total: $<span id="total">@Model.Total</span>
+               </h3>
+               <br />
+               <div class="checkout_btn_inner float">
+                    <a class="btn_1 active" href="@Model.CallBackUrl">Continue Shopping</a>
+                    @if (Model.CartProducts.Any())
+                    {
+                        <a class="btn_1 checkout_btn_1 active" asp-controller="Cart" asp-action="Checkout">Proceed to checkout</a>
+                    }
+               </div>
+            </div>
+        </div>
+    }
+  </div>
+</section>
+
+@section Scripts {
+    <script>
+        function updateCart(productId, quantity, $input) {
+            $.ajax({
+                url: '/Cart/UpdateQuantity',
+                type: 'POST',
+                data: { productId: productId, quantity: quantity },
+                success: function (response) {
+                    // response = { productTotal, total, cartQuantity }
+
+                    // cart page: update product total
+                    let row = $input.closest("tr");
+                    if (row.length) {
+                        row.find(".product-total").text("$" + response.productTotal);
+                    }
+
+                    // shared: update totals + badge
+                    $("#total").text(response.total);
+                    $("#cartQuantityBadge").text(response.cartQuantity);
+                },
+                error: function () {
+                    alert("Failed to update quantity.");
+                }
+            });
+        }
+
+        // input change (typing or manual change)
+        $(document).on("change", ".quantity-input", function () {
+            let $input = $(this);
+            let productId = $input.data("product-id") || $input.closest("[data-product-id]").data("product-id");
+            let quantity = parseInt($input.val()) || 1;
+
+            updateCart(productId, quantity, $input);
+        });
+
+        // plus/minus buttons
+        $(document).on("click", ".number-increment, .inumber-decrement", function () {
+            let $input = $(this).siblings(".quantity-input");
+            let productId = $input.data("product-id") || $input.closest("[data-product-id]").data("product-id");
+            let quantity = parseInt($input.val()) || 1;
+
+            updateCart(productId, quantity, $input);
+        });
+    </script>
+}
+
+

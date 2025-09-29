@@ -71,5 +71,22 @@ namespace StoreProject.Features.Product.Mapper
                 ImageUrl = product.ImageUrl
             };
         }
+
+        public static DetailsModel MapProductDtoToDetailsModel(ProductDto product)
+        {
+            return new DetailsModel()
+            {
+                CategoryId = product.Category.Id,
+                ProductId = product.Id,
+                CategoryTitle = product.Category.Title,
+                CategorySlug = product.Category.Slug,
+                Title = product.Title,
+                Slug = product.Slug,
+                Description = product.Description,
+                Price = product.Price,
+                Stock = product.Stock,
+                ImageUrl = product.ImageUrl
+            };
+        }
     }
 }

@@ -47,20 +47,28 @@ namespace StoreProject.Features.Product.Services
                 if (IsAnyTitle(productEditDto.Title, product.Id))
                     return OperationResult.Error(["Title already exists."]);
 
-            //if(productEditDto.ImageUrl != null && product.ImageUrl != productEditDto.ImageUrl)
-
             ProductMapper.MapProductEditDtoToProduct(product, productEditDto);
             _context.SaveChanges();
 
             return OperationResult.Success();
         }
 
+        public bool DecreaseStock(int productId, int quantity)
+        {
+            var affectedRows = _context.Products
+                .Where(p => p.Id == productId && p.Stock >= quantity)
+                .ExecuteUpdate(p => p.SetProperty(x => x.Stock, x => x.Stock - quantity));
+
+            return affectedRows > 0; // فقط اگر موفق شد یعنی موجودی کافی بوده
+        }
+
+
         public List<ProductDto> GetAllProducts()
         {
             return _context.Products
-                    .OrderByDescending(product => product.CreationDate)
-                    .Include(product => product.Category)
-                    .Select(product => ProductMapper.MapProductToProductDto(product)).ToList();
+                .OrderByDescending(product => product.CreationDate)
+                .Include(product => product.Category)
+                .Select(product => ProductMapper.MapProductToProductDto(product)).ToList();
         }
 
         public ProductFilterDto GetProductsByFilter(ProductFilterParamsDto productFilterParamsDto)
@@ -119,7 +127,8 @@ namespace StoreProject.Features.Product.Services
             if (product == null)
                 return null;
 
-            return ProductMapper.MapProductToProductDto(product);
+            var productDto = ProductMapper.MapProductToProductDto(product);
+            return productDto;
         }
 
         public ProductDto GetProductBy(string slug)
@@ -131,7 +140,8 @@ namespace StoreProject.Features.Product.Services
             if (product == null)
                 return null;
 
-            return ProductMapper.MapProductToProductDto(product);
+            var productDto = ProductMapper.MapProductToProductDto(product);
+            return productDto;
         }
 
         public List<ProductDto> GetProductsByCategoryId(int categoryId)
@@ -161,6 +171,24 @@ namespace StoreProject.Features.Product.Services
                 return false;
 
             return (product.Stock > 0);
+        }
+
+        public string GetProductTitle(int productId)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+                return null;
+
+            return product.Title;
+        }
+        
+        public int GetProductStock(int productId)
+        {
+            var product = _context.Products.FirstOrDefault(product => product.Id == productId);
+            if(product == null)
+                return 0;
+
+            return product.Stock;
         }
     }
 }

@@ -13,13 +13,12 @@
 
     ViewData["selected"] = "products";
     ViewData["Title"] = "Products Management";
-    ViewData["ControllerName"] = "Products";
     ViewData["ActionName"] = "Edit Product";
 }
 
 <div class="card card-info">
 
-    <form asp-controller="Products" asp-action="EditProduct" asp-antiforgery="true" method="post" enctype="multipart/form-data">
+    <form asp-controller="ProductsManagement" asp-action="EditProduct" asp-antiforgery="true" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="card-body">
 

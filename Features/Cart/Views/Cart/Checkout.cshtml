@@ -1,0 +1,86 @@
+﻿@using StoreProject.Features.Cart.Model
+@model CheckoutModel
+
+<section class="checkout_area padding_top">
+  <div class="container">
+    @if (Model.CartDetails == null || Model.CartDetails.CartProducts.Count == 0)
+    {
+      <h3>Oops! Your shopping cart is empty.</h3>
+    }
+    else
+    {
+      <div class="billing_details">
+        <div class="row">
+          <div class="col-lg-8">
+            <h3>Billing Details</h3>
+            <form method="post" asp-antiforgery="true" class="row contact_form" asp-controller="Cart" asp-action="Checkout">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              
+              <input type="hidden" asp-for="CartDetails" />
+
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" asp-for="FullName" placeholder="Full name" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+              </div>
+      
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Phone Number">
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+              </div>
+      
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control" asp-for="Email" placeholder="Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+              </div>
+      
+              <div class="col-md-12 form-group">
+                <div class="creat_account">
+                  <h3>Shipping Details</h3>
+                </div>
+                <textarea class="form-control" asp-for="Address" placeholder="Address"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+              </div>
+      
+              <button type="submit" class="btn_3">Proceed to Paypal</button>
+
+            </form>
+          </div>
+      
+      
+          <div class="col-lg-4">
+            <div class="order_box">
+              <h2>Your Order</h2>
+              <ul class="list">
+                <li>
+                  <a>Product
+                    <span>Total</span>
+                  </a>
+                </li>
+      
+                @foreach(var product in Model.CartDetails.CartProducts)
+                {
+                    <li>
+                      <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug">@product.Title
+                        <span class="middle">x @product.Quantity</span>
+                        <span class="last">$@(product.UnitPrice * product.Quantity)</span>
+                      </a>
+                    </li>             
+                }
+                
+              <ul class="list list_2">
+                <li>
+                  <a>Total
+                    <span>$@Model.CartDetails.Total</span>
+                  </a>
+                </li>
+              </ul>
+      
+
+      
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

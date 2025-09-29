@@ -37,5 +37,17 @@ namespace StoreProject.Common
             return Regex.Replace(text, "<.*?>", " ")
                 .Replace(":&nbsp;", " ");
         }
+
+        public static string FirstFourSentences(this string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+                return string.Empty;
+            var allSentences = Regex.Split(text, @"(?<=[\.!\?])\s+");
+            bool hasMore = allSentences.Length > 4;
+            var sentences = allSentences.Take(4);
+
+            string result = string.Join(" ", sentences) + (hasMore ? " ..." : "");
+            return result;
+        }
     }
 }

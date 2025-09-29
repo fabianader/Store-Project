@@ -20,7 +20,6 @@ namespace StoreProject.Features.Category.Controllers
         public IActionResult Details(string slug,
             string productTitle, string productSlug, decimal? minPrice, decimal? maxPrice, int pageId = 1)
         {
-
             var category = _categoryManagementService.GetCategoryBy(slug);
             if (category == null)
                 return NotFound();
@@ -33,7 +32,7 @@ namespace StoreProject.Features.Category.Controllers
                 Title = productTitle,
                 Slug = productSlug,
                 MinPrice = minPrice,
-                MaxPrice = maxPrice,
+                MaxPrice = maxPrice
             };
 
             var model = new DetailsModel()
@@ -44,6 +43,8 @@ namespace StoreProject.Features.Category.Controllers
 
             model.ProductsCount = model.Filter.EntityCount;
 
+            var request = HttpContext.Request;
+            model.CurrentUrl = $"{request.Path}{request.QueryString}";
             return View(model);
         }
     }

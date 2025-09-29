@@ -3,7 +3,10 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using StoreProject.Common.Services;
 using StoreProject.Entities;
+using StoreProject.Features.Cart.Services;
 using StoreProject.Features.Category.Services;
+using StoreProject.Features.Order.Services;
+using StoreProject.Features.OrderChangeLog.Services;
 using StoreProject.Features.Product.Services;
 using StoreProject.Features.User.Services;
 using StoreProject.Infrastructure.Data;
@@ -20,10 +23,13 @@ builder.Services.AddControllersWithViews()
         options.ViewLocationExpanders.Add(new FeatureViewLocationExpander());
     });
 
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICategoryManagementService, CategoryManagementService>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderChangeLogService, OrderChangeLogService>();
 builder.Services.AddScoped<IProductManagementService, ProductManagementService>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<IFileManager, FileManager>();
 

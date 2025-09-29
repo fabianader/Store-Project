@@ -1,0 +1,12 @@
+﻿@model int
+@{
+    var currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+}
+<div class="position-relative" >
+    <a asp-controller="Cart" asp-action="Index" asp-route-receivedUrl="@currentUrl" id="navbarDropdown3" role="button">
+        <i class="fas fa-cart-plus"></i>
+        <span id="cartQuantityBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-danger">
+            @Model
+        </span>
+    </a>
+</div>

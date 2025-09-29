@@ -313,15 +313,16 @@ function CallBackHandler(data) {
 }
 
 //modalSize:lg,sm,
-function OpenModal(url, name, title) {
-    var modalSize = 'modal-lg';
+function OpenModal(url, name, title, modalSize = "lg", type) {
+    modalSize = modalSize || 'lg';
+    modalSize = 'modal-' + modalSize;
 
     var that = this;
     $('#' + name + ' .modal-body').html('');
 
     $.ajax({
         url: url,
-        type: "get",
+        type: type,
         beforeSend: function () {
             $(".loading").show();
         },

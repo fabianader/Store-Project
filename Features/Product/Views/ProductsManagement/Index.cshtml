@@ -7,14 +7,13 @@
     Layout = "_AdminLayout";
 	ViewData["selected"] = "products";
 	ViewData["Title"] = "Products Management";
-	ViewData["ControllerName"] = "Products";
 }
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
 
-                <a class="btn btn-success" asp-controller="Products" asp-action="CreateProduct">Create Product</a>
+                <a class="btn btn-success" asp-controller="ProductsManagement" asp-action="CreateProduct">Create Product</a>
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -73,7 +72,7 @@
                                 { <td class="text-danger">Inactive</td> }
 
                                 <td>
-                                        <a class="btn btn-info" asp-controller="Products" asp-action="EditProduct" asp-route-id="@product.Id" asp-route-imageUrl="@product.ImageUrl">Edit Product</a>
+                                    <a class="btn btn-info" asp-controller="ProductsManagement" asp-action="EditProduct" asp-route-id="@product.Id" asp-route-imageUrl="@product.ImageUrl">Edit Product</a>
                                 </td>
                             </tr>
 

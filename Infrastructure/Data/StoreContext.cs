@@ -23,6 +23,7 @@ namespace StoreProject.Infrastructure.Data
         public DbSet<Category> Categories {  get; set; }
         public DbSet<ContactMessage> ContactMessages {  get; set; }
         public DbSet<Order> Orders {  get; set; }
+        public DbSet<OrderChangeLog> OrderChangeLogs {  get; set; }
         public DbSet<OrderItem> OrderItems {  get; set; }
         public DbSet<Post> Posts {  get; set; }
         public DbSet<Product> Products {  get; set; }

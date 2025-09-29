@@ -1,0 +1,69 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Order.DTOs
+@model OrderFilterDto
+
+@{
+    Layout = "_AdminLayout";
+	ViewData["selected"] = "orders";
+	ViewData["Title"] = "Orders Management";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User Id</th>
+                            <th>User Name</th>
+                            <th>Full Name</th>
+                            <th>Order Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr>
+                                <th>@order.Id</th>
+                                <td>@order.UserId</td>
+                                <td>@order.UserName</td>
+                                <td>@order.FullName</td>
+                                <td>@order.OrderDate.ToShortDateString()</td>
+                                <td>@order.TotalPrice</td>
+                                <td class="text-@CommonService.GetOrderStatusBootstrapColor((int)order.Status)">@order.Status</td>
+                                <td>
+                                    <a class="btn btn-info" asp-controller="OrdersManagement" asp-action="OrderDetails" asp-route-id="@order.Id" asp-route-username="@order.UserName">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<center>
+    <partial name="_AdminPagination" />
+</center>

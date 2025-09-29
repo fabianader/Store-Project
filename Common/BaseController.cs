@@ -16,16 +16,19 @@ namespace StoreProject.Common
         }
         protected IActionResult PartialViewAndShowErrorAlert(PartialViewResult partialViewName, List<string>? ErrorMessages=null)
         {
-            //var model = JsonConvert.SerializeObject(result);
-            //HttpContext.Response.Cookies.Append("SystemAlert", model);
             ErrorAlert(ErrorMessages);
             return partialViewName;
         }
-        //protected IActionResult ViewAndShowErrorAlert(ViewResult ViewName, List<string>? ErrorMessages = null)
-        //{
-        //    ErrorAlert(ErrorMessages);
-        //    return ViewName;
-        //}
+
+        protected IActionResult RedirectToUrlAndShowErrorAlert(OperationResult result, IActionResult redirectPath)
+        {
+            var model = JsonConvert.SerializeObject(result);
+            HttpContext.Response.Cookies.Append("SystemAlert", model);
+            if (result.Status != OperationResultStatus.Success)
+                return redirectPath;
+
+            return View();
+        }
 
         protected void SuccessAlert()
         {

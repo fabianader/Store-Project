@@ -11,7 +11,15 @@ namespace StoreProject.Entities
 
         public string UserId { get; set; }
 
-        
+        [Required]
+        public string FullName { get; set; }
+
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string PhoneNumber { get; set; }
+
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
 
@@ -26,13 +34,17 @@ namespace StoreProject.Entities
         [Precision(18, 4)]
         public decimal TotalPrice { get; set; }
 
-        public enum Status
-        {   
-            Pending,
-            Paid,
-            Shipped
-        }
+        public OrderStatus Status { get; set; } = OrderStatus.Pending;
 
         public ICollection<OrderItem> OrderItems { get; set; }
+    }
+
+    public enum OrderStatus
+    {
+        Pending = 0,     // تازه ثبت شده
+        Paid = 1,        // پرداخت شده
+        Shipped = 2,     // ارسال شده
+        Delivered = 3,   // تحویل داده شده
+        Cancelled = 4    // لغو شده
     }
 }

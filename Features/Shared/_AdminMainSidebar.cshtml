@@ -85,10 +85,19 @@
           </li>
 
           <li class="nav-item">
-            <a asp-controller="Products" asp-action="Index" class="nav-link @(selected == "products" ? "active" : null)">
+            <a asp-controller="ProductsManagement" asp-action="Index" class="nav-link @(selected == "products" ? "active" : null)">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Products Management
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a asp-controller="OrdersManagement" asp-action="Index" class="nav-link @(selected == "orders" ? "active" : null)">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Orders Management
               </p>
             </a>
           </li>

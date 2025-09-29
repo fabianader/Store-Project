@@ -11,10 +11,8 @@
     <Folder Include="Features\Admin\DTOs\" />
     <Folder Include="Features\Admin\Services\" />
     <Folder Include="Features\CartItem\" />
-    <Folder Include="Features\Cart\" />
     <Folder Include="Features\BlogPost\" />
     <Folder Include="Features\OrderItem\" />
-    <Folder Include="Features\Order\" />
     <Folder Include="Features\Shared\Components\CategoryTree\" />
     <Folder Include="wwwroot\images\products\" />
   </ItemGroup>

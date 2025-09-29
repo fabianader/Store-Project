@@ -9,6 +9,7 @@ namespace StoreProject.Features.User.Services
         List<UserDto> GetAllUsers();
         List<string> GetAllRolesName();
         int GetAllRolesCount();
+        Task<string> GetUserNameAsync(string userId);
         UserFilterDto GetUsersByFilter(UserFilterParamsDto userFilterParamsDto);
         Task<UserDto> GetUserByIdAsync(string id);
         Task<List<string>> GetUserRolesAsync(string id);

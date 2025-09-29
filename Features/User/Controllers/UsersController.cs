@@ -18,7 +18,8 @@ namespace StoreProject.Features.User.Controllers
             _fileManager = fileManager;
         }
 
-        public IActionResult Index(DateTime? registerDate, int pageId = 1, string username = "", List<string>? roles = null, bool isDeleted = false)
+        public IActionResult Index(DateTime? registerDate, int pageId = 1, string username = "",
+                                   List<string>? roles = null, bool isDeleted = false)
         {
             var parameters = new UserFilterParamsDto()
             {

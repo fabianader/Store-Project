@@ -1,8 +1,13 @@
 ﻿@using StoreProject.Common
+@using StoreProject.Features.Cart.Services
 @using StoreProject.Features.Product.Services
+@using System.Security.Claims
 @model StoreProject.Features.Category.Model.DetailsModel
 @inject IProductManagementService _productManagementService
-
+@inject ICartService _cartService
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+}
 <section>
     <div class="container" style="margin-top: 200px; margin-bottom: 20px;">
         <center>
@@ -29,7 +34,27 @@
                         <div class="widgets_inner">
                             <div class="range_item">
                                 <div id="slider-range"></div>
-                                <span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span class="irs-line-left"></span><span class="irs-line-mid"></span><span class="irs-line-right"></span></span><span class="irs-min" style="visibility: hidden;">tk. 0</span><span class="irs-max" style="visibility: hidden;">tk. 1.000</span><span class="irs-from" style="visibility: visible; left: 0%;">tk. 0</span><span class="irs-to" style="visibility: visible; left: 35%;">tk. 500</span><span class="irs-single" style="visibility: hidden; left: 3.16667%;">tk. 0 - tk. 500</span></span><span class="irs-grid"></span><span class="irs-bar" style="left: 5%; width: 45%;"></span><span class="irs-shadow shadow-from" style="display: none;"></span><span class="irs-shadow shadow-to" style="display: none;"></span><span class="irs-slider from" style="left: 0%;"></span><span class="irs-slider to type_last" style="left: 45%;"></span></span><input type="text" class="js-range-slider irs-hidden-input" value="" readonly="">
+                                <span class="irs js-irs-0">
+                                    <span class="irs">
+                                        <span class="irs-line" tabindex="-1">
+                                            <span class="irs-line-left"></span>
+                                            <span class="irs-line-mid"></span>
+                                            <span class="irs-line-right"></span>
+                                        </span>
+                                        <span class="irs-min" style="visibility: hidden;">tk. 0</span>
+                                        <span class="irs-max" style="visibility: hidden;">tk. 1.000</span>
+                                        <span class="irs-from" style="visibility: visible; left: 0%;">tk. 0</span>
+                                        <span class="irs-to" style="visibility: visible; left: 35%;">tk. 500</span>
+                                        <span class="irs-single" style="visibility: hidden; left: 3.16667%;">tk. 0 - tk. 500</span>
+                                    </span>
+                                    <span class="irs-grid"></span>
+                                    <span class="irs-bar" style="left: 5%; width: 45%;"></span>
+                                    <span class="irs-shadow shadow-from" style="display: none;"></span>
+                                    <span class="irs-shadow shadow-to" style="display: none;"></span>
+                                    <span class="irs-slider from" style="left: 0%;"></span>
+                                    <span class="irs-slider to type_last" style="left: 45%;"></span>
+                                </span>
+                                <input type="text" class="js-range-slider irs-hidden-input" value="" readonly="">
                                 <div class="d-flex">
                                     <div class="price_text">
                                         <p>Price :</p>
@@ -85,11 +110,30 @@
                         {
                             <div class="col-lg-4 col-sm-6">
                                 <div class="single_product_item">
-                                    <img src="@Directories.GetProductImage(product.ImageUrl)" height="109px" alt="Product Image">
+                                    <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug">
+                                        <img src="@Directories.GetProductImage(product.ImageUrl)" height="109px" alt="Product Image">
+                                    </a>
                                     <div class="single_product_text">
-                                        <h4>@product.Title</h4>
+                                        <header-link url="/products/@(product.Slug)">@product.Title</header-link>
                                         <h3>@product.Price</h3>
-                                        <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                        
+                                        @if (product.Stock != 0)
+                                        {
+                                            @if (_cartService.IsProductInCart(userId, product.Id))
+                                            {
+                                                <h4 class="text-success">Added to cart</h4>
+                                            }
+                                            else
+                                            {
+                                                <open-modal tag="a" modal-size="sm" method="post" style="cursor:pointer;" class="add_cart" url="@Url.Action("AddToCart", "Cart", new {productId=product.Id, callBackUrl=Model.CurrentUrl})">
+                                                    Add to cart <i class="ti-heart"></i>
+                                                </open-modal>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <h4 class="text-danger">Out of stock</h4>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -98,16 +142,8 @@
                     else
                     {
                         <h3>
-                            <center>
-                                Oops! No product found.
-                            </center>
-                            
+                            Oops! No product found.
                         </h3>
-                            <center>
-                            <div>
-                                <h2>@Model.Title</h2>
-                            </div>
-                        </center>
                     }
 
                     <partial name="_Pagination" model="Model.Filter"/>
@@ -173,5 +209,27 @@
 </section>
 <!-- product_list part end-->
  *@
- <script src="js/stellar.js"></script>
- <script src="js/price_rangs.js"></script>
+ @section Scripts{
+     <script src="js/stellar.js"></script>
+     <script src="js/price_rangs.js"></script>
+     <script>
+        function addToCart(productId, callBackUrl) {
+            fetch('/Cart/AddToCart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value // ضد CSRF
+                },
+                body: `productId=${productId}&callBackUrl=${encodeURIComponent(callBackUrl)}`
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = callBackUrl;
+                } else {
+                    alert("Something went wrong, please try again.");
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+     </script>
+}

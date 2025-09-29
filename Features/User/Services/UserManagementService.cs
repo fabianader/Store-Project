@@ -9,6 +9,7 @@ using StoreProject.Features.User.DTOs;
 using StoreProject.Features.User.Mapper;
 using StoreProject.Infrastructure.Data;
 using System.Linq;
+using System.Security.Claims;
 
 namespace StoreProject.Features.User.Services
 {
@@ -163,6 +164,15 @@ namespace StoreProject.Features.User.Services
 
             // the correct is ||, it is changed for development
             return IsAnyUserName && IsAnyEmail && IsAnyPhoneNumber;
+        }
+
+        public async Task<string> GetUserNameAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return null;
+
+            return user.UserName;
         }
     }
 }

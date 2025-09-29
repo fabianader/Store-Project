@@ -1,0 +1,9 @@
+﻿@model string
+
+<h4>The product has been added to your cart!</h4>
+<br />
+<center>
+	<a class="btn btn-primary" href="@Model">Continue shopping</a>
+	<br /><br />
+	<a class="btn btn-info" asp-controller="Cart" asp-action="Index" asp-route-receivedUrl="@Model">View shopping cart</a>
+</center>
