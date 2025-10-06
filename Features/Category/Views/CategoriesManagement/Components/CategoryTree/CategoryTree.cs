@@ -2,7 +2,7 @@
 using StoreProject.Features.Category.Mapper;
 using StoreProject.Features.Category.Services;
 
-namespace StoreProject.Features.Category.Views.Categories.Components.CategoryTree
+namespace StoreProject.Features.Category.Views.CategoriesManagement.Components.CategoryTree
 {
     public class CategoryTree : ViewComponent
     {

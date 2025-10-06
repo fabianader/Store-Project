@@ -1,12 +1,12 @@
 ﻿@using StoreProject.Common
 @using StoreProject.Features.Order.DTOs
-@using StoreProject.Features.Order.Models
+@using StoreProject.Features.Order.Models;
 @model OrderDetailsModel
 @{
     Layout = "_AdminLayout";
     ViewData["selected"] = "orders";
     ViewData["Title"] = "Orders Management";
-    ViewData["ActionName"] = "Edit Order";
+    ViewData["ActionName"] = "Order Details";
 
     List<string> BootstrapColors = ["dark", "info", "primary", "success", "danger"];
 }

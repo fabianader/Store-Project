@@ -63,6 +63,7 @@ namespace StoreProject.Features.User.Services
             if (user.ProfilePicture != userEditDto.ProfilePictureName)
                 user.ProfilePicture = userEditDto.ProfilePictureName;
 
+             //     || must be used
             if (user.UserName != userEditDto.UserName && user.Email != userEditDto.Email && user.PhoneNumber != userEditDto.PhoneNumber)
                 if (IsAny([userEditDto.UserName, userEditDto.Email, userEditDto.PhoneNumber]))
                     return OperationResult.Error(["A user with these characteristics exists."]);
@@ -136,15 +137,6 @@ namespace StoreProject.Features.User.Services
             };
             userFilter.GeneratePaging(result, userFilterParamsDto.Take, userFilterParamsDto.PageId);
             return userFilter;
-        }
-
-        public async Task<UserDto> GetUserByIdAsync(string id)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null)
-                return null;
-
-            return UserMapper.MapAppUserToUserDto(user);
         }
 
         public async Task<List<string>> GetUserRolesAsync(string id)

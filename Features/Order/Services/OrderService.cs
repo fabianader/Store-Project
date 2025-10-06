@@ -72,6 +72,19 @@ namespace StoreProject.Features.Order.Services
             return OperationResult.Success();
         }
 
+        public OperationResult CancelOrder(int orderId)
+        {
+            var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
+            if (order == null)
+                return OperationResult.NotFound(["Order not found"]);
+
+            if (order.Status != OrderStatus.Pending)
+                return OperationResult.Error(["It is not possible to cancel the order."]);
+
+            order.Status = OrderStatus.Cancelled;
+            return OperationResult.Success();
+        }
+
         public List<OrderDto> GetAllOrders()
         {
             var orders = _context.Orders
@@ -80,6 +93,23 @@ namespace StoreProject.Features.Order.Services
                 .Select(o => OrderMapper.MapOrderToOrderDto(o)).ToList();
 
             return orders;
+        }
+
+        public List<OrderDto> GetUserOrders(string userId)
+        {
+            var orders = _context.Orders
+                .Where(o => o.UserId == userId)
+                .Include(o => o.OrderItems)
+                .OrderByDescending(o => o.OrderDate)
+                .Select(OrderMapper.MapOrderToOrderDto).ToList();
+            var c = orders;
+            return orders;
+        }
+
+        public int GetUserOrdersCount(string userId)
+        {
+            var userOrders = _context.Orders.Select(o => o.UserId == userId);
+            return userOrders.Count();
         }
 
         public OrderDto GetOrderBy(int orderId)

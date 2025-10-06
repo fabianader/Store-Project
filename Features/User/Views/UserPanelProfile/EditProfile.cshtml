@@ -1,0 +1,71 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.User.Model
+@model UserPanelEditProfileModel
+@{
+	Layout = "_UserPanelLayout";
+	ViewData["Title"] = "Edit Profile";
+	ViewData["ActivePage"] = "Profile";
+}
+
+<img class="rounded-circle" src="@Directories.GetUserProfilePicture(Model.ProfilePictureName)" alt="Profile Picture" width="100" height="100" >
+<br /><br />
+
+
+<div class="card">
+    <div class="card-body">
+
+        <form asp-antiforgery="true" asp-controller="UserPanelProfile" asp-action="EditProfile" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+
+                <input type="hidden" asp-for="ProfilePictureName" value="@Model.ProfilePictureName" />
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="UserName"></label>
+                        <input type="text" class="form-control" asp-for="UserName">
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="FullName"></label>
+                        <input type="text" class="form-control" asp-for="FullName">
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Email"></label>
+                        <input type="text" class="form-control" asp-for="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="PhoneNumber"></label>
+                        <input type="text" class="form-control" asp-for="PhoneNumber">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="form-group col-md-6">
+                    <label asp-for="ProfilePictureFile"></label>
+                    <input type="file" asp-for="ProfilePictureFile" class="form-control"/>
+                    <span asp-validation-for="ProfilePictureFile" class="text-danger"></span>
+                </div>
+
+                <br />
+
+                <center>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                </center>
+        </form> 
+    </div>
+</div>
+

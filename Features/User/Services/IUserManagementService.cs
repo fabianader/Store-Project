@@ -11,7 +11,6 @@ namespace StoreProject.Features.User.Services
         int GetAllRolesCount();
         Task<string> GetUserNameAsync(string userId);
         UserFilterDto GetUsersByFilter(UserFilterParamsDto userFilterParamsDto);
-        Task<UserDto> GetUserByIdAsync(string id);
         Task<List<string>> GetUserRolesAsync(string id);
         Task<OperationResult> CreateUserAsync(UserCreateDto userCreateDto);
         Task<OperationResult> EditUserAsync(UserEditDto userEditDto);

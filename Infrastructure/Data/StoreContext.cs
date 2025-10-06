@@ -11,15 +11,10 @@ namespace StoreProject.Infrastructure.Data
         public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
 
         public DbSet<ApplicationUser> ApplicationUsers {  get; set; }
-        //public DbSet<IdentityRole> ApplicationRole {  get; set; }
-        //public DbSet<IdentityUserClaim<string>> ApplicationUserClaim {  get; set; }
-        //public DbSet<IdentityUserRole> ApplicationUserRole {  get; set; }
-        //public DbSet<IdentityUserLogin> ApplicationUserLogin {  get; set; }
-        //public DbSet<IdentityRoleClaim> ApplicationRoleClaim {  get; set; }
-        //public DbSet<IdentityUserToken> ApplicationUserToken {  get; set; }
 
         public DbSet<Cart> Carts {  get; set; }
         public DbSet<CartItem> CartItems {  get; set; }
+        public DbSet<Favorite> Favorites {  get; set; }
         public DbSet<Category> Categories {  get; set; }
         public DbSet<ContactMessage> ContactMessages {  get; set; }
         public DbSet<Order> Orders {  get; set; }

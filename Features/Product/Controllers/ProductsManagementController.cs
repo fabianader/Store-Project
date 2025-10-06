@@ -17,7 +17,7 @@ namespace StoreProject.Features.Product.Controllers
             _productManagementService = productManagementService;
             _fileManager = fileManager;
         }
-        
+
         public IActionResult Index(int? categoryId, string title, string slug, decimal? minPrice, decimal? maxPrice, bool isDeleted, int pageId = 1)
         {
             var parameters = new ProductFilterParamsDto()
@@ -176,7 +176,7 @@ namespace StoreProject.Features.Product.Controllers
             var result = _productManagementService.EditProduct(new ProductEditDto()
             {
                 Id = model.Id,
-                CategoryId = (model.CategoryId == 0) ? FirstCategoryId : model.CategoryId,
+                CategoryId = model.CategoryId == 0 ? FirstCategoryId : model.CategoryId,
                 ImageUrl = ProductImageUrl,
                 Title = model.Title,
                 Slug = model.Slug,
@@ -201,14 +201,14 @@ namespace StoreProject.Features.Product.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult IsNonNegative(decimal input)
         {
-            return (input >= 0) ? Json(true) : Json("The number must be a valid number.");
+            return input >= 0 ? Json(true) : Json("The number must be a valid number.");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult IsNonNegative(int input)
         {
-            return (input >= 0) ? Json(true) : Json("The number must be a valid number.");
+            return input >= 0 ? Json(true) : Json("The number must be a valid number.");
         }
 
         #endregion

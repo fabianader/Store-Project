@@ -73,14 +73,14 @@ namespace StoreProject.Features.Order.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> OrderDetails(OrderDetailsModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ErrorAlert();
                 return View(model);
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if(userId == null)
+            if (userId == null)
             {
                 ErrorAlert(["User not found."]);
                 return View(model);
@@ -96,7 +96,7 @@ namespace StoreProject.Features.Order.Controllers
                 Status = model.Status
             }, userId);
 
-            if(result.Status != OperationResultStatus.Success)
+            if (result.Status != OperationResultStatus.Success)
             {
                 ErrorAlert(result.Message);
                 return View(model);

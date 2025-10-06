@@ -14,7 +14,7 @@ namespace StoreProject.Features.User.Model
         public string UserName { get; set; }
 
 
-        [Display(Name = "FullName")]
+        [Display(Name = "Full name")]
         [Required(ErrorMessage = "Enter the {0}")]
         public string FullName { get; set; }
 
@@ -26,7 +26,7 @@ namespace StoreProject.Features.User.Model
         public string Email { get; set; }
 
 
-        [Display(Name = "Phone Number")]
+        [Display(Name = "Phone number")]
         [Required(ErrorMessage = "Enter the {0}")]
         [Phone]
         public string PhoneNumber { get; set; }

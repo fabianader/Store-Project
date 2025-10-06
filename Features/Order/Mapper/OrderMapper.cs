@@ -93,23 +93,23 @@ namespace StoreProject.Features.Order.Mapper
         //    };
         //}
 
-        public static OrderModel MapOrderDtoToOrderModel(OrderDto orderDto)
-        {
-            return new OrderModel()
-            {
-                Id = orderDto.Id,
-                UserId = orderDto.UserId,
-                FullName = orderDto.FullName,
-                Email = orderDto.Email,
-                PhoneNumber = orderDto.PhoneNumber,
-                OrderDate = orderDto.OrderDate,
-                ShippingAddress = orderDto.ShippingAddress,
-                Status = orderDto.Status,
-                TotalPrice = orderDto.TotalPrice,
-                OrderItems = orderDto.OrderItems
-                    .Select(i => MapOrderItemDtoToOrderItemModel(i)).ToList()
-            };
-        }
+        //public static UserPanelOrderDetailsModel MapOrderDtoToOrderModel(OrderDto orderDto)
+        //{
+        //    return new UserPanelOrderDetailsModel()
+        //    {
+        //        Id = orderDto.Id,
+        //        UserId = orderDto.UserId,
+        //        FullName = orderDto.FullName,
+        //        Email = orderDto.Email,
+        //        PhoneNumber = orderDto.PhoneNumber,
+        //        OrderDate = orderDto.OrderDate,
+        //        ShippingAddress = orderDto.ShippingAddress,
+        //        Status = orderDto.Status,
+        //        TotalPrice = orderDto.TotalPrice,
+        //        OrderItems = orderDto.OrderItems
+        //            .Select(i => MapOrderItemDtoToOrderItemModel(i)).ToList()
+        //    };
+        //}
 
         public static OrderItemModel MapOrderItemDtoToOrderItemModel(OrderItemDto orderItemDto)
         {
@@ -160,6 +160,47 @@ namespace StoreProject.Features.Order.Mapper
                 UserId = order.UserId,
                 OrderDate = order.OrderDate,
                 TotalPrice = order.TotalPrice
+            };
+        }
+
+        public static UserPanelOrderDetailsModel MapOrderDtoToUserPanelOrderDetailsModel(OrderDto order)
+        {
+            return new UserPanelOrderDetailsModel()
+            {
+                Id = order.Id,
+                FullName = order.FullName,
+                Email = order.Email,
+                PhoneNumber = order.PhoneNumber,
+                OrderDate = order.OrderDate,
+                ShippingAddress = order.ShippingAddress,
+                TotalPrice = order.TotalPrice,
+                Status = order.Status,
+                OrderItems = order.OrderItems
+                    .Select(MapOrderItemDtoToUserPanelOrderItemModel).ToList()
+            };
+        }
+
+        public static UserPanelOrderItemModel MapOrderItemDtoToUserPanelOrderItemModel(OrderItemDto orderItemDto)
+        {
+            return new UserPanelOrderItemModel()
+            {
+                ProductId = orderItemDto.ProductId,
+                Quantity = orderItemDto.Quantity,
+                UnitPrice = orderItemDto.UnitPrice,
+            };
+        }
+
+        public static UserPanelOrderModel MapOrderDtoToUserPanelOrderModel(OrderDto order)
+        {
+            return new UserPanelOrderModel()
+            {
+                Id = order.Id,
+                FullName = order.FullName,
+                OrderDate = order.OrderDate,
+                TotalPrice = order.TotalPrice,
+                Status = order.Status,
+                OrderItems = order.OrderItems
+                    .Select(MapOrderItemDtoToUserPanelOrderItemModel).ToList()
             };
         }
     }

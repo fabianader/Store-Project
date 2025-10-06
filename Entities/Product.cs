@@ -42,5 +42,6 @@ namespace StoreProject.Entities
 
         public ICollection<OrderItem> OrderItems { get; set; }
         public ICollection<CartItem> CartItems { get; set; }
+        public ICollection<Favorite> Favorites { get; set; }
     }
 }

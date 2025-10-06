@@ -92,6 +92,14 @@ namespace StoreProject.Features.User.Services
 
             return OperationResult.Error(["An error occurred."]);
         }
+
+        public async Task<OperationResult> UserLogout()
+        {
+            await _signInManager.SignOutAsync();
+            return OperationResult.Success();
+        }
+
+
         public bool IsAny(string[] items)
         {
            bool IsAnyUserName = _storeContext.Users.Any(u => u.UserName == items[0]);
@@ -192,6 +200,56 @@ namespace StoreProject.Features.User.Services
                 return OperationResult.Error(ErrorsList);
             }
 
+            return OperationResult.Success();
+        }
+
+		public async Task<OperationResult> UserPanelEditAsync(UserPanelEditDto userPanelEditDto)
+		{
+            var user = await _userManager.FindByIdAsync(userPanelEditDto.Id);
+            if (user == null)
+                return OperationResult.NotFound(["User not found."]);
+			
+            //     ||  must be used
+            if (user.UserName != userPanelEditDto.UserName && user.Email != userPanelEditDto.Email && user.PhoneNumber != userPanelEditDto.PhoneNumber)
+				if (IsAny([userPanelEditDto.UserName, userPanelEditDto.Email, userPanelEditDto.PhoneNumber]))
+				    return OperationResult.Error(["A user with these characteristics exists."]);
+
+            UserMapper.MapUserPanelEditDtoToAppUser(userPanelEditDto, user);
+
+            var result = await _userManager.UpdateAsync(user);
+
+			List<string> ErrorsList = new List<string>();
+			if (!result.Succeeded)
+            {
+                foreach(var error in result.Errors)
+                    ErrorsList.Add(error.Description);
+
+                return OperationResult.Error(ErrorsList);
+            }
+
+			await _signInManager.RefreshSignInAsync(user);
+			return OperationResult.Success();
+		}
+
+        public async Task<OperationResult> UserChangePasswordAsync(UserPanelChangePasswordDto userPanelChangePasswordDto)
+        {
+            var user = await _userManager.FindByIdAsync(userPanelChangePasswordDto.UserId);
+            if (user == null)
+                return OperationResult.NotFound(["User not found."]);
+
+            var result = await _userManager.ChangePasswordAsync(user, userPanelChangePasswordDto.CurrentPassword, userPanelChangePasswordDto.NewPassword);
+
+            List<string> ErrorsList = new List<string>();
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                    ErrorsList.Add(error.Description);
+
+                return OperationResult.Error(ErrorsList);
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            
             return OperationResult.Success();
         }
     }

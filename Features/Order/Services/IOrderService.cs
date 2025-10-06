@@ -7,8 +7,11 @@ namespace StoreProject.Features.Order.Services
     {
         OrderDto GetPendingOrderBy(int orderId);
         List<OrderDto> GetAllOrders();
+        List<OrderDto> GetUserOrders(string userId);
+        int GetUserOrdersCount(string userId);
         OrderFilterDto GetOrdersByFilter(OrderFilterParamsDto orderFilterParamsDto);
         Task<OperationResult> EditOrderAsync(OrderEditDto orderEditDto, string userId);
+        OperationResult CancelOrder(int orderId);
         OrderDto GetOrderBy(int orderId);
         Entities.Order CreateOrder(string userId, CheckoutDto checkoutDto);
     }

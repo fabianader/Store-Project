@@ -1,7 +1,8 @@
 ﻿@using StoreProject.Features.Category.Mapper
+@using StoreProject.Features.Category.Model
 @using StoreProject.Features.Category.Services
 @using StoreProject.Features.Shared
-@model StoreProject.Features.Category.Model.CategoryModel
+@model CategoryModel
 @inject ICategoryManagementService _categoryServiceManager
 @{
 	var childCategories = _categoryServiceManager.GetChildCategories(Model.Id)

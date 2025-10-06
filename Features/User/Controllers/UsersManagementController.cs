@@ -7,18 +7,20 @@ using StoreProject.Features.User.Services;
 
 namespace StoreProject.Features.User.Controllers
 {
-    [Route("Admin/Users/{action=index}")]
-    public class UsersController : BaseController
+    [Route("Admin/UsersManagement/{action=index}")]
+    public class UsersManagementController : BaseController
     {
         private readonly IUserManagementService _userManagementService;
+        private readonly IUserSharedService _userSharedService;
         private readonly IFileManager _fileManager;
-        public UsersController(IUserManagementService userManagementService, IFileManager fileManager)
-        {
-            _userManagementService = userManagementService;
-            _fileManager = fileManager;
-        }
+		public UsersManagementController(IUserManagementService userManagementService, IFileManager fileManager, IUserSharedService userSharedService)
+		{
+			_userManagementService = userManagementService;
+			_fileManager = fileManager;
+			_userSharedService = userSharedService;
+		}
 
-        public IActionResult Index(DateTime? registerDate, int pageId = 1, string username = "",
+		public IActionResult Index(DateTime? registerDate, int pageId = 1, string username = "",
                                    List<string>? roles = null, bool isDeleted = false)
         {
             var parameters = new UserFilterParamsDto()
@@ -72,7 +74,7 @@ namespace StoreProject.Features.User.Controllers
 
         public async Task<IActionResult> EditUser(string id)
         {
-            var user = await _userManagementService.GetUserByIdAsync(id);
+            var user = await _userSharedService.GetUserByIdAsync(id);
             if (user == null)
                 return RedirectAndShowAlert(OperationResult.NotFound(), RedirectToAction("Index"));
 
@@ -104,7 +106,7 @@ namespace StoreProject.Features.User.Controllers
                 return PartialViewAndShowErrorAlert(PartialView("_AdminEditUser", model));
             }
 
-            if(model.ProfilePictureFile != null)
+            if (model.ProfilePictureFile != null)
                 try
                 {
                     ProfilePicName = _fileManager.SaveImageAndReturnImageName(model.ProfilePictureFile, Directories.UserProfilePicture);
@@ -116,7 +118,7 @@ namespace StoreProject.Features.User.Controllers
                     return PartialViewAndShowErrorAlert(PartialView("_AdminEditUser", model), ["To change the profile picture, you must upload a photo."]);
                 }
 
-                
+
 
             var result = await _userManagementService.EditUserAsync(new UserEditDto()
             {

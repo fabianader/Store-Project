@@ -1,0 +1,33 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.User.Model
+@model UserPanelProfileModel
+@{
+	Layout = "_UserPanelLayout";
+	ViewData["Title"] = "My Profile";
+	ViewData["ActivePage"] = "Profile";
+}
+
+<div class="card">
+	<div class="card-body">
+		
+		<div class="row">
+			<div class="col-md-3" style="padding-bottom: 15px;">
+				<center>
+					<img alt="Profile Picture" src="@Directories.GetUserProfilePicture(Model.ProfilePicture)"
+						class="rounded-circle" width="130" height="130"/>
+				</center>
+				
+			</div>
+
+			<div class="col-md-6">
+				<p><strong>User name: </strong>@Model.UserName</p>
+				<p><strong>Full name: </strong>@Model.FullName</p>
+				<p><strong>Email: </strong>@Model.Email</p>
+				<p><strong>Phone number: </strong>@Model.PhoneNumber</p>
+				<p><strong>Register date: </strong>@Model.RegisterDate.ToLongDateString()</p>
+			</div>
+		</div>
+
+		<a class="btn btn-dark" asp-controller="UserPanelProfile" asp-action="EditProfile">Edit Profile</a>
+	</div>
+</div>

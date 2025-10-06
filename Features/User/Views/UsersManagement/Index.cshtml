@@ -5,14 +5,13 @@
 	Layout = "_AdminLayout";
     ViewData["selected"] = "users";
 	ViewData["Title"] = "Users Management";
-	ViewData["ControllerName"] = "Users";
 }
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <open-modal
-                    class="btn btn-success" title="Create User" url="@Url.Action("CreateUser", "Users")">
+                    class="btn btn-success" title="Create User" url="@Url.Action("CreateUser", "UsersManagement")">
                     Create User
                 </open-modal>
                 <div class="card-tools">
@@ -64,7 +63,7 @@
 
                                 <td>
                                     <open-modal 
-                                        title="Edit User" url="@Url.Action("EditUser", "Users", new{id=user.Id})">
+                                        title="Edit User" url="@Url.Action("EditUser", "UsersManagement", new{id=user.Id})">
                                         Edit User
                                     </open-modal>
                                 </td>

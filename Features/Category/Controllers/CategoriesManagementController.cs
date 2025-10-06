@@ -21,7 +21,7 @@ namespace StoreProject.Features.Category.Controllers
         {
             ViewBag.ShowDeletedCategories = showDeletedCategories;
 
-            var categories = (showDeletedCategories == false) ? _categoryManagementService.GetExistedCategories() : _categoryManagementService.GetDeletedCategories();
+            var categories = showDeletedCategories == false ? _categoryManagementService.GetExistedCategories() : _categoryManagementService.GetDeletedCategories();
             var model = categories.Select(category => CategoryMapper.MapCategoryDtoToCategoryModel(category)).ToList();
             return View(model);
         }
@@ -47,7 +47,7 @@ namespace StoreProject.Features.Category.Controllers
             {
                 Title = model.Title,
                 Slug = model.Slug,
-                ParentId = (model.ParentId == 0) ? null : model.ParentId
+                ParentId = model.ParentId == 0 ? null : model.ParentId
             });
 
             if (result.Status != OperationResultStatus.Success)
@@ -97,7 +97,7 @@ namespace StoreProject.Features.Category.Controllers
                 Id = model.Id,
                 Title = model.Title,
                 Slug = model.Slug,
-                ParentId = (model.ParentId == 0) ? null : model.ParentId,
+                ParentId = model.ParentId == 0 ? null : model.ParentId,
                 IsDeleted = model.IsDeleted
             });
 

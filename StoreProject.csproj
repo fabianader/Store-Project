@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Admin\DTOs\" />
+    <Folder Include="Features\Admin\Models\" />
     <Folder Include="Features\Admin\Services\" />
     <Folder Include="Features\CartItem\" />
     <Folder Include="Features\BlogPost\" />

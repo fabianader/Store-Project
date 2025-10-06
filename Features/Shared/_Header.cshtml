@@ -1,4 +1,5 @@
-﻿<header class="main_menu home_menu">
+﻿@using StoreProject.Common
+<header class="main_menu home_menu">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-12">
@@ -74,6 +75,9 @@
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex">
+                        <a asp-controller="UserPanel" asp-action="Index">
+                            <img alt="Profile" src="@Directories.GetIconImage("user.png")" width="25" />
+                        </a>
                         <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                         <a href=""><i class="ti-heart"></i></a>
                         <vc:cart-summary></vc:cart-summary>

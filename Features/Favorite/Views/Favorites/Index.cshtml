@@ -1,0 +1,32 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Favorite.Models
+@model List<FavoritesModel>
+@{
+	Layout = "_UserPanelLayout";
+	ViewData["Title"] = "Favorites";
+	ViewData["ActivePage"] = "Favorites";
+}
+@if(Model.Count == 0)
+{
+	<p>You have not added any products to your favorites yet.</p>
+}
+else
+{
+    <div class="row align-items-center latest_product_inner">
+        @foreach (var product in Model)
+        {
+            @* <input type="hidden" asp-for="@product.ProductId"/> *@
+            <div class="col-lg-4 col-sm-6">
+                <div class="single_product_item">
+                    <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug">
+                        <img src="@Directories.GetProductImage(product.ImageUrl)" height="109px" alt="Product Image">
+                    </a>
+                    <div class="single_product_text">
+                        <header-link url="/products/@(product.Slug)">@product.Title</header-link>
+                        <h3>@product.Price</h3>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

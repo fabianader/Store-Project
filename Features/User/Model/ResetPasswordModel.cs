@@ -8,13 +8,13 @@ namespace StoreProject.Features.User.Model
         [Required]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Enter New Password.")]
+        [Required(ErrorMessage = "Enter new password.")]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
 
-        [Required(ErrorMessage = "Enter the Password again.")]
+        [Required(ErrorMessage = "Enter the password again.")]
         [DataType(DataType.Password)]
         [Compare(nameof(NewPassword), ErrorMessage = "Password confirmation does not match.")]
-        public string RePassword { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace StoreProject.Entities
         public ICollection<Order> Orders { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<ContactMessage> ContactMessages { get; set; }
+        public ICollection<Favorite> Favorites { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }

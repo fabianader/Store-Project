@@ -1,0 +1,56 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Order.Models
+@model List<UserPanelOrderModel>
+@{
+	Layout = "_UserPanelLayout";
+	ViewData["Title"] = "My Orders";
+	ViewData["ActivePage"] = "Orders";
+}
+
+<div class="card">
+    <div class="card-body">
+        @if (ViewBag.HasNoOrders == true)
+        {
+            <h6>You have no orders.</h6>
+        }
+
+        else
+        {
+            <p>Count of orders: @Model.Count</p>
+            <h5 class="card-title">Orders:</h5>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Full name</th>
+                            <th>Order date</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.FullName</td>
+                            <td>@order.OrderDate.ToShortDateString()</td>
+                            <td>@order.TotalPrice</td>
+                            <td class="text-@CommonService.GetOrderStatusBootstrapColor((int)order.Status)">@order.Status</td>
+                            <td>
+                                <a class="btn btn-info" asp-controller="UserPanelOrders" asp-action="ViewDetails" asp-route-orderId="@order.Id">
+                                    View Details
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

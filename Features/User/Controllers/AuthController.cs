@@ -5,6 +5,7 @@ using StoreProject.Common;
 using StoreProject.Features.User.DTOs;
 using StoreProject.Features.User.Model;
 using StoreProject.Features.User.Services;
+using System.Security.Claims;
 
 namespace StoreProject.Features.User.Controllers
 {
@@ -117,6 +118,14 @@ namespace StoreProject.Features.User.Controllers
                 return View(model);
             }
 
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _userService.UserLogout();
             return RedirectToAction("Index", "Home");
         }
 
