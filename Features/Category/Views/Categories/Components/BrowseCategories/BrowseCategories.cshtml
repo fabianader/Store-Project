@@ -9,7 +9,7 @@
             @foreach(var category in Model)
             {
                 <li>
-                    <a asp-controller="Categories" asp-action="Details" asp-route-slug = "@category.Slug">
+                    <a asp-controller="Categories" asp-action="Details" asp-route-slug="@category.Slug">
                         @category.Title
                     </a>
                     <span>(@category.ProductsCount)</span>

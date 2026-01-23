@@ -48,7 +48,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Admin</a></li>
+              <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Admin</a></li>
               <li class="breadcrumb-item active">@ViewData["Title"]</li>
               <li class="breadcrumb-item active">@ViewData["ActionName"]</li>
             </ol>
@@ -82,7 +82,7 @@
 <script src="../../dist/js/demo.js"></script>
 
 <script src="../../dist/js/global.js"></script>
-
+<script src="/js/store.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @await RenderSectionAsync("Scripts", false)
 </body>

@@ -12,7 +12,7 @@ namespace StoreProject.Features.User.Services
         Task<OperationResult> UserForgetPassword(UserForgetPasswordDto userForgetPasswordDto);
         Task<OperationResult> UserResetPassword(UserResetPasswordDto userResetPasswordDto);
         Task<OperationResult> UserPanelEditAsync(UserPanelEditDto userPanelEditDto);
-        Task<OperationResult> UserChangePasswordAsync(UserPanelChangePasswordDto userPanelChangePasswordDto);
+        Task<OperationResult> UserPanelChangePasswordAsync(UserPanelChangePasswordDto userPanelChangePasswordDto);
         bool IsAny(params string[] items);
         string Encrypt(string token);
         string Decrypt(string token);

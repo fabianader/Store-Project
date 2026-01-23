@@ -24,7 +24,7 @@ namespace StoreProject.Features.Order.Controllers
         }
 
         public IActionResult Index(DateTime? FromDate, DateTime? ToDate, int? status,
-                                   string username = "", string fullname = "", int pageId = 1)
+            string username = "", string fullname = "", int pageId = 1)
         {
             var parameters = new OrderFilterParamsDto()
             {
@@ -38,6 +38,34 @@ namespace StoreProject.Features.Order.Controllers
             };
             var model = _orderService.GetOrdersByFilter(parameters);
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(string queryValue)
+        {
+            string url = $"{Request.Path}";
+
+            string[] queryStringKeyValues = Request.QueryString.Value.Replace("?", string.Empty).Split('&');
+            if (Request.QueryString.Value.Contains("fullname"))
+            {
+                url += "?";
+                for (int i = 0; i < queryStringKeyValues.Length; i++)
+                {
+                    if (queryStringKeyValues[i].Contains("fullname"))
+                    {
+                        queryStringKeyValues[i] = $"fullname={queryValue}";
+                    }
+
+                    url += (i != queryStringKeyValues.Length - 1) ? $"{queryStringKeyValues[i]}&" : queryStringKeyValues[i];
+                }
+            }
+            else
+            {
+                url += Request.QueryString.Add("fullname", queryValue);
+            }
+
+            return Redirect(url);
         }
 
         public IActionResult OrderDetails(int id, string username)

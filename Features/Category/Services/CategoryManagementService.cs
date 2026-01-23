@@ -1,4 +1,5 @@
-﻿using StoreProject.Common;
+﻿using Microsoft.EntityFrameworkCore;
+using StoreProject.Common;
 using StoreProject.Features.Category.DTOs;
 using StoreProject.Features.Category.Mapper;
 using StoreProject.Infrastructure.Data;
@@ -104,6 +105,20 @@ namespace StoreProject.Features.Category.Services
             return _context.Categories
                 .Where(category => category.ParentId == parentId && category.IsDeleted == false)
                 .Select(category => CategoryMapper.MapCategoryToCategoryDto(category)).ToList();
+        }
+
+        public List<CategoryDto> GetCategoriesWithHighestProductsCount(int count)
+        {
+            var categories = _context.Categories
+                .Where(c => c.IsDeleted == false)
+                .Include(c => c.Products).ToList();
+
+            var categoriesWithHighestProductsCount = categories
+                .OrderByDescending(c => c.Products.Count)
+                .Take(count)
+                .Select(CategoryMapper.MapCategoryToCategoryDto).ToList();
+
+            return categoriesWithHighestProductsCount;
         }
     }
 }

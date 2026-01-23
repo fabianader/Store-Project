@@ -35,6 +35,9 @@ namespace StoreProject.Entities
         public int Stock { get; set; }
 
         [Required]
+        public int ReservedQuantity { get; set; }
+
+        [Required]
         public bool IsDeleted { get; set; }
 
         [ForeignKey("CategoryId")]

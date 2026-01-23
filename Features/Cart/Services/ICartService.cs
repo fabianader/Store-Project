@@ -15,7 +15,7 @@ namespace StoreProject.Features.Cart.Services
         void ClearCart(string userId);
         int GetCartItemsCount(string userId);
         bool IsProductInCart(string userId, int productId);
-        OperationResult Checkout(string userId, CheckoutDto checkoutDto);
+		(OperationResult, int?) Checkout(string userId, CheckoutDto checkoutDto);
         OperationResult UpdateQuantity(string userId, int productId, int quantity);
         CartModel? GetCartDetails(string userId);
     }

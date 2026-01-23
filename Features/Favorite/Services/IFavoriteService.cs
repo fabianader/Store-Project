@@ -8,5 +8,6 @@ namespace StoreProject.Features.Favorite.Services
         List<FavoriteDto> GetFavorites(string userId);
         OperationResult AddToFavorites(string userId, int productId);
         OperationResult DeleteFromFavorites(string userId,int productId);
+        bool IsFavorite(string userId, int productId);
     }
 }

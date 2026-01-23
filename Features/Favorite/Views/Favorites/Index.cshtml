@@ -1,30 +1,46 @@
 ﻿@using StoreProject.Common
 @using StoreProject.Features.Favorite.Models
+@using System.Security.Claims
+@using StoreProject.Features.Favorite.Services
+@inject IFavoriteService _favoriteService
 @model List<FavoritesModel>
 @{
 	Layout = "_UserPanelLayout";
 	ViewData["Title"] = "Favorites";
 	ViewData["ActivePage"] = "Favorites";
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
 }
+
+@Html.AntiForgeryToken()
+
 @if(Model.Count == 0)
 {
 	<p>You have not added any products to your favorites yet.</p>
 }
 else
 {
-    <div class="row align-items-center latest_product_inner">
+    <div class="row align-items-center">
         @foreach (var product in Model)
         {
-            @* <input type="hidden" asp-for="@product.ProductId"/> *@
-            <div class="col-lg-4 col-sm-6">
-                <div class="single_product_item">
-                    <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug">
-                        <img src="@Directories.GetProductImage(product.ImageUrl)" height="109px" alt="Product Image">
-                    </a>
-                    <div class="single_product_text">
-                        <header-link url="/products/@(product.Slug)">@product.Title</header-link>
-                        <h3>@product.Price</h3>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="position-relative">
+                        <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug">
+                            <img class="card-img-top" src="@Directories.GetProductImage(product.ImageUrl)" alt="Product Image">
+                        </a>
                     </div>
+                    <div class="card-body text-center">
+                        <header-link level="5" url="@Url.Action("Details", "Products", new{product.Slug})">
+                            @product.Title
+                        </header-link>
+                        
+                        <p class="card-text text-muted">$@product.Price</p>               
+                    </div>
+                    <a asp-controller="Favorites" asp-action="DeleteFromFavorites" 
+                        asp-route-productId="@product.ProductId" asp-route-callBackUrl="@currentUrl">
+                        <i class="bi bi-x text-danger"></i>
+                    </a>
                 </div>
             </div>
         }

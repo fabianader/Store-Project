@@ -1,0 +1,62 @@
+﻿@using StoreProject.Features.ContactMessage.Models
+@model List<UserPanelContactMessageModel>
+@{
+	Layout = "_UserPanelLayout";
+	ViewData["Title"] = "My Messages";
+    ViewData["ActivePage"] = "ContactMessages";
+}
+
+<div class="card">
+    <div class="card-body">
+        @if (Model.Count == 0)
+        {
+            <h6>You've sent no messages.</h6>
+        }
+
+        else
+        {
+            <p>Count of messages: @Model.Count</p>
+            <h5 class="card-title">Messages:</h5>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Sent At</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach (var contactMessage in Model)
+                    {
+                            <tr>
+                                <td>@contactMessage.Name</td>
+                                <td>@contactMessage.Email</td>
+                                <td>@contactMessage.Subject</td>
+                                @if (contactMessage.IsRead)
+                                {
+                                    <td class="text-success">Checked</td>
+                                }
+                                else
+                                {
+                                    <td class="text-warning">Not checked</td>
+                                }
+                                <td>@contactMessage.SentAt.ToShortDateString()</td>
+                                <td>
+                                    <a class="btn btn-info" asp-controller="UserPanelContactMessages" asp-action="ViewDetails" asp-route-messageId="@contactMessage.Id">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Cart.Services
+@using StoreProject.Features.Favorite.Services
+@using StoreProject.Features.Product.DTOs
+@using System.Security.Claims
+@model List<ProductDto>
+@inject ICartService _cartService
+@inject IFavoriteService _favoriteService
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+}
+<section class="product_list section_padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="section_tittle text-center">
+                    <h2>Favorite Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-12">
+                <div class="best_product_slider owl-carousel">
+
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <partial name="_ProductItem" model="Model[i]" />
+                    }
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-12">
+                <div class="best_product_slider owl-carousel">
+
+                    @for (int i = 5; i < 10; i++)
+                    {
+                        <partial name="_ProductItem" model="Model[i]" />    
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

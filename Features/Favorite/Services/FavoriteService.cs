@@ -17,8 +17,9 @@ namespace StoreProject.Features.Favorite.Services
         public List<FavoriteDto> GetFavorites(string userId)
         {
             var userFavorites = _context.Favorites
-                .Where(f => f.UserId ==  userId)
-                .Include(f => f.Product).ToList();
+                .Where(f => f.UserId == userId)
+                .Include(f => f.Product)
+                .OrderByDescending(f => f.CreatedAt).ToList();
 
             var favoritesDto = userFavorites
                 .Select(FavoriteMapper.MapFavoriteToFavoriteDto).ToList();
@@ -47,14 +48,19 @@ namespace StoreProject.Features.Favorite.Services
 
         public OperationResult DeleteFromFavorites(string userId, int productId)
         {
-            var favorite = _context.Favorites
-                .FirstOrDefault(f => f.UserId == userId && f.ProductId == productId);
-            if (favorite == null)
+            var deletedCount = _context.Favorites
+                .Where(f => f.UserId == userId && f.ProductId == productId).ExecuteDelete();
+            
+            if (deletedCount == 0)
                 return OperationResult.NotFound(["Favorite product not found."]);
 
-            _context.Favorites.Remove(favorite);
-            _context.SaveChanges();
             return OperationResult.Success();
+        }
+
+        public bool IsFavorite(string userId, int productId)
+        {
+            return _context.Favorites
+                .Any(f => f.UserId == userId && f.ProductId == productId);
         }
     }
 }

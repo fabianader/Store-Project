@@ -1,0 +1,17 @@
+﻿@model int
+@{
+	Layout = "_PaymentLayout";
+}
+
+<h2>Payment Page Demo</h2>
+
+<center>
+	<h3>Select the result of payment</h3>
+	<div class="row-align-items">
+		<a class="btn btn-success" asp-controller="Orders" asp-action="PaymentResult" 
+			asp-route-orderId=@Model asp-route-isPaymentSuccessful=@true>Successful</a>
+
+		<a class="btn btn-danger" asp-controller="Orders" asp-action="PaymentResult" 
+			asp-route-orderId=@Model asp-route-isPaymentSuccessful=@false>Unsuccessful</a>
+	</div>
+</center>

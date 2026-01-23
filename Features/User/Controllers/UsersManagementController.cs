@@ -13,15 +13,15 @@ namespace StoreProject.Features.User.Controllers
         private readonly IUserManagementService _userManagementService;
         private readonly IUserSharedService _userSharedService;
         private readonly IFileManager _fileManager;
-		public UsersManagementController(IUserManagementService userManagementService, IFileManager fileManager, IUserSharedService userSharedService)
-		{
-			_userManagementService = userManagementService;
-			_fileManager = fileManager;
-			_userSharedService = userSharedService;
-		}
+        public UsersManagementController(IUserManagementService userManagementService, IFileManager fileManager, IUserSharedService userSharedService)
+        {
+            _userManagementService = userManagementService;
+            _fileManager = fileManager;
+            _userSharedService = userSharedService;
+        }
 
-		public IActionResult Index(DateTime? registerDate, int pageId = 1, string username = "",
-                                   List<string>? roles = null, bool isDeleted = false)
+        public IActionResult Index(DateTime? registerDate, int pageId = 1, string username = "",
+                List<string>? roles = null, bool isDeleted = false)
         {
             var parameters = new UserFilterParamsDto()
             {
@@ -36,6 +36,34 @@ namespace StoreProject.Features.User.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(string queryValue)
+        {
+            string url = $"{Request.Path}";
+
+            string[] queryStringKeyValues = Request.QueryString.Value.Replace("?", string.Empty).Split('&');
+            if (Request.QueryString.Value.Contains("username"))
+            {
+                url += "?";
+                for (int i = 0; i < queryStringKeyValues.Length; i++)
+                {
+                    if (queryStringKeyValues[i].Contains("username"))
+                    {
+                        queryStringKeyValues[i] = $"username={queryValue}";
+                    }
+
+                    url += (i!= queryStringKeyValues.Length - 1) ? $"{queryStringKeyValues[i]}&" : queryStringKeyValues[i];
+                }
+            }
+            else
+            {
+                url += Request.QueryString.Add("username", queryValue);
+            }
+
+            return Redirect(url);
+        }
+
         public IActionResult CreateUser()
         {
             return PartialView("_AdminCreateUser");
@@ -45,7 +73,7 @@ namespace StoreProject.Features.User.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateUser(UserCreateModel model)
         {
-            ViewBag.Layout = "";
+            ViewBag.Layout = string.Empty;
 
             if (!ModelState.IsValid)
             {
@@ -98,7 +126,7 @@ namespace StoreProject.Features.User.Controllers
         public async Task<IActionResult> EditUser(UserEditModel model)
         {
             var ProfilePicName = model.ProfilePictureName;
-            ViewBag.Layout = "";
+            ViewBag.Layout = string.Empty;
 
             if (!ModelState.IsValid)
             {

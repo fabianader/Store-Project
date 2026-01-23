@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoreProject.Common;
 using StoreProject.Features.Order.Services;
 
 namespace StoreProject.Features.Order.Controllers
@@ -11,9 +12,36 @@ namespace StoreProject.Features.Order.Controllers
             _orderService = orderService;
         }
 
-        public IActionResult Index()
+        public IActionResult Payment(int orderId)
         {
-            return View();
+            var order = _orderService.GetOrderBy(orderId);
+            if (order == null)
+                return NotFound();
+
+            return View(orderId);
+        }
+
+           
+        public IActionResult PaymentResult(int orderId, bool isPaymentSuccessful)
+        {
+			var order = _orderService.GetOrderBy(orderId);
+			if (order == null)
+				return NotFound();
+
+            OperationResult result;
+            if (isPaymentSuccessful)
+            {
+                result = _orderService.ConfirmOrder(orderId);
+            }
+            else
+            {
+                result = _orderService.CancelOrder(orderId);
+            }
+
+            if (result.Status != OperationResultStatus.Success)
+                return BadRequest();
+
+			return RedirectToAction("Index", "Home");
         }
     }
 }

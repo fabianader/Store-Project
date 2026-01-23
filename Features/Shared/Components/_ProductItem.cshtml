@@ -1,0 +1,49 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Cart.Services
+@using StoreProject.Features.Favorite.Services
+@using StoreProject.Features.Product.DTOs
+@using System.Security.Claims
+@model ProductDto
+@inject ICartService _cartService
+@inject IFavoriteService _favoriteService
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+}
+
+<div class="single_product_item">
+    <a asp-controller="Products" asp-action="Details" asp-route-slug="@Model.Slug">
+        <img src="@Directories.GetProductImage(Model.ImageUrl)" height="109px" alt="Product Image">
+    </a>
+    <div class="single_product_text">
+        <header-link url="/products/@(Model.Slug)">@Model.Title</header-link>
+        <h3>$@Model.Price</h3>
+
+        <div class="row">
+            @if (Model.Stock != 0)
+            {
+                @if (_cartService.IsProductInCart(userId, Model.Id))
+                {
+                    <h4 class="text-success" style="padding-left: 15px;">Added to cart</h4>
+                }
+                else
+                {
+                    <open-modal tag="a" modal-size="sm" method="post" style="cursor:pointer; padding-left: 15px;" class="add_cart" 
+                        url="@Url.Action("AddToCart", "Cart", new {productId=Model.Id, callBackUrl=currentUrl})">
+                        Add to cart 
+                    </open-modal>
+                }
+            }
+            else
+            {
+                <h4 class="text-danger" style="padding-left: 15px;">Out of stock</h4>
+            }
+        </div>
+
+        <a class="favorite-btn" data-product-id="@Model.Id">
+            <i class="fa fa-heart 
+                @(_favoriteService.IsFavorite(userId, Model.Id) ? "text-danger" : "text-secondary")">
+            </i>
+        </a>
+    </div>
+</div>

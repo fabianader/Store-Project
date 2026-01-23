@@ -19,7 +19,6 @@ namespace StoreProject.Common
             ErrorAlert(ErrorMessages);
             return partialViewName;
         }
-
         protected IActionResult RedirectToUrlAndShowErrorAlert(OperationResult result, IActionResult redirectPath)
         {
             var model = JsonConvert.SerializeObject(result);
@@ -29,7 +28,6 @@ namespace StoreProject.Common
 
             return View();
         }
-
         protected void SuccessAlert()
         {
             var model = JsonConvert.SerializeObject(OperationResult.Success());

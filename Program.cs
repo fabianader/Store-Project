@@ -5,6 +5,7 @@ using StoreProject.Common.Services;
 using StoreProject.Entities;
 using StoreProject.Features.Cart.Services;
 using StoreProject.Features.Category.Services;
+using StoreProject.Features.ContactMessage.Services;
 using StoreProject.Features.Favorite.Services;
 using StoreProject.Features.Order.Services;
 using StoreProject.Features.OrderChangeLog.Services;
@@ -33,6 +34,9 @@ builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<IUserSharedService, UserSharedService>();
+builder.Services.AddScoped<IContactMessageManagementService, ContactMessageManagementService>();
+builder.Services.AddScoped<IContactMessageService, ContactMessageService>();
+builder.Services.AddScoped<IContactMessageSharedService, ContactMessageSharedService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddScoped<IFileManager, FileManager>();
 

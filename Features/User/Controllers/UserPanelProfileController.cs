@@ -9,6 +9,7 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.User.Controllers
 {
+	[Route("UserPanel/Profile/{action=index}")]
 	public class UserPanelProfileController : BaseController
 	{
 		private readonly IUserSharedService _userSharedService;
@@ -104,7 +105,7 @@ namespace StoreProject.Features.User.Controllers
 			if (userId == null)
 				return NotFound();
 
-			var result = await _userService.UserChangePasswordAsync(new UserPanelChangePasswordDto()
+			var result = await _userService.UserPanelChangePasswordAsync(new UserPanelChangePasswordDto()
 			{
 				UserId = userId,
 				CurrentPassword = model.CurrentPassword,

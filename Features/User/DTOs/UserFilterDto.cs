@@ -13,6 +13,7 @@ namespace StoreProject.Features.User.DTOs
     {
         public int PageId { get; set; }
         public int Take { get; set; }
+
         public string UserName { get; set; }
         public List<string> Roles { get; set; }
         public DateTime? RegisterDate { get; set; }

@@ -1,0 +1,41 @@
+﻿@using StoreProject.Features.Category.DTOs
+@model List<CategoryDto>
+
+<div class="row align-items-center justify-content-between">
+    <div class="col-lg-7 col-sm-6">
+        <div class="single_feature_post_text">
+            <h3>@Model[0].Title</h3>
+            <a asp-controller="Categories" asp-action="Details" asp-route-slug="@Model[0].Slug" 
+                class="feature_btn">EXPLORE NOW 
+                <i class="fas fa-play"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-5 col-sm-6">
+        <div class="single_feature_post_text">
+            <h3>@Model[1].Title</h3>
+            <a asp-controller="Categories" asp-action="Details" asp-route-slug="@Model[1].Slug" 
+                class="feature_btn">EXPLORE NOW 
+                <i class="fas fa-play"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-5 col-sm-6">
+        <div class="single_feature_post_text">
+            <h3>@Model[2].Title</h3>
+            <a asp-controller="Categories" asp-action="Details" asp-route-slug="@Model[2].Slug" 
+                class="feature_btn">EXPLORE NOW 
+                <i class="fas fa-play"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-7 col-sm-6">
+        <div class="single_feature_post_text">
+            <h3>@Model[3].Title</h3>
+            <a asp-controller="Categories" asp-action="Details" asp-route-slug="@Model[3].Slug" 
+                class="feature_btn">EXPLORE NOW 
+                <i class="fas fa-play"></i>
+            </a>
+        </div>
+    </div>
+</div>

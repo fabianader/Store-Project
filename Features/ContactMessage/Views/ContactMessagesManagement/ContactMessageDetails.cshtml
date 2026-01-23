@@ -1,0 +1,86 @@
+﻿@using StoreProject.Features.ContactMessage.Models
+@model ContactMessageDetailsModel
+@{
+	Layout = "_AdminLayout";
+    ViewData["selected"] = "messages";
+    ViewData["Title"] = "Contact Messages Management";
+    ViewData["ActionName"] = "Contact Message Details";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="card card-info">
+
+    <div class="card-body">
+        <h2>Message Details</h2>
+        <div>
+            <p><strong>Message Id: </strong>@Model.Id</p>
+            <p><strong>User Id: </strong>@Model.UserId</p>
+            <p><strong>User Name: </strong>@Model.UserName</p>
+            <p><strong>Name: </strong>@Model.Name</p>
+            <p><strong>Email: </strong>@Model.Email</p>
+            <p><strong>Order Date: </strong>@Model.SentAt.ToLongDateString()</p>
+
+            <p><strong>Subject: </strong>@Model.Subject</p>
+            <strong>Message:</strong>
+            <p style="padding-left: 15px;">@Model.Message</p>
+
+            @if (!Model.IsRead)
+            {
+                <button class="btn btn-outline-success mark-read-btn" 
+                        data-id="@Model.Id">
+                    Mark as read
+                </button>
+            }
+            else
+            {
+                <span class="btn btn-outline-success disabled">Marked as read</span>
+            }
+            <a class="btn btn-info" asp-controller="ContactMessagesManagement" asp-action="ViewOtherContactMessages" asp-route-userId="@Model.UserId" asp-route-messageId="@Model.Id">
+                View other messages by this user
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".mark-read-btn").click(function (e) {
+                e.preventDefault();
+
+                var id = $(this).data("id");
+                var button = $(this);
+
+                $.ajax({
+                    url: '@Url.Action("MarkContactMessageAsRead", "ContactMessagesManagement")',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            button.text("Marked as read").prop("disabled", true);
+                            window.location.href = '/Admin/ContactMessagesManagement';
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error!',
+                                text: response.message
+                            });
+                        }
+                    },
+                    error: function () {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'There was a problem connecting to the server.'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

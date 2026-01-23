@@ -20,6 +20,9 @@ namespace StoreProject.Entities
         [Required]
         public string Message { get; set; }
 
+        [Required]
+        public bool IsRead { get; set; }
+
         public DateTime SentAt { get; set; }
 
         [ForeignKey("UserId")]

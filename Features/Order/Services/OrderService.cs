@@ -6,6 +6,7 @@ using StoreProject.Entities;
 using StoreProject.Features.Order.DTOs;
 using StoreProject.Features.Order.Mapper;
 using StoreProject.Features.OrderChangeLog.Services;
+using StoreProject.Features.Product.Services;
 using StoreProject.Features.User.Services;
 using StoreProject.Infrastructure.Data;
 using System.Security.Claims;
@@ -17,14 +18,16 @@ namespace StoreProject.Features.Order.Services
         private readonly StoreContext _context;
         private readonly IOrderChangeLogService _orderChangeLogService;
         private readonly IUserManagementService _userManagementService;
-        public OrderService(StoreContext context, IOrderChangeLogService orderChangeLogService, IUserManagementService userManagementService)
-        {
-            _context = context;
-            _orderChangeLogService = orderChangeLogService;
-            _userManagementService = userManagementService;
-        }
+        private readonly IProductManagementService _productManagementService;
+		public OrderService(StoreContext context, IOrderChangeLogService orderChangeLogService, IUserManagementService userManagementService, IProductManagementService productManagementService)
+		{
+			_context = context;
+			_orderChangeLogService = orderChangeLogService;
+			_userManagementService = userManagementService;
+			_productManagementService = productManagementService;
+		}
 
-        public Entities.Order CreateOrder(string userId, CheckoutDto checkoutDto)
+		public Entities.Order CreateOrder(string userId, CheckoutDto checkoutDto)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
@@ -72,17 +75,107 @@ namespace StoreProject.Features.Order.Services
             return OperationResult.Success();
         }
 
-        public OperationResult CancelOrder(int orderId)
+        public OperationResult ConfirmOrder(int orderId)
         {
             var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
             if (order == null)
-                return OperationResult.NotFound(["Order not found"]);
+                return OperationResult.NotFound(["Order not found."]);
 
-            if (order.Status != OrderStatus.Pending)
-                return OperationResult.Error(["It is not possible to cancel the order."]);
+            if (order.Status == OrderStatus.Paid)
+                return OperationResult.Error(["The order has already been paid."]);
 
-            order.Status = OrderStatus.Cancelled;
-            return OperationResult.Success();
+			if(order.Status != OrderStatus.Pending)
+                return OperationResult
+                    .Error([$"Order cannot be confirmed because its status is {order.Status}."]);
+
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                foreach (var orderItem in order.OrderItems)
+                {
+                    var unreserve = _productManagementService.UnreserveQuantity(orderItem.ProductId, orderItem.Quantity);
+                    if (unreserve.Status != OperationResultStatus.Success)
+                    {
+                        transaction.Rollback();
+                        return OperationResult.Error(["Failed to unreserve quantity."]);
+                    }
+
+                    var decrease = _productManagementService.DecreaseStock(orderItem.ProductId, orderItem.Quantity);
+                    if (decrease.Status != OperationResultStatus.Success)
+                    {
+                        transaction.Rollback();
+                        return OperationResult.Error(["An error occurred."]);
+                    }
+                }
+
+                order.Status = OrderStatus.Paid;
+                _context.SaveChanges();
+                transaction.Commit();
+                return OperationResult.Success();
+            }
+
+            catch
+            {
+                transaction.Rollback();
+                return OperationResult.Error(["Transaction failed."]);
+            }
+        }
+
+
+		public OperationResult CancelOrder(int orderId)
+        {
+            var order = _context.Orders.FirstOrDefault(o => o.Id == orderId);
+            if (order == null)
+                return OperationResult.NotFound(["Order not found."]);
+
+            if (order.Status == OrderStatus.Cancelled)
+                return OperationResult.Success(["Order is already cancelled."]);
+
+            if (order.Status == OrderStatus.Shipped || order.Status == OrderStatus.Delivered)
+                return OperationResult
+                    .Error([$"Order cannot be cancelled because it is {order.Status}."]);
+
+            // The order is Pending or Paid
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                if (order.Status == OrderStatus.Pending)
+                {
+                    foreach (var orderItem in order.OrderItems)
+                    {
+                        var unreserve = _productManagementService.UnreserveQuantity(orderItem.ProductId, orderItem.Quantity);
+                        if (unreserve.Status != OperationResultStatus.Success)
+                        {
+                            transaction.Rollback();
+                            return OperationResult.Error([$"Unable to unreserve quantity for product '{orderItem.ProductId}'."]);
+                        }
+                    }
+                }
+
+                else if (order.Status == OrderStatus.Paid)
+                {
+                    foreach (var orderItem in order.OrderItems)
+                    {
+                        var increase = _productManagementService.IncreaseStock(orderItem.ProductId, orderItem.Quantity);
+                        if (increase.Status != OperationResultStatus.Success)
+                        {
+                            transaction.Rollback();
+                            return OperationResult.Error([$"Unable to increase stock for product '{orderItem.ProductId}'."]);
+                        }
+                    }
+                }
+
+                order.Status = OrderStatus.Cancelled;
+                _context.SaveChanges();
+                transaction.Commit();
+                return OperationResult.Success();
+            }
+
+            catch
+            {
+                transaction.Rollback();
+                return OperationResult.Error(["Transaction failed."]);
+            }
         }
 
         public List<OrderDto> GetAllOrders()
@@ -157,16 +250,6 @@ namespace StoreProject.Features.Order.Services
 
             orderFilter.GeneratePaging(result, orderFilterParamsDto.Take, orderFilterParamsDto.PageId);
             return orderFilter;
-        }
-
-        public OrderDto GetPendingOrderBy(int orderId)
-        {
-            var order = _context.Orders
-                .FirstOrDefault(o => o.Status == OrderStatus.Pending && o.Id == orderId);
-            if (order == null)
-                return null;
-            var orderDto = OrderMapper.MapOrderToOrderDto(order);
-            return orderDto;
         }
     }
 }

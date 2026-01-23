@@ -22,7 +22,7 @@ namespace StoreProject.Features.Category.Controllers
             ViewBag.ShowDeletedCategories = showDeletedCategories;
 
             var categories = showDeletedCategories == false ? _categoryManagementService.GetExistedCategories() : _categoryManagementService.GetDeletedCategories();
-            var model = categories.Select(category => CategoryMapper.MapCategoryDtoToCategoryModel(category)).ToList();
+            var model = categories.Select(CategoryMapper.MapCategoryDtoToCategoryModel).ToList();
             return View(model);
         }
 

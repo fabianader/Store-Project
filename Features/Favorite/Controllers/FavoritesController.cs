@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Features.Favorite.Mapper;
 using StoreProject.Features.Favorite.Services;
@@ -6,6 +7,7 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.Favorite.Controllers
 {
+    [Route("UserPanel/Favorites/{action=index}")]
     public class FavoritesController : Controller
     {
         private readonly IFavoriteService _favoriteService;
@@ -25,22 +27,7 @@ namespace StoreProject.Features.Favorite.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult Add(int productId)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userId == null)
-                return NotFound();
-
-            var result = _favoriteService.AddToFavorites(userId, productId);
-            if (result.Status != OperationResultStatus.Success)
-                return BadRequest();
-
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Delete(int productId)
+        public IActionResult DeleteFromFavorites(int productId, string callBackUrl)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
@@ -48,9 +35,37 @@ namespace StoreProject.Features.Favorite.Controllers
 
             var result = _favoriteService.DeleteFromFavorites(userId, productId);
             if (result.Status != OperationResultStatus.Success)
-                return BadRequest();
+                return View();
+            
+            return Redirect(callBackUrl);
+        }
 
-            return View();
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ToggleFavorite(int productId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if(userId == null)
+                return NotFound();
+
+            bool exists = _favoriteService.IsFavorite(userId, productId);
+            if (exists)
+            {
+                var result = _favoriteService.DeleteFromFavorites(userId, productId);
+                if(result.Status != OperationResultStatus.Success)
+                    return Json(new {added = true});
+
+                return Json(new { added = false });
+            }
+            else
+            {
+                var result = _favoriteService.AddToFavorites(userId, productId);
+                if(result.Status != OperationResultStatus.Success)
+                    return Json(new {added = false});
+
+                return Json(new { added = true });
+            }
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿@using StoreProject.Features.Order.Models
+@model UserPanelCancelOrderModel
+
+<center>
+	<h4>Are sure about canceling your order?</h4>
+	<br />
+	<div>
+		<a class="btn btn-secondary active" href="@Model.CallBackUrl">No</a>
+		<a class="btn btn-primary" 
+			asp-controller="UserPanelOrders" asp-action="CancelOrder" asp-route-orderId="@Model.OrderId">
+			Yes
+		</a>
+	</div>
+</center>

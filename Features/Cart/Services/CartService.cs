@@ -8,6 +8,7 @@ using StoreProject.Features.Order.DTOs;
 using StoreProject.Features.Order.Services;
 using StoreProject.Features.Product.Services;
 using StoreProject.Infrastructure.Data;
+using System.Collections;
 
 
 namespace StoreProject.Features.Cart.Services
@@ -93,23 +94,23 @@ namespace StoreProject.Features.Cart.Services
             }
         }
 
-        public OperationResult Checkout(string userId, CheckoutDto checkoutDto)
+        public (OperationResult, int?) Checkout(string userId, CheckoutDto checkoutDto)
         {
-            using var transaction = _context.Database.BeginTransaction();
+			using var transaction = _context.Database.BeginTransaction();
             try
             {
                 var order = _orderService.CreateOrder(userId, checkoutDto);
 
                 foreach (var item in order.OrderItems)
                 {
-                    var success = _productManagementService.DecreaseStock(item.ProductId, item.Quantity);
+                    var success = _productManagementService.ReserveQuantity(item.ProductId, item.Quantity);
                     if (!success)
                     {
                         _logger.LogWarning(
                             $"Checkout failed: Product {item.ProductId} does not have enough stock. User: {userId}"
                         );
                         transaction.Rollback();
-                        return OperationResult.Error([$"Product {item.Product.Title} is out of stock."]);
+                        return (OperationResult.Error([$"Product {item.Product.Title} is out of stock."]), order.Id);
                     }
                 }
 
@@ -121,14 +122,14 @@ namespace StoreProject.Features.Cart.Services
                     transaction.Commit();
                     _context.ChangeTracker.AcceptAllChanges();
 
-                    return OperationResult.Success();
+                    return (OperationResult.Success(), order.Id);
                 }
                 catch (DbUpdateException ex) when (ex.InnerException?.Message.Contains("UQ_CartItem_CartId_ProductId") == true)
                 {
                     _logger.LogWarning(ex, $"Duplicate cart item detected during checkout. User {userId}");
 
                     transaction.Rollback();
-                    return OperationResult.Error(["An error occurred while placing the order: a duplicate item was detected in your cart."]);
+                    return (OperationResult.Error(["An error occurred while placing the order: a duplicate item was detected in your cart."]), order.Id);
                 }
             }                
             
@@ -137,7 +138,7 @@ namespace StoreProject.Features.Cart.Services
                 _logger.LogError(ex, $"Checkout failed for user {userId}.");
 
                 transaction.Rollback();
-                return OperationResult.Error(["An error occurred in checking out."]);
+                return (OperationResult.Error(["An error occurred in checking out."]), null);
             }
         }
 

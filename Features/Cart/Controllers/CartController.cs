@@ -136,13 +136,13 @@ namespace StoreProject.Features.Cart.Controllers
             };
 
             var result = _cartService.Checkout(userId, checkoutDto);
-            if (result.Status != OperationResultStatus.Success)
+            if (result.Item1.Status != OperationResultStatus.Success)
             {
-                ModelState.AddModelError(string.Empty, "An error occurred.");
+                ErrorAlert(["An error occurred"]);
                 return View(model);
             }
-
-            return RedirectToAction("Payment", "Orders", new {userId});
+            
+            return RedirectToAction("Payment", "Orders", new {orderId = result.Item2});
         }
 
         [HttpPost]

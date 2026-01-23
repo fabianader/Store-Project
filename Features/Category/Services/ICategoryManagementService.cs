@@ -12,6 +12,7 @@ namespace StoreProject.Features.Category.Services
         List<CategoryDto> GetChildCategories(int? parentId);
         CategoryDto GetCategoryBy(int? id);
         CategoryDto GetCategoryBy(string slug);
+        List<CategoryDto> GetCategoriesWithHighestProductsCount(int count);
         OperationResult CreateCategory(CreateCategoryDto createCategoryDto);
         OperationResult EditCategory(EditCategoryDto editCategoryDto);
     }

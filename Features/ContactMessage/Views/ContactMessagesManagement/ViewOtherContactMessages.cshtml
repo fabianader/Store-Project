@@ -1,0 +1,83 @@
+﻿@using StoreProject.Features.ContactMessage.Models
+@model List<OtherContactMessagesModel>
+@{
+    Layout = "_AdminLayout";
+    ViewData["selected"] = "messages";
+    ViewData["Title"] = "Contact Messages Management";
+    ViewData["ActionName"] = "Other Contact Messages";
+    int Count = 1;
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h2>Other Contact Messages</h2>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.Count == 0)
+            {
+                <h2>No other contact messages by the user.</h2>
+            }
+            else
+            {
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Subject</th>
+                                <th>Sent At</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var contactMessage in Model)
+                            {
+                                <tr>
+                                    <th>@Count</th>
+                                    <td>@contactMessage.Name</td>
+                                    <td>@contactMessage.Subject</td>
+                                    <td>@contactMessage.SentAt.ToShortDateString()</td>
+
+                                    @if (contactMessage.IsRead == true)
+                                    {
+                                        <td class="text-success">Marked as read</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="align-middle">
+                                            <span class="badge badge-danger">New</span>
+                                        </td>
+                                    }
+
+                                    <td>
+                                        <a asp-controller="ContactMessagesManagement" asp-action="ContactMessageDetails"
+                                            asp-route-id="@contactMessage.Id" class="btn btn-primary">
+                                            View Details
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                Count++;
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>

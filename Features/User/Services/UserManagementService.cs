@@ -85,7 +85,6 @@ namespace StoreProject.Features.User.Services
                 return OperationResult.Error(ErrorsList);
             }
 
-            await _signInManager.RefreshSignInAsync(user);
             return OperationResult.Success();
         }
 

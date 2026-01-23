@@ -1,0 +1,34 @@
+﻿@using StoreProject.Features.ContactMessage.Models
+@model UserPanelContactMessageDetailsModel
+@{
+	Layout = "_UserPanelLayout";
+	ViewData["Title"] = "Contact Message Details";
+	ViewData["ActivePage"] = "ContactMessages";
+}
+
+<div class="card">
+    <div class="card-body">
+            <h5 class="card-title">Message Details:</h5>
+
+            <p><strong>Message Id: </strong>@Model.Id</p>
+            <p><strong>Full name: </strong>@Model.Name</p>
+            <p><strong>Email: </strong>@Model.Email</p>
+            <p><strong>Message sent at: </strong>@Model.SentAt.ToLongDateString()</p>
+            <p>
+                <strong>Status: </strong>
+                @if (Model.IsRead)
+                {
+                    <span class="text-success">Checked</span>
+                
+                }
+                else
+                {
+                    <span class="text-warning">Not checked</span>
+                }
+            </p>
+
+            <p><strong>Subject: </strong>@Model.Subject</p>
+            <strong>Message:</strong>
+            <p style="padding-left: 15px;">@Model.Message</p>
+    </div>
+</div>

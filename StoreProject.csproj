@@ -14,7 +14,7 @@
     <Folder Include="Features\CartItem\" />
     <Folder Include="Features\BlogPost\" />
     <Folder Include="Features\OrderItem\" />
-    <Folder Include="Features\Shared\Components\CategoryTree\" />
+    <Folder Include="Features\Product\Views\Products\Components\" />
     <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 

@@ -18,10 +18,11 @@ namespace StoreProject.Infrastructure.Data
             return new[]
             {
                 $"/Features/{featureName}/Views/{controllerName}/{{0}}.cshtml",   // مسیر مورد نظر تو
-                // $"/Features/{featureName}/Components/{{0}}.cshtml",   // مسیر مورد نظر تو
+                //$"/Features/{featureName}/Components/{{0}}.cshtml",   // مسیر مورد نظر تو
                 $"/Features/{featureName}/Views/Shared/{{0}}.cshtml",             // shared viewهای محلی هر feature
                 "/Features/Shared/{0}.cshtml",                                    // shared viewهای کل سیستم
-                "/Views/Shared/{0}.cshtml",                                        // مسیر کلاسیک MVC
+                "/Features/Shared/Components/{0}.cshtml",                                    // shared viewهای کل سیستم
+                "/Views/Shared/{0}.cshtml",                                       // مسیر کلاسیک MVC
             };
         }
 

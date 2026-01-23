@@ -35,6 +35,34 @@ namespace StoreProject.Features.Product.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Index(string queryValue)
+        {
+            string url = $"{Request.Path}";
+
+            string[] queryStringKeyValues = Request.QueryString.Value.Replace("?", string.Empty).Split('&');
+            if (Request.QueryString.Value.Contains("title"))
+            {
+                url += "?";
+                for (int i = 0; i < queryStringKeyValues.Length; i++)
+                {
+                    if (queryStringKeyValues[i].Contains("title"))
+                    {
+                        queryStringKeyValues[i] = $"title={queryValue}";
+                    }
+
+                    url += (i != queryStringKeyValues.Length - 1) ? $"{queryStringKeyValues[i]}&" : queryStringKeyValues[i];
+                }
+            }
+            else
+            {
+                url += Request.QueryString.Add("title", queryValue);
+            }
+
+            return Redirect(url);
+        }
+
         public IActionResult CreateProduct()
         {
             return View();

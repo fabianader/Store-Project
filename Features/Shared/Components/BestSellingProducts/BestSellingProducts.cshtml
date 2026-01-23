@@ -1,0 +1,36 @@
+﻿@using StoreProject.Common
+@using StoreProject.Features.Cart.Services
+@using StoreProject.Features.Favorite.Services
+@using StoreProject.Features.Product.DTOs
+@using System.Security.Claims
+@model List<ProductDto>
+@inject ICartService _cartService
+@inject IFavoriteService _favoriteService
+@{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
+}
+
+@Html.AntiForgeryToken()
+<section class="product_list best_seller section_padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="section_tittle text-center">
+                    <h2>Best Selling Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-12">
+                <div class="best_product_slider owl-carousel">
+
+                    @foreach(var product in Model)
+                    {
+                        <partial name="_ProductItem" model="@product" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

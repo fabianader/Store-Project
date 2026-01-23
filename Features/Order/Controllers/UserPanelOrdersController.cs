@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Features.Order.Mapper;
+using StoreProject.Features.Order.Models;
 using StoreProject.Features.Order.Services;
 using StoreProject.Features.Product.Services;
 using System.Security.Claims;
@@ -52,25 +53,34 @@ namespace StoreProject.Features.Order.Controllers
             return View(model);
         }
 
+        public IActionResult ViewCancelOrderModal(int orderId, string callBackUrl)
+        {
+            var model = new UserPanelCancelOrderModel()
+            {
+                OrderId = orderId,
+                CallBackUrl = callBackUrl
+            };
+            return PartialView("_CancelOrder", model);
+        }
+
         public IActionResult CancelOrder(int orderId)
         {
             var order = _orderService.GetOrderBy(orderId);
             if (order == null)
             {
                 ErrorAlert(["Order not found."]);
-                return View();
+                return RedirectToAction("ViewDetails", new { orderId });
             }
 
             var result = _orderService.CancelOrder(orderId);
             if (result.Status != OperationResultStatus.Success)
             {
                 ErrorAlert(result.Message);
-                return View();
+                return RedirectToAction("ViewDetails", new { orderId });
             }
 
-            SuccessAlert();
-            return View();
+            return RedirectAndShowAlert(result,
+                RedirectToAction("ViewDetails", new { orderId }));
         }
-
     }
 }

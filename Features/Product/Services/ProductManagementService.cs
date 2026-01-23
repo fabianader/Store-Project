@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StoreProject.Common;
+using StoreProject.Entities;
 using StoreProject.Features.Category.Services;
 using StoreProject.Features.Product.DTOs;
 using StoreProject.Features.Product.Mapper;
@@ -53,15 +54,25 @@ namespace StoreProject.Features.Product.Services
             return OperationResult.Success();
         }
 
-        public bool DecreaseStock(int productId, int quantity)
+        public bool ReserveQuantity(int productId, int quantity)
         {
             var affectedRows = _context.Products
-                .Where(p => p.Id == productId && p.Stock >= quantity)
-                .ExecuteUpdate(p => p.SetProperty(x => x.Stock, x => x.Stock - quantity));
+                .Where(p => p.Id == productId && p.Stock >= p.ReservedQuantity + quantity)
+                .ExecuteUpdate(p => p.SetProperty(x => x.ReservedQuantity, x => x.ReservedQuantity + quantity));
 
-            return affectedRows > 0; // فقط اگر موفق شد یعنی موجودی کافی بوده
+            return affectedRows > 0;
         }
 
+        public OperationResult UnreserveQuantity(int productId, int quantity)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+                return OperationResult.NotFound(["Product not found."]);
+
+			product.ReservedQuantity -= quantity;
+            _context.SaveChanges();
+            return OperationResult.Success();
+		}
 
         public List<ProductDto> GetAllProducts()
         {
@@ -190,5 +201,82 @@ namespace StoreProject.Features.Product.Services
 
             return product.Stock;
         }
+
+        public int? GetProductSalesCount(int productId)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+                return null;
+
+            var salesCount = _context.OrderItems
+                .Include(oi => oi.Order)
+                .Where(oi => oi.ProductId == productId && 
+                      (oi.Order.Status != OrderStatus.Cancelled && oi.Order.Status != OrderStatus.Pending))
+                .Sum(oi => oi.Quantity);
+
+            return salesCount;
+        }
+
+        public int? GetProductFavoritesCount(int productId)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+                return null;
+
+            var favoritesCount = _context.Favorites.Count(f => f.ProductId == productId);
+            return favoritesCount;
+        }
+
+
+        public List<ProductDto> GetBestSellingProducts(int count)
+        {
+            var products = _context.Products
+                .Include(p => p.Category).ToList();
+
+            var bestSellingProducts = products
+                .OrderByDescending(p => GetProductSalesCount(p.Id))
+                .Take(count)
+                .Select(ProductMapper.MapProductToProductDto).ToList();
+
+            return bestSellingProducts;
+        }
+        
+        public List<ProductDto> GetMostFavoritedProducts(int count)
+        {
+            var products = _context.Products
+                .Include(p => p.Category).ToList();
+
+            var mostFavoritedProducts = products
+                .OrderByDescending(p => GetProductFavoritesCount(p.Id))
+                .Take(count)
+                .Select(ProductMapper.MapProductToProductDto).ToList();
+
+            return mostFavoritedProducts;
+        }
+
+
+
+        public OperationResult IncreaseStock(int productId, int quantity)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            if(product == null)
+                return OperationResult.NotFound(["Product not found."]);
+
+            product.Stock += quantity;
+            _context.SaveChanges();
+            return OperationResult.Success();
+        }
+
+
+        public OperationResult DecreaseStock(int productId, int quantity)
+		{
+            var product = _context.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+                return OperationResult.NotFound(["Product not found."]);
+
+            product.Stock -= quantity;
+            _context.SaveChanges();
+            return OperationResult.Success();
+		}
     }
 }

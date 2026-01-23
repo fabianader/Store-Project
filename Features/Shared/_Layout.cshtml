@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="/css/slick.css">
         <!-- style CSS -->
         <link rel="stylesheet" href="/css/style.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
@@ -47,17 +49,10 @@
           </div>
         </div>
 
-        <!-- Vertically centered modal -->
-        @* <div class="modal-centered" id="default_Modal" tabindex="-1" role="dialog">
-          <div class="modal-body">
-
-          </div>
-        </div> *@
-
         @RenderBody()
-        <!--::footer_part start::-->
+
         <partial name="_Footer" />
-        <!--::footer_part end::-->
+
 
         <!-- jquery plugins here-->
         <script src="/js/jquery-1.12.1.min.js"></script>
@@ -78,7 +73,6 @@
         <script src="/js/slick.min.js"></script>
         <script src="/js/jquery.counterup.min.js"></script>
         <script src="/js/waypoints.min.js"></script>
-        <script src="/js/contact.js"></script>
         <script src="/js/jquery.ajaxchimp.min.js"></script>
         <script src="/js/jquery.form.js"></script>
         <script src="/js/jquery.validate.min.js"></script>
@@ -89,6 +83,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- custom js -->
         <script src="/js/custom.js"></script>
+        <script src="/js/store.js"></script>
         @await RenderSectionAsync("Scripts", false)
     </body>
 

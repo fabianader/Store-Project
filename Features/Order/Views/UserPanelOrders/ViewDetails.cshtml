@@ -7,7 +7,6 @@
 	ViewData["ActivePage"] = "Orders";
     var currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
 }
-
 <div class="card">
     <div class="card-body">
 
@@ -52,10 +51,10 @@
 
             @if(Model.Status == 0)
             {
-                <a onclick="Question('/UserPanel/Orders/CancelOrder?orderId=@Model.Id', 'Are you sure?', 'Are sure about canceling your order?', 'Deleted successfully!', '@currentUrl')" 
-                    class="btn btn-danger">
-                    Cancel the order
-                </a>
+                <open-modal tag="button" modal-size="sm" style="cursor:pointer;" class="btn btn-danger" 
+                    url="@Url.Action("ViewCancelOrderModal", "UserPanelOrders", new { orderId = Model.Id, callBackUrl = currentUrl })">
+                    Cancel the Order 
+                </open-modal>
             }
     </div>
 </div>

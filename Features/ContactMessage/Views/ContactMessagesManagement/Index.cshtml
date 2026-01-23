@@ -1,0 +1,83 @@
+﻿@using StoreProject.Features.ContactMessage.DTOs
+@model ContactMessageFilterDto
+@{
+    Layout = "_AdminLayout";
+    ViewData["selected"] = "messages";
+    ViewData["Title"] = "Contact Messages Management";
+    int Count = 1; 
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                @if (ViewBag.ShowSeenMessages)
+                {
+                    <a class="btn btn-danger" asp-controller="ContactMessagesManagement" asp-action="Index" asp-route-isRead="false">View New Messages</a>
+                }
+                else
+                {
+                    <a class="btn btn-success" asp-controller="ContactMessagesManagement" asp-action="Index" asp-route-isRead="true">View Seen Messages</a>
+                }
+
+                <partial name="_AdminSearch" />
+            </div>
+
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User Id</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Subject</th>
+                            <th>Sent At</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var contactMessage in Model.ContactMessages)
+                        {
+                            <tr>
+                                <th>@Count</th>
+                                <td>@contactMessage.UserId</td>
+                                <td>@contactMessage.UserName</td>
+                                <td>@contactMessage.Name</td>
+                                <td>@contactMessage.Subject</td>
+                                <td>@contactMessage.SentAt.ToShortDateString()</td>
+
+                                @if (contactMessage.IsRead == true)
+                                {
+                                    <td class="text-success">Marked as read</td>
+                                }
+                                else
+                                {
+                                    <td class="align-middle">
+                                        <span class="badge badge-danger">New</span>
+                                    </td>
+                                }
+
+                                <td>
+                                    <a asp-controller="ContactMessagesManagement" asp-action="ContactMessageDetails"
+                                        asp-route-id="@contactMessage.Id" class="btn btn-primary">
+                                        View Details
+                                    </a>
+                                </td>
+                            </tr>
+
+                            Count++;
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<center>
+    <partial name="_AdminPagination" />
+</center>
+
+

@@ -231,7 +231,7 @@ namespace StoreProject.Features.User.Services
 			return OperationResult.Success();
 		}
 
-        public async Task<OperationResult> UserChangePasswordAsync(UserPanelChangePasswordDto userPanelChangePasswordDto)
+        public async Task<OperationResult> UserPanelChangePasswordAsync(UserPanelChangePasswordDto userPanelChangePasswordDto)
         {
             var user = await _userManager.FindByIdAsync(userPanelChangePasswordDto.UserId);
             if (user == null)

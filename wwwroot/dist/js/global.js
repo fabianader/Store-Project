@@ -60,6 +60,7 @@ function deleteItem(url, errorTitle, errorText) {
         }
     });
 }
+
 function Question(url, QuestionTitle, QuestionText, successText, callBack) {
     if (QuestionTitle == null || QuestionTitle == "undefined") {
         QuestionTitle = "آیا از انجام عملیات اطمینان دارید؟";
@@ -115,11 +116,10 @@ function Question(url, QuestionTitle, QuestionText, successText, callBack) {
                     ErrorAlert();
                 }
             });
-
-
         }
     });
 }
+
 function Success(Title, description, isReload = false) {
     if (Title == null || Title == "undefined") {
         Title = "عملیات با موفقیت انجام شد";
