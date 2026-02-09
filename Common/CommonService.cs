@@ -4,6 +4,8 @@ namespace StoreProject.Common
 {
     public class CommonService
     {
+        public static List<string> BootstrapColors = ["dark", "info", "primary", "success", "danger"];
+
         public static List<string> CheckErrors(IdentityResult result)
         {
             List<string> ErrorsList = new List<string>();
@@ -33,10 +35,8 @@ namespace StoreProject.Common
 
         public static string GetOrderStatusBootstrapColor(int statusIndex)
         {
-            List<string> BootstrapColors = ["dark", "info", "primary", "success", "danger"];
             if(statusIndex < BootstrapColors.Count)
                 return BootstrapColors[statusIndex];
-
             return "secondary";
         }
     }

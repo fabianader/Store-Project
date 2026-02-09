@@ -7,8 +7,9 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.Favorite.Controllers
 {
+    [Authorize]
     [Route("UserPanel/Favorites/{action=index}")]
-    public class FavoritesController : Controller
+    public class FavoritesController : BaseController
     {
         private readonly IFavoriteService _favoriteService;
         public FavoritesController(IFavoriteService favoriteService)
@@ -20,7 +21,7 @@ namespace StoreProject.Features.Favorite.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
-                return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var favoritesDto = _favoriteService.GetFavorites(userId);
             var model = favoritesDto.Select(FavoriteMapper.MapFavoriteDtoToFavoritesModel).ToList();
@@ -31,7 +32,7 @@ namespace StoreProject.Features.Favorite.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
-                return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var result = _favoriteService.DeleteFromFavorites(userId, productId);
             if (result.Status != OperationResultStatus.Success)
@@ -40,14 +41,13 @@ namespace StoreProject.Features.Favorite.Controllers
             return Redirect(callBackUrl);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ToggleFavorite(int productId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if(userId == null)
-                return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
             bool exists = _favoriteService.IsFavorite(userId, productId);
             if (exists)

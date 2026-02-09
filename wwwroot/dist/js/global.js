@@ -122,7 +122,7 @@ function Question(url, QuestionTitle, QuestionText, successText, callBack) {
 
 function Success(Title, description, isReload = false) {
     if (Title == null || Title == "undefined") {
-        Title = "عملیات با موفقیت انجام شد";
+        Title = "The operation was successful.";
     }
     if (description == null || description == "undefined") {
         description = "";
@@ -131,7 +131,7 @@ function Success(Title, description, isReload = false) {
         title: Title,
         text: description,
         icon: "success",
-        confirmButtonText: "باشه",
+        confirmButtonText: "Ok",
     }).then((result) => {
         if (isReload === true) {
             location.reload();
@@ -140,7 +140,7 @@ function Success(Title, description, isReload = false) {
 }
 function Info(Title, description) {
     if (Title == null || Title == "undefined") {
-        Title = "توجه";
+        Title = "Attention";
     }
     if (description == null || description == "undefined") {
         description = "";
@@ -149,12 +149,12 @@ function Info(Title, description) {
         title: Title,
         text: description,
         icon: "info",
-        confirmButtonText: "باشه"
+        confirmButtonText: "Ok"
     });
 }
 function ErrorAlert(Title, description, isReload = false) {
     if (Title == null || Title == "undefined") {
-        Title = "مشکلی در عملیات رخ داده است";
+        Title = "There was a problem with the operation.";
     }
     if (description == null || description == "undefined") {
         description = "";
@@ -163,7 +163,7 @@ function ErrorAlert(Title, description, isReload = false) {
         title: Title,
         text: description,
         icon: "error",
-        confirmButtonText: "باشه"
+        confirmButtonText: "Ok"
     }).then((result) => {
         if (isReload === true) {
             location.reload();
@@ -172,7 +172,7 @@ function ErrorAlert(Title, description, isReload = false) {
 }
 function Warning(Title, description, isReload = false) {
     if (Title == null || Title == "undefined") {
-        Title = "مشکلی در عملیات رخ داده است";
+        Title = "There was a problem with the operation.";
     }
     if (description == null || description == "undefined") {
         description = "";
@@ -181,7 +181,7 @@ function Warning(Title, description, isReload = false) {
         title: Title,
         text: description,
         icon: "warning",
-        confirmButtonText: "باشه"
+        confirmButtonText: "Ok"
     }).then((result) => {
         if (isReload === true) {
             location.reload();
@@ -378,7 +378,6 @@ function loadCalender() {
             initialValue: false
         });
     }
-
 }
 function loadCkeditor5() {
     if (!document.querySelector('.ckeditor5'))

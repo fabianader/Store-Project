@@ -1,35 +1,22 @@
 ﻿@{
     Layout = "_AdminLayout";
+    ViewData["Title"] = "Admin Panel";
 }
 
-<!-- Main content -->
 <section class="content">
-    <div class="error-page">
-    <h2 class="headline text-warning"> 404</h2>
-
-    <div class="error-content">
-        <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</h3>
-
-        <p>
-        We could not find the page you were looking for.
-        Meanwhile, you may <a href="../../index.html">return to dashboard</a> or try using the search form.
-        </p>
-
-        <form class="search-form">
-        <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Search">
-
-            <div class="input-group-append">
-            <button type="submit" name="submit" class="btn btn-warning"><i class="fas fa-search"></i>
-            </button>
-            </div>
+    <h3>Operations:</h3>
+    <center>
+        <div>
+            <a class="btn btn-success mr-3" asp-controller="UsersManagement" asp-action="Index">Users Management</a>
+            <a class="btn btn-primary mr-3" asp-controller="CategoriesManagement" asp-action="Index">Categories Management</a>
+            <a class="btn btn-danger mr-3" asp-controller="ProductsManagement" asp-action="Index">Products Management</a>
         </div>
-        <!-- /.input-group -->
-        </form>
-    </div>
-    <!-- /.error-content -->
-    </div>
-    <!-- /.error-page -->
+    </center>
+    <br />
+    <center>
+        <div>
+            <a class="btn btn-info mr-3" asp-controller="OrdersManagement" asp-action="Index">Orders Management</a>
+            <a class="btn btn-secondary mr-3" asp-controller="ContactMessagesManagement" asp-action="Index">Messages Management</a>
+        </div>
+    </center>
 </section>
-<!-- /.content -->
-<!-- /.content-wrapper -->

@@ -163,7 +163,6 @@ namespace StoreProject.Features.User.Controllers
 
         public IActionResult ResetPassword(string username, string token, string returnUrl=null)
         {
-
             ResetPasswordModel model = new ResetPasswordModel()
             {
                 UserName = username,
@@ -198,9 +197,7 @@ namespace StoreProject.Features.User.Controllers
                 return View(model);
             }
 
-            
             return Redirect(returnUrl);
         }
-
     }
 }

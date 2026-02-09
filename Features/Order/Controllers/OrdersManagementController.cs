@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Features.Order.DTOs;
 using StoreProject.Features.Order.Mapper;
@@ -10,6 +11,7 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.Order.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("Admin/OrdersManagement/{action=index}")]
     public class OrdersManagementController : BaseController
     {

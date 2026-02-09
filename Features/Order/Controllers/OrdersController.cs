@@ -4,7 +4,7 @@ using StoreProject.Features.Order.Services;
 
 namespace StoreProject.Features.Order.Controllers
 {
-    public class OrdersController : Controller
+    public class OrdersController : BaseController
     {
         private readonly IOrderService _orderService;
         public OrdersController(IOrderService orderService)
@@ -21,12 +21,11 @@ namespace StoreProject.Features.Order.Controllers
             return View(orderId);
         }
 
-           
         public IActionResult PaymentResult(int orderId, bool isPaymentSuccessful)
         {
 			var order = _orderService.GetOrderBy(orderId);
 			if (order == null)
-				return NotFound();
+                return RedirectAndShowMessage("info", "Order not found!");
 
             OperationResult result;
             if (isPaymentSuccessful)
@@ -39,7 +38,7 @@ namespace StoreProject.Features.Order.Controllers
             }
 
             if (result.Status != OperationResultStatus.Success)
-                return BadRequest();
+                return RedirectAndShowMessage("danger", result.Message[0]);
 
 			return RedirectToAction("Index", "Home");
         }

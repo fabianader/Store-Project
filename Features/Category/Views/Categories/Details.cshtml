@@ -80,29 +80,5 @@
         </div>
     </div>
 </section>
-<!--================End Category Product Area =================-->
 
 <vc:best-selling-products count="10"></vc:best-selling-products>
-
-@* @section Scripts{
-    <script>
-        function addToCart(productId, callBackUrl) {
-            fetch('/Cart/AddToCart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value // ضد CSRF
-                },
-                body: `productId=${productId}&callBackUrl=${encodeURIComponent(callBackUrl)}`
-            })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = callBackUrl;
-                } else {
-                    alert("Something went wrong, please try again.");
-                }
-            })
-            .catch(error => console.error('Error:', error));
-        }
-    </script>
-} *@

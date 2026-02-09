@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoreProject.Common;
 using StoreProject.Features.Category.Model;
 using StoreProject.Features.Category.Services;
 using StoreProject.Features.Product.DTOs;
@@ -6,7 +7,7 @@ using StoreProject.Features.Product.Services;
 
 namespace StoreProject.Features.Category.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
         private readonly IProductManagementService _productManagementService;
         private readonly ICategoryManagementService _categoryManagementService;
@@ -22,7 +23,7 @@ namespace StoreProject.Features.Category.Controllers
         {
             var category = _categoryManagementService.GetCategoryBy(slug);
             if (category == null)
-                return NotFound();
+                return RedirectAndShowMessage("info", "Category not found!");
 
             var Parameters = new ProductFilterParamsDto()
             {
@@ -40,7 +41,6 @@ namespace StoreProject.Features.Category.Controllers
                 Title = category.Title,
                 Filter = _productManagementService.GetProductsByFilter(Parameters),
             };
-
             model.ProductsCount = model.Filter.EntityCount;
 
             var request = HttpContext.Request;

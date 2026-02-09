@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using StoreProject.Common.Services;
 using StoreProject.Entities;
@@ -19,12 +18,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews()
     .AddRazorOptions(options =>
     {
-        //options.ViewLocationFormats.Clear();
-        //options.ViewLocationFormats.Add("/Features/{1}/Views/{0}.cshtml");
-        //options.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
         options.ViewLocationExpanders.Add(new FeatureViewLocationExpander());
     });
 
+#region Services
 builder.Services.AddScoped<ICategoryManagementService, CategoryManagementService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
@@ -39,12 +36,13 @@ builder.Services.AddScoped<IContactMessageService, ContactMessageService>();
 builder.Services.AddScoped<IContactMessageSharedService, ContactMessageSharedService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddScoped<IFileManager, FileManager>();
+#endregion
 
 builder.Services.AddDbContext<StoreContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var connStr = builder.Configuration.GetConnectionString("DefaultConnection");
-Console.WriteLine($"CONNECTION STRING: [{connStr}]");  // check output!
+Console.WriteLine($"CONNECTION STRING: [{connStr}]");
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<StoreContext>()
@@ -53,25 +51,21 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.ConfigureApplicationCookie(option =>
 {
-    option.LoginPath = "/Features/User/Controller/AuthController/Login";
-    option.LogoutPath = "/Features/User/Controller/AuthController/Logout";
+    option.LoginPath = "/Auth/Login";
+    option.LogoutPath = "/Auth/Logout";
 });
 
 var app = builder.Build();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
-//    await ApplicationDbInitializer.SeedRolesAndAdminAsync(services);
-//}
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseExceptionHandler("/ErrorHandler/500");
+app.UseStatusCodePagesWithReExecute("/ErrorHandler/{0}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

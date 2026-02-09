@@ -1,16 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using StoreProject.Common;
 using StoreProject.Features.ContactMessage.Mapper;
 using StoreProject.Features.ContactMessage.Services;
 using System.Security.Claims;
 
 namespace StoreProject.Features.ContactMessage.Controllers
 {
+    [Authorize]
     [Route("UserPanel/Messages/{action=index}")]
-    public class UserPanelContactMessagesController : Controller
+    public class UserPanelContactMessagesController : BaseController
     {
         private readonly IContactMessageService _contactMessageService;
         private readonly IContactMessageSharedService _contactMessageSharedService;
-        public UserPanelContactMessagesController(IContactMessageService contactMessageService, IContactMessageSharedService contactMessageSharedService)
+        public UserPanelContactMessagesController(
+            IContactMessageService contactMessageService, 
+            IContactMessageSharedService contactMessageSharedService)
         {
             _contactMessageService = contactMessageService;
             _contactMessageSharedService = contactMessageSharedService;
@@ -20,7 +25,7 @@ namespace StoreProject.Features.ContactMessage.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
-                return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var contactMessageDtos = _contactMessageService.UserPanelGetContactMessages(userId);
             var model = contactMessageDtos.Select(ContactMessageMapper.MapUserPanelContactMessageDtoToUserPanelContactMessageModel).ToList();
@@ -31,7 +36,7 @@ namespace StoreProject.Features.ContactMessage.Controllers
         {
             var contactMessage = _contactMessageSharedService.GetContactMessageBy(messageId);
             if (contactMessage == null)
-                return View();
+                return RedirectAndShowMessage("primary", "An error occurred in finding message details!");
 
             var model = ContactMessageMapper.MapContactMessageDtoToUserPanelContactMessageDetailsModel(contactMessage);
             return View(model);

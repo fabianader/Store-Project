@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Common.Services;
 using StoreProject.Features.User.DTOs;
@@ -9,13 +10,15 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.User.Controllers
 {
+	[Authorize]
 	[Route("UserPanel/Profile/{action=index}")]
 	public class UserPanelProfileController : BaseController
 	{
 		private readonly IUserSharedService _userSharedService;
 		private readonly IUserService _userService;
 		private readonly IFileManager _fileManager;
-		public UserPanelProfileController(IUserSharedService userSharedService, IUserService userService, IFileManager fileManager)
+		public UserPanelProfileController(IUserSharedService userSharedService, 
+			IUserService userService, IFileManager fileManager)
 		{
 			_userSharedService = userSharedService;
 			_userService = userService;
@@ -26,13 +29,13 @@ namespace StoreProject.Features.User.Controllers
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 			if (userId == null)
-				return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
-			var user = await _userSharedService.GetUserByIdAsync(userId);
+            var user = await _userSharedService.GetUserByIdAsync(userId);
 			if (user == null)
-				return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
-			var model = UserMapper.MapUserDtoToUserPanelProfileModel(user);
+            var model = UserMapper.MapUserDtoToUserPanelProfileModel(user);
 			return View(model);
 		}
 
@@ -40,13 +43,13 @@ namespace StoreProject.Features.User.Controllers
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 			if (userId == null)
-				return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
-			var user = await _userSharedService.GetUserByIdAsync(userId);
+            var user = await _userSharedService.GetUserByIdAsync(userId);
 			if (user == null)
-				return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
-			var model = UserMapper.MapUserDtoToUserPanelEditProfileModel(user);
+            var model = UserMapper.MapUserDtoToUserPanelEditProfileModel(user);
 			return View(model);
 		}
 
@@ -56,26 +59,27 @@ namespace StoreProject.Features.User.Controllers
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 			if (userId == null)
-				return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
-			if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
 				return View(model);
 
 			if (model.ProfilePictureFile != null)
 			{
 				try
 				{
-					model.ProfilePictureName = _fileManager.SaveImageAndReturnImageName(model.ProfilePictureFile, Directories.UserProfilePicture);
+					model.ProfilePictureName = 
+						_fileManager.SaveImageAndReturnImageName(model.ProfilePictureFile, Directories.UserProfilePicture);
 				}
 				catch
 				{
 					ErrorAlert(["To change the profile picture, you must upload a photo."]);
 					return View(model);
 				}
-
 			}
 
-			var userPanelEditDto = UserMapper.MapUserPanelEditProfileModelToUserPanelEditDto(model);
+			var userPanelEditDto = UserMapper
+				.MapUserPanelEditProfileModelToUserPanelEditDto(model);
 			userPanelEditDto.Id = userId;
 			var result = await _userService.UserPanelEditAsync(userPanelEditDto);
 
@@ -87,7 +91,6 @@ namespace StoreProject.Features.User.Controllers
 
 			return RedirectAndShowAlert(result, RedirectToAction("Index"));
 		}
-
 
 		public IActionResult ChangePassword()
 		{
@@ -103,9 +106,9 @@ namespace StoreProject.Features.User.Controllers
 
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 			if (userId == null)
-				return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
-			var result = await _userService.UserPanelChangePasswordAsync(new UserPanelChangePasswordDto()
+            var result = await _userService.UserPanelChangePasswordAsync(new UserPanelChangePasswordDto()
 			{
 				UserId = userId,
 				CurrentPassword = model.CurrentPassword,
@@ -120,7 +123,5 @@ namespace StoreProject.Features.User.Controllers
 
 			return RedirectAndShowAlert(result, RedirectToAction("Index"));
         }
-
-		
     }
 }

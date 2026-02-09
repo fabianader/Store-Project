@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Features.ContactMessage.DTOs;
 using StoreProject.Features.ContactMessage.Mapper;
@@ -8,6 +9,7 @@ using StoreProject.Features.User.Services;
 
 namespace StoreProject.Features.ContactMessage.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("Admin/ContactMessagesManagement/{action=index}")]
     public class ContactMessagesManagementController : BaseController
     {

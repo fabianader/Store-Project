@@ -1,0 +1,13 @@
+﻿@{
+    var bootstrapColor_message = TempData["BootstrapColors_Message"]?.ToString()?.Split('_');
+}
+
+@if (TempData["ShowMessage"] as bool? == true)
+{
+    <div class="mb-5 alert alert-@bootstrapColor_message[0] alert-dismissible fade show" role="alert">
+        @bootstrapColor_message[1]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}

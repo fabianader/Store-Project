@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Features.Cart.Model;
 using StoreProject.Features.Cart.Services;
@@ -9,11 +10,11 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.Cart.Controllers
 {
+    [Authorize]
     public class CartController : BaseController
     {
         private readonly ICartService _cartService;
         private readonly IProductManagementService _productManagementService;
-
         public CartController(ICartService cartService, IProductManagementService productManagementService)
         {
             _cartService = cartService;
@@ -31,7 +32,7 @@ namespace StoreProject.Features.Cart.Controllers
             var userId = GetUserId();
 
             if (userId == null)
-                return Unauthorized();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var cart = _cartService.GetCart(userId);
             if (cart.CartItems == null || cart.CartItems.Count == 0)
@@ -64,7 +65,6 @@ namespace StoreProject.Features.Cart.Controllers
             return View("Cart", model);
         }
 
-
         [HttpPost]
         public IActionResult AddToCart(int productId, string callBackUrl)
         {
@@ -84,25 +84,24 @@ namespace StoreProject.Features.Cart.Controllers
         {
             string? userId = GetUserId();
             if (userId == null)
-                return Unauthorized();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var result = _cartService.DeleteFromCart(userId, productId);
             if (result.Status != OperationResultStatus.Success)
-                return BadRequest(result.Message);
+                return RedirectAndShowMessage("danger", result.Message[0]);
 
             return Redirect(callBackUrl);
         }
-
 
         public IActionResult Checkout()
         {
             var userId = GetUserId();
             if (userId == null)
-                return Unauthorized();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var cartDetails = _cartService.GetCartDetails(userId);
             if(cartDetails == null)
-                return NotFound();
+                return RedirectAndShowMessage("warning", "Cart details not found!");
 
             var model = new CheckoutModel()
             {
@@ -117,11 +116,11 @@ namespace StoreProject.Features.Cart.Controllers
         {
             var userId = GetUserId();
             if (userId == null)
-                return Unauthorized();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var cartDetails = _cartService.GetCartDetails(userId);
             if (cartDetails == null)
-                return NotFound();
+                return RedirectAndShowMessage("warning", "Cart details not found!");
 
             model.CartDetails = cartDetails;
             if (!ModelState.IsValid)
@@ -150,11 +149,11 @@ namespace StoreProject.Features.Cart.Controllers
         {
             string? userId = GetUserId();
             if (userId == null)
-                return Unauthorized();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var result = _cartService.UpdateQuantity(userId, productId, quantity);
             if (result.Status != OperationResultStatus.Success)
-                return BadRequest();
+                return RedirectAndShowMessage("danger", result.Message[0]);
 
             var cart = _cartService.GetCart(userId);
             var product = _productManagementService.GetProductBy(productId);
@@ -167,6 +166,5 @@ namespace StoreProject.Features.Cart.Controllers
 
             return Json(new { productTotal, total, cartQuantity });
         }
-
     }
 }

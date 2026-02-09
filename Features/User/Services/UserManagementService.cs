@@ -90,8 +90,8 @@ namespace StoreProject.Features.User.Services
 
         public List<UserDto> GetAllUsers()
         {
-            return
-                _storeContext.ApplicationUsers.Select(u => UserMapper.MapAppUserToUserDto(u)).ToList();
+            return _storeContext.ApplicationUsers
+                .Select(u => UserMapper.MapAppUserToUserDto(u)).ToList();
         }
 
         public List<string> GetAllRolesName()

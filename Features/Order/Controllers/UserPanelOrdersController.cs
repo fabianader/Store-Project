@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Features.Order.Mapper;
 using StoreProject.Features.Order.Models;
@@ -8,6 +9,7 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.Order.Controllers
 {
+    [Authorize]
     [Route("UserPanel/Orders/{action=index}")]
     public class UserPanelOrdersController : BaseController
     {
@@ -23,7 +25,7 @@ namespace StoreProject.Features.Order.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
-                return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
             ViewBag.HasNoOrders = false;
 
@@ -42,7 +44,7 @@ namespace StoreProject.Features.Order.Controllers
         {
             var order = _orderService.GetOrderBy(orderId);
             if (order == null)
-                return View();
+                return RedirectAndShowMessage("primary", "An error occurred in finding order details!");
 
             var model = OrderMapper.MapOrderDtoToUserPanelOrderDetailsModel(order);
             foreach (var item in model.OrderItems)
@@ -60,6 +62,7 @@ namespace StoreProject.Features.Order.Controllers
                 OrderId = orderId,
                 CallBackUrl = callBackUrl
             };
+
             return PartialView("_CancelOrder", model);
         }
 

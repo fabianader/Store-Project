@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Common.Services;
 using StoreProject.Entities;
@@ -11,7 +12,8 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.Product.Controllers
 {
-    public class ProductsController : Controller
+    [Route("Products/{action}")]
+    public class ProductsController : BaseController
     {
         private readonly IProductManagementService _productManagementService;
         private readonly ICartService _cartService;
@@ -21,33 +23,32 @@ namespace StoreProject.Features.Product.Controllers
             _cartService = cartService;
         }
 
-        [Route("Products/{slug}")]
+        [Route("/Products/{slug}")]
         public IActionResult Details(string slug)
         {
             var product = _productManagementService.GetProductBy(slug);
             if (product == null)
-                return NotFound();
-
-            var model = ProductMapper.MapProductDtoToDetailsModel(product);
+                return RedirectAndShowMessage("info", "Product not found!");
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // make this a service method...
-            bool IsInCart = _cartService.IsProductInCart(userId, product.Id);
-            int quantity;
-            if (IsInCart)
-            {
-                var cart = _cartService.GetCart(userId);
-                quantity = cart.CartItems
-                    .FirstOrDefault(i => i.ProductId == product.Id).Quantity;
-            }
-            else
-            {
-                quantity = 0;
-            }
-            // -----------------------------
-            model.ProductQuantity = quantity;
+            var model = ProductMapper.MapProductDtoToDetailsModel(product);
+            model.ProductQuantity = _cartService.GetQuantity(userId, product.Id);
+            
             return View(model);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SearchPost(string q)
+        {
+            return RedirectToActionPermanent("Search", new { q });
+        }
+
+        public IActionResult Search(string q)
+        {
+            ViewBag.q = q;
+            var model = _productManagementService.SearchProductsByTitle(q);
+            return View("Search", model);
         }
     }
 }

@@ -5,6 +5,14 @@ namespace StoreProject.Common
 {
     public class BaseController : Controller
     {
+        protected IActionResult RedirectAndShowMessage(string bootstrapColor, string message)
+        {
+            TempData["ShowMessage"] = true;
+            TempData["BootstrapColors_Message"] = $"{bootstrapColor}_{message}";
+            var previousUrl = Request.Headers.Referer.ToString();
+
+            return Redirect(previousUrl);
+        }
         protected IActionResult RedirectAndShowAlert(OperationResult result, IActionResult redirectPath)
         {
             var model = JsonConvert.SerializeObject(result);

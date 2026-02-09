@@ -1,8 +1,10 @@
 ﻿@using StoreProject.Common
+
 <header class="main_menu home_menu">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-12">
+                <partial name="_MessageAlert" />
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -15,19 +17,31 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
-                            
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    blog
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    <a class="dropdown-item" href="blog.html"> blog</a>
-                                </div>
-                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="ContactUs" asp-action="Index">Contact</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <p class="nav-link dropdown-toggle" id="navbarDropdown_2"
+                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Authentication
+                                </p>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                    <a class="dropdown-item" asp-controller="Auth" asp-action="Register" asp-route-code="404">Register</a>
+                                    <a class="dropdown-item" asp-controller="Auth" asp-action="Login" asp-route-code="500">Login</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <p class="nav-link dropdown-toggle" id="navbarDropdown_2"
+                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Error Pages
+                                </p>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                    <a class="dropdown-item" asp-controller="ErrorHandler" asp-action="Index" asp-route-code="404">Not found 404</a>
+                                    <a class="dropdown-item" asp-controller="ErrorHandler" asp-action="Index" asp-route-code="500">Server Error 500</a>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -48,14 +62,6 @@
             </div>
         </div>
     </div>
-    <div class="search_input" id="search_input_box">
-        <div class="container ">
-            <form class="d-flex justify-content-between search-inner">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                <button type="submit" class="btn"></button>
-                <span class="ti-close" id="close_search" title="Close Search"></span>
-            </form>
-        </div>
-    </div>
+    <partial name="_Search" />
 </header>
 <div style="margin-bottom: 100px;"></div>

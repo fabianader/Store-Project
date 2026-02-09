@@ -278,5 +278,15 @@ namespace StoreProject.Features.Product.Services
             _context.SaveChanges();
             return OperationResult.Success();
 		}
+
+        public List<ProductDto> SearchProductsByTitle(string productTitle)
+        {
+            var products = _context.Products
+                .Include(p => p.Category)
+                .Where(p => p.Title.Contains(productTitle))
+                .Select(ProductMapper.MapProductToProductDto).ToList();
+
+            return products;
+        }
     }
 }

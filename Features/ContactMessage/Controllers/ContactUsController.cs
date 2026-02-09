@@ -20,7 +20,6 @@ namespace StoreProject.Features.ContactMessage.Controllers
             return View();
         }
 
-
         [HttpPost]  
         [ValidateAntiForgeryToken]
         public IActionResult Index(ContactUsModel model)
@@ -33,7 +32,7 @@ namespace StoreProject.Features.ContactMessage.Controllers
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if(userId == null)
-                return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
             var result = _contactMessageService.SendContactMessage(new SendContactMessageDto()
             {

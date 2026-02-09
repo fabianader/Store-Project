@@ -74,6 +74,7 @@
                     <span class="text-muted ml-auto">Welcome, @User.Identity?.Name</span>
                 </header>
 
+                <partial name="_MessageAlert" />
 
                 <div class="modal" id="default_Modal" tabindex="-1" role="dialog">
                   <div class="modal-dialog" role="document">
@@ -91,7 +92,6 @@
                   </div>
                 </div>
                 
-
                 <section class="mt-4">
                     @RenderBody()
                 </section>
@@ -99,20 +99,14 @@
         </div>
     </div>
 
-
-    <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script src="/js/jquery.validate.min.js"></script>
     <script src="/js/jquery.validate.unobtrusive.min.js"></script>
     <script src="../../dist/js/global.js"></script>
     <script src="/js/store.js"></script>
 
-    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

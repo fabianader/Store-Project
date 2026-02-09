@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Common.Services;
 using StoreProject.Features.User.DTOs;
@@ -7,6 +8,7 @@ using StoreProject.Features.User.Services;
 
 namespace StoreProject.Features.User.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("Admin/UsersManagement/{action=index}")]
     public class UsersManagementController : BaseController
     {
@@ -145,8 +147,6 @@ namespace StoreProject.Features.User.Controllers
                     ViewBag.Layout = "_AdminLayout";
                     return PartialViewAndShowErrorAlert(PartialView("_AdminEditUser", model), ["To change the profile picture, you must upload a photo."]);
                 }
-
-
 
             var result = await _userManagementService.EditUserAsync(new UserEditDto()
             {

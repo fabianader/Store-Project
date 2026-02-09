@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StoreProject.Common;
 using StoreProject.Features.Category.DTOs;
 using StoreProject.Features.Category.Mapper;
@@ -8,6 +9,7 @@ using StoreProject.Features.Shared.Model;
 
 namespace StoreProject.Features.Category.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("Admin/CategoriesManagement/{action=index}")]
     public class CategoriesManagementController : BaseController
     {

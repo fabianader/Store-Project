@@ -1,0 +1,43 @@
+﻿@using StoreProject.Features.Product.DTOs
+@model List<ProductDto>
+
+<section class="cat_product_area section_padding">
+    <div class="container">
+        <h2>Search results for: @ViewBag.q</h2>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="left_sidebar_area">
+                    <vc:browse-categories></vc:browse-categories>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product_top_bar d-flex justify-content-between align-items-center">
+                            <div class="single_product_menu">
+                                <p><span>@Model.Count </span> Product Found</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center latest_product_inner">
+                    @if (Model.Count != 0)
+                    {
+                        @foreach (var product in Model)
+                        {
+                            <div class="col-lg-4 col-sm-6">
+                                <partial name="_ProductItem" model="@product" />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <h3>
+                            Oops! No product found.
+                        </h3>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

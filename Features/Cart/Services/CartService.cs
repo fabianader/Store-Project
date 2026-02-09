@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StoreProject.Common;
+using StoreProject.Entities;
 using StoreProject.Features.Cart.DTOs;
 using StoreProject.Features.Cart.Mapper;
 using StoreProject.Features.Cart.Model;
@@ -199,6 +200,19 @@ namespace StoreProject.Features.Cart.Services
             if (cart == null || cart.CartItems.Count == 0)
                 return 0;
             return cart.CartItems.Sum(i => i.Quantity);
+        }
+
+        public int GetQuantity(string userId, int productId)
+        {
+            int quantity = 0;
+            bool IsInCart = IsProductInCart(userId, productId);
+            if (IsInCart)
+            {
+                var cart = GetCart(userId);
+                quantity = cart.CartItems.FirstOrDefault(i => i.ProductId == productId).Quantity;
+            }
+
+            return quantity;
         }
 
         public bool IsProductInCart(string userId, int productId)

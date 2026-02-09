@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using StoreProject.Common;
 using StoreProject.Features.Order.Services;
 using StoreProject.Features.Product.Services;
 using StoreProject.Features.User.Services;
@@ -8,7 +10,8 @@ using System.Security.Claims;
 
 namespace StoreProject.Features.UserPanel.Controllers
 {
-    public class UserPanelController : Controller
+    [Authorize]
+    public class UserPanelController : BaseController
     {
         private readonly IUserManagementService _userManagementService;
         private readonly IProductManagementService _productManagementService;
@@ -24,7 +27,7 @@ namespace StoreProject.Features.UserPanel.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (userId == null)
-                return NotFound();
+                return RedirectAndShowMessage("info", "User not found!");
 
             ViewBag.HasNoOrders = false;
             
@@ -47,7 +50,6 @@ namespace StoreProject.Features.UserPanel.Controllers
                     .Select(oi => oi.ProductTitle = _productManagementService.GetProductTitle(oi.ProductId));
             }
             
-
             return View(model);
         }
     }

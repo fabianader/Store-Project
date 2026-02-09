@@ -15,6 +15,7 @@ namespace StoreProject.Features.Product.Services
         int? GetProductFavoritesCount(int productId);
         List<ProductDto> GetBestSellingProducts(int count);
         List<ProductDto> GetMostFavoritedProducts(int count);
+        List<ProductDto> SearchProductsByTitle(string productTitle);
         OperationResult IncreaseStock(int productId, int quantity);
         OperationResult DecreaseStock(int productId, int quantity);
 		OperationResult CreateProduct(ProductCreateDto productCreateDto);

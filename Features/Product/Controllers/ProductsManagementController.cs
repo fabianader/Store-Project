@@ -4,9 +4,11 @@ using StoreProject.Common;
 using StoreProject.Features.Product.DTOs;
 using StoreProject.Features.Product.Model;
 using StoreProject.Features.Product.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StoreProject.Features.Product.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("Admin/ProductsManagement/{action=index}")]
     public class ProductsManagementController : BaseController
     {
