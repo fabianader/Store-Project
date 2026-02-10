@@ -6,7 +6,8 @@
   <title>@ViewData["Title"]</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" 
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -45,7 +46,9 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a asp-controller="Admin" asp-action="Index">Admin</a></li>
+              <li class="breadcrumb-item">
+                <a asp-controller="Admin" asp-action="Index">Admin</a>
+              </li>
               <li class="breadcrumb-item active">@ViewData["Title"]</li>
               <li class="breadcrumb-item active">@ViewData["ActionName"]</li>
             </ol>
