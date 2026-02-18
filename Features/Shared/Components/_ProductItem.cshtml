@@ -13,7 +13,7 @@
 
 <div class="single_product_item">
     <a asp-controller="Products" asp-action="Details" asp-route-slug="@Model.Slug">
-        <img src="@Directories.GetProductImage(Model.ImageUrl)" height="109px" alt="Product Image">
+        <img src="@Directories.GetProductImage(Model.ImageUrl)" alt="Product Image">
     </a>
     <div class="single_product_text">
         <header-link url="/products/@(Model.Slug)">@Model.Title</header-link>

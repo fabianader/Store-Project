@@ -4,6 +4,7 @@
 @{
     var currentUrl = $"{Context.Request.Path}{Context.Request.QueryString}";
     var products = _productManagementService.GetBestSellingProducts(3);
+    int count = 1;
 }
 
 <section class="banner_part">
@@ -29,11 +30,13 @@
                                 </div>
                                 <div class="banner_img d-none d-lg-block">
                                     <a asp-controller="Products" asp-action="Details" asp-route-slug="@product.Slug">
-                                        <img style="width: 735px; height: 390px;" src="@Directories.GetProductImage(product.ImageUrl)" alt="Product Image">
+                                        <img style="width: 735px; height: 390px;" src="@Directories.GetBannerImage(count)" alt="Product Image">
                                     </a>
                                 </div>
                             </div>
                         </div>
+
+                        count++;
                     }
 
                 </div>

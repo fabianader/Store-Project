@@ -8,9 +8,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" 
       href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
+  <link rel="stylesheet" href="/css/all.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 </head>
 
@@ -34,9 +32,7 @@
 
 <div class="wrapper">
   <partial name="_AdminNavbar" />
-
   <partial name="_AdminMainSidebar" />
-
   <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
@@ -56,26 +52,17 @@
         </div>
       </div>
     </section>
-
     <section class=content>
       @RenderBody()
     </section>
   </div>
-
   <partial name="_AdminFooter" />
-
   <aside class="control-sidebar control-sidebar-dark"></aside>
 </div>
 
-<!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-
 <script src="../../dist/js/global.js"></script>
 <script src="/js/store.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
