@@ -23,7 +23,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-
 .ti-tablet:before {
 	content: "\e609";
 }
