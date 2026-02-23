@@ -1,0 +1,1274 @@
+Folder PATH listing
+Volume serial number is 3C76-A942
+C:.
+|   .gitattributes
+|   .gitignore
+|   appsettings.Development.json
+|   appsettings.json
+|   Program.cs
+|   README.md
+|   StoreProject.csproj
+|   StoreProject.csproj.user
+|   StoreProject.sln
+|   tree.txt
+|   
++---.cr
+|   \---personal
+|       +---Editor
+|       |       Debug Visualizer.xml
+|       |       
+|       \---FavoritesList
+|               List.xml
+|               
++---.github
+|   \---workflows
++---bin
+|   \---Debug
+|       \---net8.0
+|           |   appsettings.Development.json
+|           |   appsettings.json
+|           |   Azure.Core.dll
+|           |   Azure.Identity.dll
+|           |   Humanizer.dll
+|           |   Microsoft.AspNetCore.Cryptography.Internal.dll
+|           |   Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+|           |   Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+|           |   Microsoft.AspNetCore.JsonPatch.dll
+|           |   Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+|           |   Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
+|           |   Microsoft.AspNetCore.Razor.Language.dll
+|           |   Microsoft.Bcl.AsyncInterfaces.dll
+|           |   Microsoft.CodeAnalysis.CSharp.dll
+|           |   Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+|           |   Microsoft.CodeAnalysis.dll
+|           |   Microsoft.CodeAnalysis.Razor.dll
+|           |   Microsoft.CodeAnalysis.Workspaces.dll
+|           |   Microsoft.Data.SqlClient.dll
+|           |   Microsoft.EntityFrameworkCore.Abstractions.dll
+|           |   Microsoft.EntityFrameworkCore.Design.dll
+|           |   Microsoft.EntityFrameworkCore.dll
+|           |   Microsoft.EntityFrameworkCore.Relational.dll
+|           |   Microsoft.EntityFrameworkCore.SqlServer.dll
+|           |   Microsoft.Extensions.DependencyInjection.Abstractions.dll
+|           |   Microsoft.Extensions.DependencyInjection.dll
+|           |   Microsoft.Extensions.DependencyModel.dll
+|           |   Microsoft.Extensions.Diagnostics.Abstractions.dll
+|           |   Microsoft.Extensions.Hosting.Abstractions.dll
+|           |   Microsoft.Extensions.Identity.Core.dll
+|           |   Microsoft.Extensions.Identity.Stores.dll
+|           |   Microsoft.Extensions.Localization.Abstractions.dll
+|           |   Microsoft.Extensions.Localization.dll
+|           |   Microsoft.Extensions.Logging.Abstractions.dll
+|           |   Microsoft.Extensions.ObjectPool.dll
+|           |   Microsoft.Extensions.Options.dll
+|           |   Microsoft.Extensions.WebEncoders.dll
+|           |   Microsoft.Identity.Client.dll
+|           |   Microsoft.Identity.Client.Extensions.Msal.dll
+|           |   Microsoft.IdentityModel.Abstractions.dll
+|           |   Microsoft.IdentityModel.JsonWebTokens.dll
+|           |   Microsoft.IdentityModel.Logging.dll
+|           |   Microsoft.IdentityModel.Protocols.dll
+|           |   Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+|           |   Microsoft.IdentityModel.Tokens.dll
+|           |   Microsoft.SqlServer.Server.dll
+|           |   Microsoft.Win32.SystemEvents.dll
+|           |   Mono.TextTemplating.dll
+|           |   Newtonsoft.Json.Bson.dll
+|           |   Newtonsoft.Json.dll
+|           |   StoreProject.deps.json
+|           |   StoreProject.dll
+|           |   StoreProject.exe
+|           |   StoreProject.pdb
+|           |   StoreProject.runtimeconfig.json
+|           |   StoreProject.staticwebassets.runtime.json
+|           |   System.CodeDom.dll
+|           |   System.Composition.AttributedModel.dll
+|           |   System.Composition.Convention.dll
+|           |   System.Composition.Hosting.dll
+|           |   System.Composition.Runtime.dll
+|           |   System.Composition.TypedParts.dll
+|           |   System.Configuration.ConfigurationManager.dll
+|           |   System.Diagnostics.DiagnosticSource.dll
+|           |   System.Drawing.Common.dll
+|           |   System.IdentityModel.Tokens.Jwt.dll
+|           |   System.Memory.Data.dll
+|           |   System.Runtime.Caching.dll
+|           |   System.Security.Cryptography.Pkcs.dll
+|           |   System.Security.Cryptography.ProtectedData.dll
+|           |   System.Security.Cryptography.Xml.dll
+|           |   System.Security.Permissions.dll
+|           |   System.Windows.Extensions.dll
+|           |   
+|           +---cs
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---de
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---es
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---fr
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---it
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---ja
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---ko
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---pl
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---pt-BR
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---refs
+|           |       Microsoft.AspNetCore.Antiforgery.dll
+|           |       Microsoft.AspNetCore.Authentication.Abstractions.dll
+|           |       Microsoft.AspNetCore.Authentication.BearerToken.dll
+|           |       Microsoft.AspNetCore.Authentication.Cookies.dll
+|           |       Microsoft.AspNetCore.Authentication.Core.dll
+|           |       Microsoft.AspNetCore.Authentication.dll
+|           |       Microsoft.AspNetCore.Authentication.OAuth.dll
+|           |       Microsoft.AspNetCore.Authorization.dll
+|           |       Microsoft.AspNetCore.Authorization.Policy.dll
+|           |       Microsoft.AspNetCore.Components.Authorization.dll
+|           |       Microsoft.AspNetCore.Components.dll
+|           |       Microsoft.AspNetCore.Components.Endpoints.dll
+|           |       Microsoft.AspNetCore.Components.Forms.dll
+|           |       Microsoft.AspNetCore.Components.Server.dll
+|           |       Microsoft.AspNetCore.Components.Web.dll
+|           |       Microsoft.AspNetCore.Connections.Abstractions.dll
+|           |       Microsoft.AspNetCore.CookiePolicy.dll
+|           |       Microsoft.AspNetCore.Cors.dll
+|           |       Microsoft.AspNetCore.DataProtection.Abstractions.dll
+|           |       Microsoft.AspNetCore.DataProtection.dll
+|           |       Microsoft.AspNetCore.DataProtection.Extensions.dll
+|           |       Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+|           |       Microsoft.AspNetCore.Diagnostics.dll
+|           |       Microsoft.AspNetCore.Diagnostics.HealthChecks.dll
+|           |       Microsoft.AspNetCore.dll
+|           |       Microsoft.AspNetCore.HostFiltering.dll
+|           |       Microsoft.AspNetCore.Hosting.Abstractions.dll
+|           |       Microsoft.AspNetCore.Hosting.dll
+|           |       Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+|           |       Microsoft.AspNetCore.Html.Abstractions.dll
+|           |       Microsoft.AspNetCore.Http.Abstractions.dll
+|           |       Microsoft.AspNetCore.Http.Connections.Common.dll
+|           |       Microsoft.AspNetCore.Http.Connections.dll
+|           |       Microsoft.AspNetCore.Http.dll
+|           |       Microsoft.AspNetCore.Http.Extensions.dll
+|           |       Microsoft.AspNetCore.Http.Features.dll
+|           |       Microsoft.AspNetCore.Http.Results.dll
+|           |       Microsoft.AspNetCore.HttpLogging.dll
+|           |       Microsoft.AspNetCore.HttpOverrides.dll
+|           |       Microsoft.AspNetCore.HttpsPolicy.dll
+|           |       Microsoft.AspNetCore.Identity.dll
+|           |       Microsoft.AspNetCore.Localization.dll
+|           |       Microsoft.AspNetCore.Localization.Routing.dll
+|           |       Microsoft.AspNetCore.Metadata.dll
+|           |       Microsoft.AspNetCore.Mvc.Abstractions.dll
+|           |       Microsoft.AspNetCore.Mvc.ApiExplorer.dll
+|           |       Microsoft.AspNetCore.Mvc.Core.dll
+|           |       Microsoft.AspNetCore.Mvc.Cors.dll
+|           |       Microsoft.AspNetCore.Mvc.DataAnnotations.dll
+|           |       Microsoft.AspNetCore.Mvc.dll
+|           |       Microsoft.AspNetCore.Mvc.Formatters.Json.dll
+|           |       Microsoft.AspNetCore.Mvc.Formatters.Xml.dll
+|           |       Microsoft.AspNetCore.Mvc.Localization.dll
+|           |       Microsoft.AspNetCore.Mvc.Razor.dll
+|           |       Microsoft.AspNetCore.Mvc.RazorPages.dll
+|           |       Microsoft.AspNetCore.Mvc.TagHelpers.dll
+|           |       Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+|           |       Microsoft.AspNetCore.OutputCaching.dll
+|           |       Microsoft.AspNetCore.RateLimiting.dll
+|           |       Microsoft.AspNetCore.Razor.dll
+|           |       Microsoft.AspNetCore.Razor.Runtime.dll
+|           |       Microsoft.AspNetCore.RequestDecompression.dll
+|           |       Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+|           |       Microsoft.AspNetCore.ResponseCaching.dll
+|           |       Microsoft.AspNetCore.ResponseCompression.dll
+|           |       Microsoft.AspNetCore.Rewrite.dll
+|           |       Microsoft.AspNetCore.Routing.Abstractions.dll
+|           |       Microsoft.AspNetCore.Routing.dll
+|           |       Microsoft.AspNetCore.Server.HttpSys.dll
+|           |       Microsoft.AspNetCore.Server.IIS.dll
+|           |       Microsoft.AspNetCore.Server.IISIntegration.dll
+|           |       Microsoft.AspNetCore.Server.Kestrel.Core.dll
+|           |       Microsoft.AspNetCore.Server.Kestrel.dll
+|           |       Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll
+|           |       Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll
+|           |       Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll
+|           |       Microsoft.AspNetCore.Session.dll
+|           |       Microsoft.AspNetCore.SignalR.Common.dll
+|           |       Microsoft.AspNetCore.SignalR.Core.dll
+|           |       Microsoft.AspNetCore.SignalR.dll
+|           |       Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+|           |       Microsoft.AspNetCore.StaticFiles.dll
+|           |       Microsoft.AspNetCore.WebSockets.dll
+|           |       Microsoft.AspNetCore.WebUtilities.dll
+|           |       Microsoft.CSharp.dll
+|           |       Microsoft.Extensions.Caching.Abstractions.dll
+|           |       Microsoft.Extensions.Caching.Memory.dll
+|           |       Microsoft.Extensions.Configuration.Abstractions.dll
+|           |       Microsoft.Extensions.Configuration.Binder.dll
+|           |       Microsoft.Extensions.Configuration.CommandLine.dll
+|           |       Microsoft.Extensions.Configuration.dll
+|           |       Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+|           |       Microsoft.Extensions.Configuration.FileExtensions.dll
+|           |       Microsoft.Extensions.Configuration.Ini.dll
+|           |       Microsoft.Extensions.Configuration.Json.dll
+|           |       Microsoft.Extensions.Configuration.KeyPerFile.dll
+|           |       Microsoft.Extensions.Configuration.UserSecrets.dll
+|           |       Microsoft.Extensions.Configuration.Xml.dll
+|           |       Microsoft.Extensions.Diagnostics.dll
+|           |       Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+|           |       Microsoft.Extensions.Diagnostics.HealthChecks.dll
+|           |       Microsoft.Extensions.Features.dll
+|           |       Microsoft.Extensions.FileProviders.Abstractions.dll
+|           |       Microsoft.Extensions.FileProviders.Composite.dll
+|           |       Microsoft.Extensions.FileProviders.Embedded.dll
+|           |       Microsoft.Extensions.FileProviders.Physical.dll
+|           |       Microsoft.Extensions.FileSystemGlobbing.dll
+|           |       Microsoft.Extensions.Hosting.dll
+|           |       Microsoft.Extensions.Http.dll
+|           |       Microsoft.Extensions.Logging.Configuration.dll
+|           |       Microsoft.Extensions.Logging.Console.dll
+|           |       Microsoft.Extensions.Logging.Debug.dll
+|           |       Microsoft.Extensions.Logging.dll
+|           |       Microsoft.Extensions.Logging.EventLog.dll
+|           |       Microsoft.Extensions.Logging.EventSource.dll
+|           |       Microsoft.Extensions.Logging.TraceSource.dll
+|           |       Microsoft.Extensions.Options.ConfigurationExtensions.dll
+|           |       Microsoft.Extensions.Options.DataAnnotations.dll
+|           |       Microsoft.Extensions.Options.dll
+|           |       Microsoft.Extensions.Primitives.dll
+|           |       Microsoft.JSInterop.dll
+|           |       Microsoft.Net.Http.Headers.dll
+|           |       Microsoft.VisualBasic.Core.dll
+|           |       Microsoft.VisualBasic.dll
+|           |       Microsoft.Win32.Primitives.dll
+|           |       Microsoft.Win32.Registry.dll
+|           |       mscorlib.dll
+|           |       netstandard.dll
+|           |       System.AppContext.dll
+|           |       System.Buffers.dll
+|           |       System.Collections.Concurrent.dll
+|           |       System.Collections.dll
+|           |       System.Collections.Immutable.dll
+|           |       System.Collections.NonGeneric.dll
+|           |       System.Collections.Specialized.dll
+|           |       System.ComponentModel.Annotations.dll
+|           |       System.ComponentModel.DataAnnotations.dll
+|           |       System.ComponentModel.dll
+|           |       System.ComponentModel.EventBasedAsync.dll
+|           |       System.ComponentModel.Primitives.dll
+|           |       System.ComponentModel.TypeConverter.dll
+|           |       System.Configuration.dll
+|           |       System.Console.dll
+|           |       System.Core.dll
+|           |       System.Data.Common.dll
+|           |       System.Data.DataSetExtensions.dll
+|           |       System.Data.dll
+|           |       System.Diagnostics.Contracts.dll
+|           |       System.Diagnostics.Debug.dll
+|           |       System.Diagnostics.EventLog.dll
+|           |       System.Diagnostics.FileVersionInfo.dll
+|           |       System.Diagnostics.Process.dll
+|           |       System.Diagnostics.StackTrace.dll
+|           |       System.Diagnostics.TextWriterTraceListener.dll
+|           |       System.Diagnostics.Tools.dll
+|           |       System.Diagnostics.TraceSource.dll
+|           |       System.Diagnostics.Tracing.dll
+|           |       System.dll
+|           |       System.Drawing.dll
+|           |       System.Drawing.Primitives.dll
+|           |       System.Dynamic.Runtime.dll
+|           |       System.Formats.Asn1.dll
+|           |       System.Formats.Tar.dll
+|           |       System.Globalization.Calendars.dll
+|           |       System.Globalization.dll
+|           |       System.Globalization.Extensions.dll
+|           |       System.IO.Compression.Brotli.dll
+|           |       System.IO.Compression.dll
+|           |       System.IO.Compression.FileSystem.dll
+|           |       System.IO.Compression.ZipFile.dll
+|           |       System.IO.dll
+|           |       System.IO.FileSystem.AccessControl.dll
+|           |       System.IO.FileSystem.dll
+|           |       System.IO.FileSystem.DriveInfo.dll
+|           |       System.IO.FileSystem.Primitives.dll
+|           |       System.IO.FileSystem.Watcher.dll
+|           |       System.IO.IsolatedStorage.dll
+|           |       System.IO.MemoryMappedFiles.dll
+|           |       System.IO.Pipelines.dll
+|           |       System.IO.Pipes.AccessControl.dll
+|           |       System.IO.Pipes.dll
+|           |       System.IO.UnmanagedMemoryStream.dll
+|           |       System.Linq.dll
+|           |       System.Linq.Expressions.dll
+|           |       System.Linq.Parallel.dll
+|           |       System.Linq.Queryable.dll
+|           |       System.Memory.dll
+|           |       System.Net.dll
+|           |       System.Net.Http.dll
+|           |       System.Net.Http.Json.dll
+|           |       System.Net.HttpListener.dll
+|           |       System.Net.Mail.dll
+|           |       System.Net.NameResolution.dll
+|           |       System.Net.NetworkInformation.dll
+|           |       System.Net.Ping.dll
+|           |       System.Net.Primitives.dll
+|           |       System.Net.Quic.dll
+|           |       System.Net.Requests.dll
+|           |       System.Net.Security.dll
+|           |       System.Net.ServicePoint.dll
+|           |       System.Net.Sockets.dll
+|           |       System.Net.WebClient.dll
+|           |       System.Net.WebHeaderCollection.dll
+|           |       System.Net.WebProxy.dll
+|           |       System.Net.WebSockets.Client.dll
+|           |       System.Net.WebSockets.dll
+|           |       System.Numerics.dll
+|           |       System.Numerics.Vectors.dll
+|           |       System.ObjectModel.dll
+|           |       System.Reflection.DispatchProxy.dll
+|           |       System.Reflection.dll
+|           |       System.Reflection.Emit.dll
+|           |       System.Reflection.Emit.ILGeneration.dll
+|           |       System.Reflection.Emit.Lightweight.dll
+|           |       System.Reflection.Extensions.dll
+|           |       System.Reflection.Metadata.dll
+|           |       System.Reflection.Primitives.dll
+|           |       System.Reflection.TypeExtensions.dll
+|           |       System.Resources.Reader.dll
+|           |       System.Resources.ResourceManager.dll
+|           |       System.Resources.Writer.dll
+|           |       System.Runtime.CompilerServices.Unsafe.dll
+|           |       System.Runtime.CompilerServices.VisualC.dll
+|           |       System.Runtime.dll
+|           |       System.Runtime.Extensions.dll
+|           |       System.Runtime.Handles.dll
+|           |       System.Runtime.InteropServices.dll
+|           |       System.Runtime.InteropServices.JavaScript.dll
+|           |       System.Runtime.InteropServices.RuntimeInformation.dll
+|           |       System.Runtime.Intrinsics.dll
+|           |       System.Runtime.Loader.dll
+|           |       System.Runtime.Numerics.dll
+|           |       System.Runtime.Serialization.dll
+|           |       System.Runtime.Serialization.Formatters.dll
+|           |       System.Runtime.Serialization.Json.dll
+|           |       System.Runtime.Serialization.Primitives.dll
+|           |       System.Runtime.Serialization.Xml.dll
+|           |       System.Security.AccessControl.dll
+|           |       System.Security.Claims.dll
+|           |       System.Security.Cryptography.Algorithms.dll
+|           |       System.Security.Cryptography.Cng.dll
+|           |       System.Security.Cryptography.Csp.dll
+|           |       System.Security.Cryptography.dll
+|           |       System.Security.Cryptography.Encoding.dll
+|           |       System.Security.Cryptography.OpenSsl.dll
+|           |       System.Security.Cryptography.Primitives.dll
+|           |       System.Security.Cryptography.X509Certificates.dll
+|           |       System.Security.dll
+|           |       System.Security.Principal.dll
+|           |       System.Security.Principal.Windows.dll
+|           |       System.Security.SecureString.dll
+|           |       System.ServiceModel.Web.dll
+|           |       System.ServiceProcess.dll
+|           |       System.Text.Encoding.CodePages.dll
+|           |       System.Text.Encoding.dll
+|           |       System.Text.Encoding.Extensions.dll
+|           |       System.Text.Encodings.Web.dll
+|           |       System.Text.Json.dll
+|           |       System.Text.RegularExpressions.dll
+|           |       System.Threading.Channels.dll
+|           |       System.Threading.dll
+|           |       System.Threading.Overlapped.dll
+|           |       System.Threading.RateLimiting.dll
+|           |       System.Threading.Tasks.Dataflow.dll
+|           |       System.Threading.Tasks.dll
+|           |       System.Threading.Tasks.Extensions.dll
+|           |       System.Threading.Tasks.Parallel.dll
+|           |       System.Threading.Thread.dll
+|           |       System.Threading.ThreadPool.dll
+|           |       System.Threading.Timer.dll
+|           |       System.Transactions.dll
+|           |       System.Transactions.Local.dll
+|           |       System.ValueTuple.dll
+|           |       System.Web.dll
+|           |       System.Web.HttpUtility.dll
+|           |       System.Windows.dll
+|           |       System.Xml.dll
+|           |       System.Xml.Linq.dll
+|           |       System.Xml.ReaderWriter.dll
+|           |       System.Xml.Serialization.dll
+|           |       System.Xml.XDocument.dll
+|           |       System.Xml.XmlDocument.dll
+|           |       System.Xml.XmlSerializer.dll
+|           |       System.Xml.XPath.dll
+|           |       System.Xml.XPath.XDocument.dll
+|           |       WindowsBase.dll
+|           |       
+|           +---ru
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---runtimes
+|           |   +---unix
+|           |   |   \---lib
+|           |   |       \---net6.0
+|           |   |               Microsoft.Data.SqlClient.dll
+|           |   |               
+|           |   +---win
+|           |   |   \---lib
+|           |   |       +---net6.0
+|           |   |       |       Microsoft.Data.SqlClient.dll
+|           |   |       |       System.Runtime.Caching.dll
+|           |   |       |       System.Security.Cryptography.ProtectedData.dll
+|           |   |       |       System.Windows.Extensions.dll
+|           |   |       |       
+|           |   |       \---net8.0
+|           |   |               Microsoft.Win32.SystemEvents.dll
+|           |   |               System.Security.Cryptography.Pkcs.dll
+|           |   |               
+|           |   +---win-arm
+|           |   |   \---native
+|           |   |           Microsoft.Data.SqlClient.SNI.dll
+|           |   |           
+|           |   +---win-arm64
+|           |   |   \---native
+|           |   |           Microsoft.Data.SqlClient.SNI.dll
+|           |   |           
+|           |   +---win-x64
+|           |   |   \---native
+|           |   |           Microsoft.Data.SqlClient.SNI.dll
+|           |   |           
+|           |   \---win-x86
+|           |       \---native
+|           |               Microsoft.Data.SqlClient.SNI.dll
+|           |               
+|           +---tr
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           +---zh-Hans
+|           |       Microsoft.CodeAnalysis.CSharp.resources.dll
+|           |       Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|           |       Microsoft.CodeAnalysis.resources.dll
+|           |       Microsoft.CodeAnalysis.Workspaces.resources.dll
+|           |       
+|           \---zh-Hant
+|                   Microsoft.CodeAnalysis.CSharp.resources.dll
+|                   Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+|                   Microsoft.CodeAnalysis.resources.dll
+|                   Microsoft.CodeAnalysis.Workspaces.resources.dll
+|                   
++---Common
+|   |   BaseController.cs
+|   |   BasePagination.cs
+|   |   CommonService.cs
+|   |   Directories.cs
+|   |   ImageValidation.cs
+|   |   OperationResult.cs
+|   |   SiteInfo.cs
+|   |   TextHelper.cs
+|   |   
+|   +---Attributes
+|   |       EmailValidation.cs
+|   |       
+|   +---Services
+|   |       FileManager.cs
+|   |       IFileManager.cs
+|   |       
+|   \---TagHelpers
+|           HeaderLink.cs
+|           OpenModal.cs
+|           
++---Entities
+|       ApplicationUser.cs
+|       Cart.cs
+|       CartItem.cs
+|       Category.cs
+|       ContactMessage.cs
+|       ErrorViewModel.cs
+|       Favorite.cs
+|       Order.cs
+|       OrderChangeLog.cs
+|       OrderItem.cs
+|       Post.cs
+|       Product.cs
+|       
++---Features
+|   |   _ViewImports.cshtml
+|   |   _ViewStart.cshtml
+|   |   
+|   +---Admin
+|   |   +---Controllers
+|   |   |       AdminController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   +---Models
+|   |   +---Services
+|   |   \---Views
+|   |       \---Admin
+|   |               Index.cshtml
+|   |               
+|   +---BlogPost
+|   +---Cart
+|   |   +---Controllers
+|   |   |       CartController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   |       CartDto.cs
+|   |   |       CartItemDto.cs
+|   |   |       
+|   |   +---Mapper
+|   |   |       CartMapper.cs
+|   |   |       
+|   |   +---Model
+|   |   |       CartModel.cs
+|   |   |       CheckoutModel.cs
+|   |   |       
+|   |   +---Services
+|   |   |       CartService.cs
+|   |   |       ICartService.cs
+|   |   |       
+|   |   \---Views
+|   |       \---Cart
+|   |               Cart.cshtml
+|   |               Checkout.cshtml
+|   |               _AddToCart.cshtml
+|   |               
+|   +---CartItem
+|   +---Category
+|   |   +---Controllers
+|   |   |       CategoriesController.cs
+|   |   |       CategoriesManagementController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   |       CategoryDto.cs
+|   |   |       CreateCategoryDto.cs
+|   |   |       EditCategoryDto.cs
+|   |   |       
+|   |   +---Mapper
+|   |   |       CategoryMapper.cs
+|   |   |       
+|   |   +---Model
+|   |   |       BrowseCategoriesModel.cs
+|   |   |       CategoryCreateModel.cs
+|   |   |       CategoryEditModel.cs
+|   |   |       CategoryModel.cs
+|   |   |       DetailsModel.cs
+|   |   |       
+|   |   +---Services
+|   |   |       CategoryManagementService.cs
+|   |   |       ICategoryManagementService.cs
+|   |   |       
+|   |   \---Views
+|   |       +---Categories
+|   |       |       Details.cshtml
+|   |       |       _ProductsOfCategory.cshtml
+|   |       |       
+|   |       \---CategoriesManagement
+|   |           |   Index.cshtml
+|   |           |   _AdminCreateCategory.cshtml
+|   |           |   _AdminEditCategory.cshtml
+|   |           |   _CategoryNode.cshtml
+|   |           |   
+|   |           \---Components
+|   |               \---CategoryTree
+|   |                       CategoryTree.cs
+|   |                       CategoryTree.cshtml
+|   |                       
+|   +---ContactMessage
+|   |   +---Controllers
+|   |   |       ContactMessagesManagementController.cs
+|   |   |       ContactUsController.cs
+|   |   |       UserPanelContactMessagesController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   |       AdminContactMessageDto.cs
+|   |   |       ContactMessageDto.cs
+|   |   |       ContactMessageFilterDto.cs
+|   |   |       SendContactMessageDto.cs
+|   |   |       UserPanelContactMessageDto.cs
+|   |   |       
+|   |   +---Mapper
+|   |   |       ContactMessageMapper.cs
+|   |   |       
+|   |   +---Models
+|   |   |       ContactMessageDetailsModel.cs
+|   |   |       ContactUsModel.cs
+|   |   |       OtherContactMessagesModel.cs
+|   |   |       UserPanelContactMessageDetailsModel.cs
+|   |   |       UserPanelContactMessageModel.cs
+|   |   |       
+|   |   +---Services
+|   |   |       ContactMessageManagementService.cs
+|   |   |       ContactMessageService.cs
+|   |   |       ContactMessageSharedService.cs
+|   |   |       IContactMessageManagementService.cs
+|   |   |       IContactMessageService.cs
+|   |   |       IContactMessageSharedService.cs
+|   |   |       
+|   |   \---Views
+|   |       +---ContactMessagesManagement
+|   |       |       ContactMessageDetails.cshtml
+|   |       |       Index.cshtml
+|   |       |       ViewOtherContactMessages.cshtml
+|   |       |       
+|   |       +---ContactUs
+|   |       |       Index.cshtml
+|   |       |       
+|   |       \---UserPanelContactMessages
+|   |               Index.cshtml
+|   |               ViewDetails.cshtml
+|   |               
+|   +---Favorite
+|   |   +---Controllers
+|   |   |       FavoritesController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   |       FavoriteDto.cs
+|   |   |       
+|   |   +---Mapper
+|   |   |       FavoriteMapper.cs
+|   |   |       
+|   |   +---Models
+|   |   |       FavoritesModel.cs
+|   |   |       
+|   |   +---Services
+|   |   |       FavoriteService.cs
+|   |   |       IFavoriteService.cs
+|   |   |       
+|   |   \---Views
+|   |       \---Favorites
+|   |               Index.cshtml
+|   |               
+|   +---Home
+|   |   +---Controllers
+|   |   |       HomeController.cs
+|   |   |       
+|   |   \---Views
+|   |       \---Home
+|   |               Index.cshtml
+|   |               
+|   +---Order
+|   |   +---Controllers
+|   |   |       OrdersController.cs
+|   |   |       OrdersManagementController.cs
+|   |   |       UserPanelOrdersController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   |       AdminOrderDto.cs
+|   |   |       CheckoutDto.cs
+|   |   |       OrderDto.cs
+|   |   |       OrderEditDto.cs
+|   |   |       OrderFilterDto.cs
+|   |   |       OrderItemCreateDto.cs
+|   |   |       OrderItemDto.cs
+|   |   |       
+|   |   +---Mapper
+|   |   |       OrderMapper.cs
+|   |   |       
+|   |   +---Models
+|   |   |       OrderDetailsModel.cs
+|   |   |       OrderItemModel.cs
+|   |   |       UserPanelCancelOrderModel.cs
+|   |   |       UserPanelOrderDetailsModel.cs
+|   |   |       UserPanelOrderItemModel.cs
+|   |   |       UserPanelOrderModel.cs
+|   |   |       
+|   |   +---Services
+|   |   |       IOrderService.cs
+|   |   |       OrderService.cs
+|   |   |       
+|   |   \---Views
+|   |       +---Orders
+|   |       |       Payment.cshtml
+|   |       |       
+|   |       +---OrdersManagement
+|   |       |       Index.cshtml
+|   |       |       OrderDetails.cshtml
+|   |       |       
+|   |       \---UserPanelOrders
+|   |               Index.cshtml
+|   |               ViewDetails.cshtml
+|   |               _CancelOrder.cshtml
+|   |               
+|   +---OrderChangeLog
+|   |   \---Services
+|   |           IOrderChangeLogService.cs
+|   |           OrderChangeLogService.cs
+|   |           
+|   +---OrderItem
+|   +---Product
+|   |   +---Controllers
+|   |   |       ProductsController.cs
+|   |   |       ProductsManagementController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   |       ProductBaseDto.cs
+|   |   |       ProductCreateDto.cs
+|   |   |       ProductDto.cs
+|   |   |       ProductEditDto.cs
+|   |   |       ProductFilterDto.cs
+|   |   |       
+|   |   +---Mapper
+|   |   |       ProductMapper.cs
+|   |   |       
+|   |   +---Model
+|   |   |       DetailsModel.cs
+|   |   |       ProductBaseModel.cs
+|   |   |       ProductCreateModel.cs
+|   |   |       ProductEditModel.cs
+|   |   |       ProductsForCategoryModel.cs
+|   |   |       
+|   |   +---Services
+|   |   |       IProductManagementService.cs
+|   |   |       ProductManagementService.cs
+|   |   |       
+|   |   \---Views
+|   |       +---Products
+|   |       |       Details.cshtml
+|   |       |       Search.cshtml
+|   |       |       
+|   |       \---ProductsManagement
+|   |               CreateProduct.cshtml
+|   |               EditProduct.cshtml
+|   |               Index.cshtml
+|   |               
+|   +---Shared
+|   |   |   Error.cshtml
+|   |   |   _AdminFooter.cshtml
+|   |   |   _AdminLayout.cshtml
+|   |   |   _AdminLeftNavbar.cshtml
+|   |   |   _AdminMainSidebar.cshtml
+|   |   |   _AdminNavbar.cshtml
+|   |   |   _AdminPagination.cshtml
+|   |   |   _AdminRightNavbar.cshtml
+|   |   |   _AdminSearch.cshtml
+|   |   |   _AuthLayout.cshtml
+|   |   |   _BannerPart.cshtml
+|   |   |   _Footer.cshtml
+|   |   |   _Header.cshtml
+|   |   |   _Layout.cshtml
+|   |   |   _Layout.cshtml.css
+|   |   |   _MessageAlert.cshtml
+|   |   |   _Pagination.cshtml
+|   |   |   _PaymentLayout.cshtml
+|   |   |   _Search.cshtml
+|   |   |   _UserPanelLayout.cshtml
+|   |   |   _ValidationScriptsPartial.cshtml
+|   |   |   
+|   |   +---Components
+|   |   |   |   _ProductItem.cshtml
+|   |   |   |   
+|   |   |   +---BestSellingProducts
+|   |   |   |       BestSellingProducts.cs
+|   |   |   |       BestSellingProducts.cshtml
+|   |   |   |       
+|   |   |   +---BrowseCategories
+|   |   |   |       BrowseCategories.cs
+|   |   |   |       BrowseCategories.cshtml
+|   |   |   |       
+|   |   |   +---CartSummary
+|   |   |   |       CartSummary.cs
+|   |   |   |       CartSummary.cshtml
+|   |   |   |       
+|   |   |   +---FeaturedCategories
+|   |   |   |       FeaturedCategories.cs
+|   |   |   |       FeaturedCategories.cshtml
+|   |   |   |       
+|   |   |   +---MostFavoritedProducts
+|   |   |   |       MostFavoritedProducts.cs
+|   |   |   |       MostFavoritedProducts.cshtml
+|   |   |   |       
+|   |   |   \---Tree
+|   |   |           Tree.cs
+|   |   |           Tree.cshtml
+|   |   |           
+|   |   +---Controllers
+|   |   |       ErrorHandlerController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   |       CategoryInfoDto.cs
+|   |   |       
+|   |   +---EditorTemplates
+|   |   |       Boolean.cshtml
+|   |   |       Ckeditor4.cshtml
+|   |   |       EmailAddress.cshtml
+|   |   |       IFormFile.cshtml
+|   |   |       Int32.cshtml
+|   |   |       MultilineText.cshtml
+|   |   |       Password.cshtml
+|   |   |       String.cshtml
+|   |   |       
+|   |   +---Model
+|   |   |       CategoryTreeModel.cs
+|   |   |       
+|   |   \---Views
+|   |       \---ErrorHandler
+|   |               NotFound.cshtml
+|   |               ServerError.cshtml
+|   |               
+|   +---User
+|   |   +---Controllers
+|   |   |       AuthController.cs
+|   |   |       UserPanelProfileController.cs
+|   |   |       UsersManagementController.cs
+|   |   |       
+|   |   +---DTOs
+|   |   |       SixDigitCodeCheckDto.cs
+|   |   |       UserCreateDto.cs
+|   |   |       UserDto.cs
+|   |   |       UserEditDto.cs
+|   |   |       UserFilterDto.cs
+|   |   |       UserForgetPasswordDto.cs
+|   |   |       UserLoginDto.cs
+|   |   |       UserPanelChangePasswordDto.cs
+|   |   |       UserPanelEditDto.cs
+|   |   |       UserRegisterDto.cs
+|   |   |       UserResetPasswordDto.cs
+|   |   |       
+|   |   +---Mapper
+|   |   |       UserMapper.cs
+|   |   |       
+|   |   +---Model
+|   |   |       ForgetPasswordModel.cs
+|   |   |       LoginModel.cs
+|   |   |       RegisterModel.cs
+|   |   |       ResetPasswordEmailCodeModel.cs
+|   |   |       ResetPasswordModel.cs
+|   |   |       SixDigitEmailCodeModel.cs
+|   |   |       UserCreateModel.cs
+|   |   |       UserEditModel.cs
+|   |   |       UserPanelChangePasswordModel.cs
+|   |   |       UserPanelEditProfileModel.cs
+|   |   |       UserPanelProfileModel.cs
+|   |   |       
+|   |   +---Services
+|   |   |       EmailSender.cs
+|   |   |       IUserManagementService.cs
+|   |   |       IUserService.cs
+|   |   |       IUserSharedService.cs
+|   |   |       UserManagementService.cs
+|   |   |       UserService.cs
+|   |   |       UserSharedService.cs
+|   |   |       
+|   |   \---Views
+|   |       +---Auth
+|   |       |       ForgetPassword.cshtml
+|   |       |       Login.cshtml
+|   |       |       Register.cshtml
+|   |       |       ResetPassword.cshtml
+|   |       |       SixDigitEmailCode.cshtml
+|   |       |       
+|   |       +---UserPanelProfile
+|   |       |       ChangePassword.cshtml
+|   |       |       EditProfile.cshtml
+|   |       |       Index.cshtml
+|   |       |       
+|   |       \---UsersManagement
+|   |               Index.cshtml
+|   |               _AdminCreateUser.cshtml
+|   |               _AdminEditUser.cshtml
+|   |               
+|   \---UserPanel
+|       +---Controllers
+|       |       UserPanelController.cs
+|       |       
+|       +---Mapper
+|       |       UserPanelMapper.cs
+|       |       
+|       +---Models
+|       |       DashboardModel.cs
+|       |       RecentOrderItemModel.cs
+|       |       RecentOrderModel.cs
+|       |       
+|       \---Views
+|           \---UserPanel
+|                   Index.cshtml
+|                   
++---Infrastructure
+|   \---Data
+|           ApplicationDbInitializer.cs
+|           FeatureFolderViewLocationExpander.cs
+|           StoreContext.cs
+|           StoreContextFactory.cs
+|           
++---Migrations
+|       20250715072147_editIdentity.cs
+|       20250715072147_editIdentity.Designer.cs
+|       20250715072343_editRolesName.cs
+|       20250715072343_editRolesName.Designer.cs
+|       20250715082829_mig.cs
+|       20250715082829_mig.Designer.cs
+|       20250715215024_mig2.cs
+|       20250715215024_mig2.Designer.cs
+|       20250715215714_mig3.cs
+|       20250715215714_mig3.Designer.cs
+|       20250827091839_StatusPropertyforOrderEntity.cs
+|       20250827091839_StatusPropertyforOrderEntity.Designer.cs
+|       20250829113218_test.cs
+|       20250829113218_test.Designer.cs
+|       StoreContextModelSnapshot.cs
+|       
++---obj
+|   |   project.assets.json
+|   |   project.nuget.cache
+|   |   StoreProject.csproj.EntityFrameworkCore.targets
+|   |   StoreProject.csproj.nuget.dgspec.json
+|   |   StoreProject.csproj.nuget.g.props
+|   |   StoreProject.csproj.nuget.g.targets
+|   |   
+|   \---Debug
+|       \---net8.0
+|           |   .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+|           |   apphost.exe
+|           |   project.razor.vs.bin
+|           |   staticwebassets.build.json
+|           |   staticwebassets.development.json
+|           |   staticwebassets.pack.json
+|           |   StorePro.E62FE860.Up2Date
+|           |   StoreProject.AssemblyInfo.cs
+|           |   StoreProject.AssemblyInfoInputs.cache
+|           |   StoreProject.assets.cache
+|           |   StoreProject.csproj.AssemblyReference.cache
+|           |   StoreProject.csproj.BuildWithSkipAnalyzers
+|           |   StoreProject.csproj.CoreCompileInputs.cache
+|           |   StoreProject.csproj.FileListAbsolute.txt
+|           |   StoreProject.dll
+|           |   StoreProject.GeneratedMSBuildEditorConfig.editorconfig
+|           |   StoreProject.genruntimeconfig.cache
+|           |   StoreProject.GlobalUsings.g.cs
+|           |   StoreProject.MvcApplicationPartsAssemblyInfo.cache
+|           |   StoreProject.MvcApplicationPartsAssemblyInfo.cs
+|           |   StoreProject.pdb
+|           |   StoreProject.RazorAssemblyInfo.cache
+|           |   StoreProject.RazorAssemblyInfo.cs
+|           |   StoreProject.sourcelink.json
+|           |   
+|           +---ref
+|           |       StoreProject.dll
+|           |       
+|           +---refint
+|           |       StoreProject.dll
+|           |       
+|           +---scopedcss
+|           |   +---bundle
+|           |   |       StoreProject.styles.css
+|           |   |       
+|           |   +---Features
+|           |   |   \---Shared
+|           |   |           _Layout.cshtml.rz.scp.css
+|           |   |           
+|           |   \---projectbundle
+|           |           StoreProject.bundle.scp.css
+|           |           
+|           \---staticwebassets
+|                   msbuild.build.StoreProject.props
+|                   msbuild.buildMultiTargeting.StoreProject.props
+|                   msbuild.buildTransitive.StoreProject.props
+|                   msbuild.StoreProject.Microsoft.AspNetCore.StaticWebAssets.props
+|                   
++---Properties
+|       launchSettings.json
+|       serviceDependencies.json
+|       serviceDependencies.local.json
+|       serviceDependencies.local.json.user
+|       
+\---wwwroot
+    |   favicon.ico
+    |   
+    +---css
+    |       all.css
+    |       animate.css
+    |       bootstrap.min.css
+    |       flaticon.css
+    |       magnific-popup.css
+    |       owl.carousel.min.css
+    |       slick.css
+    |       slick.min.css
+    |       style.css
+    |       style.map
+    |       themify-icons.css
+    |       
+    +---dist
+    |   +---css
+    |   |       adminlte.css
+    |   |       adminlte.css.map
+    |   |       adminlte.min.css
+    |   |       adminlte.min.css.map
+    |   |       
+    |   +---img
+    |   |       AdminLTELogo.png
+    |   |       
+    |   \---js
+    |           .eslintrc.json
+    |           adminlte.js
+    |           adminlte.js.map
+    |           adminlte.min.js
+    |           adminlte.min.js.map
+    |           global.js
+    |           
+    +---fonts
+    |       Flaticon.eot
+    |       Flaticon.ttf
+    |       Flaticon.woff
+    |       Flaticon.woff2
+    |       fontawesome-webfont.eot
+    |       fontawesome-webfont.svg
+    |       fontawesome-webfont.ttf
+    |       fontawesome-webfont.woff
+    |       fontawesome-webfont.woff2
+    |       FontAwesome.otf
+    |       themify.eot
+    |       themify.svg
+    |       themify.ttf
+    |       themify.woff
+    |       
+    +---images
+    |   +---banners
+    |   |       1.jpg
+    |   |       2.jpg
+    |   |       3.jpg
+    |   |       
+    |   +---icons
+    |   |       recycle-bin.png
+    |   |       user.png
+    |   |       
+    |   +---products
+    |   |       07153b85-69a2-4aae-b0de-b72bb8e4044d1771418166936.jpg
+    |   |       11b3898c-e750-486d-bf01-eb7af49935a1Travel Tips for Cruising Alaska's Inside Passage at a Glance - CleverDever Wherever.jfif
+    |   |       198e017c-b43e-4666-9602-3d69ebb409941771418166963.jpg
+    |   |       1b0933e9-7d11-401e-9f28-ac96ded48c621771418166924.jpg
+    |   |       29a4b914-b8ee-4cee-a0ce-76b01323b040Download bag paper shopping isolated icon for free.jfif
+    |   |       2b4225b1-390d-41f8-b7c8-76eebebfeb961771418166963.jpg
+    |   |       325989db-7e99-4dd2-a958-ba68c16457671771418166924.jpg
+    |   |       5283c37f-d916-488f-8b77-0bf6a9fbd7e21771418166949.jpg
+    |   |       544f0115-3fc1-4df8-8942-0e0005b6b8471771418166963.jpg
+    |   |       54c9edc4-d6c4-4f63-81ed-7a1f50f4adaf1771418166963.jpg
+    |   |       61b1d0cc-8429-4386-bff9-872e3fbe02551771418166949.jpg
+    |   |       66a39d4c-9d2b-4c49-9124-10d7b99c07f71771418166936.jpg
+    |   |       69d76ef9-26bf-4b00-8010-d68a0b99b1b4Shopping bags_ Colorful paper bags for shopping mall products_.jfif
+    |   |       77f09d4e-b161-4359-af63-32fef3a8f8ff1771418166936.jpg
+    |   |       7a3e8ccc-dc8c-4870-8802-ed00d58ac056Travel Tips for Cruising Alaska's Inside Passage at a Glance - CleverDever Wherever.jfif
+    |   |       7c9bb691-0c38-4fde-b774-abcba965e801Download bag paper shopping isolated icon for free.jfif
+    |   |       82ff2c09-93ee-4ff7-802d-694ebed3b160Travel Tips for Cruising Alaska's Inside Passage at a Glance - CleverDever Wherever.jfif
+    |   |       8b21bd68-4f33-4234-b966-c44f429c161a1771418166924.jpg
+    |   |       9b0d1df0-2df4-4989-8d97-37bf689f361d1771418166949.jpg
+    |   |       a6aada58-1ec3-4039-bb2d-1e8cc160ddbe1771418166924.jpg
+    |   |       a8158e49-e8bf-4bb9-bce3-4459c093fb2cShopping bags_ Colorful paper bags for shopping mall products_.jfif
+    |   |       bacb99bf-bc4b-40ff-9ec0-a4a902e0588fShopping bags_ Colorful paper bags for shopping mall products_.jfif
+    |   |       e49533d1-0401-490e-b0c5-d7e93a33fdbcTravel Tips for Cruising Alaska's Inside Passage at a Glance - CleverDever Wherever.jfif
+    |   |       ee97de81-2339-4c15-ad75-ccdbf28a5069Download bag paper shopping isolated icon for free.jfif
+    |   |       
+    |   \---users
+    |           05541593-5325-46dd-a660-893a25f8d1b1user.png
+    |           0d8a12ed-5264-4ffe-8a65-90c611c8081fshop_erd.png
+    |           0f723803-a433-4c3d-9de0-28bf7f0caa16download (9).jfif
+    |           0f8a016a-3239-450e-9461-b8ae9dc0e312download (9).jfif
+    |           15497776-19c3-486c-b05d-0f803f318db8Alan Collier; Bow River & Castle Mountain.jfif
+    |           1e876e4a-3e7f-4589-98a5-b100e8d7d0afuser.png
+    |           3127a42c-d5bd-4707-8001-c0f564d1ae2bdownload (5).jfif
+    |           34a91bdf-b145-4e38-a7cf-0b70277467bcuser.png
+    |           366c5627-0d34-4f4f-9f07-c03a23de210edownload (5).jfif
+    |           421e9c0d-3663-43c7-bd4b-890ce6c8b2b3download (5).jfif
+    |           462e5c94-0ff6-4cd4-a6d9-f667e076c58ddownload (9).jfif
+    |           4b220c04-e4bc-4ebf-8ded-6d6c44360e9b53cf9d4a-28cb-4b5c-848f-a876fd095499.jfif
+    |           4b752196-3489-425c-92ef-e7fda9e580f2Alan Collier; Bow River & Castle Mountain.jfif
+    |           5091939a-6a44-42ce-979e-4be9b004aae1download (3).jfif
+    |           580ddc29-9fb3-4ede-9949-5994f8e7c963The original point.jfif
+    |           5c0ac75f-6703-4497-92ce-e65a10bad2d0download (9).jfif
+    |           60ca323f-104d-410e-9fae-9607a384c7d6download (1).jfif
+    |           708820f8-593a-4aaa-b13f-6dda7f327317user.png
+    |           74d32c13-b8a7-40fb-ac58-f1db31f12306user.png
+    |           79347b91-af52-45fc-a71f-10c26f11a1fedownload (8).jfif
+    |           7e479480-68a6-443c-8743-aa8315f29804download (3).jfif
+    |           85a76568-adeb-4617-9a10-3a1cf5dc2060download (5).jfif
+    |           8c7b8736-c4bb-497d-911d-7f4930cfc141download (3).jfif
+    |           8fb1fbaf-2b81-4ed9-aac6-db5b6a08485dThe original point.jfif
+    |           92fb9603-1d74-4c96-b18d-ce757a089e54San Francisco.jfif
+    |           9344a046-d79a-4a4e-8849-197374ffc8d6download (8).jfif
+    |           957827d4-c720-4908-9d85-877ee000f61ddownload (11).jfif
+    |           9ff46afe-e5e7-4488-ae16-4dfef4480a92shop_erd.png
+    |           a662eae7-52e5-4e65-8d8e-27019a7b31b4user.png
+    |           a7882f9d-3c59-40a3-8693-1434540c8443shop_erd.png
+    |           ab51700c-1c28-424d-9303-87c1a073636ddownload (8).jfif
+    |           ac6790dd-c73b-49b5-bf18-07e33c82d996download (7).jfif
+    |           afd01307-0230-4f68-9bfc-5d7ce2a1809cshop_erd.png
+    |           b074d9e3-c2ff-43ca-afa1-aa0559e614e3download (8).jfif
+    |           b204f912-51c2-49a1-8645-a304c2481517download (8).jfif
+    |           b5736504-8b5a-41be-9700-ffe2d303ee69download (9).jfif
+    |           bfd18ca0-5816-4006-9ea0-28b980f867e8download (10).jfif
+    |           c570c46f-48ff-4248-a6dd-d7932a6c7765download (9).jfif
+    |           c8d1f3f4-b83f-41aa-9375-7189b273679dshop_erd.png
+    |           ca71eb3f-91de-41f9-a81f-e8f83b88c3c0user.png
+    |           d640df03-7703-42e8-81e8-2b610171af0eThe original point.jfif
+    |           d6e2b3fc-5451-4879-9c27-a0dd02e78c89San Francisco.jfif
+    |           da7bb5e7-33b7-45e1-893a-81073306fe3aSan Francisco.jfif
+    |           db14d141-46db-4f29-9fdd-c48f59fe9103download (8).jfif
+    |           e0464417-c00a-421d-a861-80ff196db508user.png
+    |           ea44d044-cb73-4e4a-8adc-6b833df0cb8ddownload (9).jfif
+    |           f3184215-3b97-4617-bd0d-296d8628b6d9shop_erd.png
+    |           f485c2b1-7778-451e-8cc7-24f19d350fb7download (3).jfif
+    |           f4c103ad-b541-4302-a3bd-8655ade627d11705041052072.jpg
+    |           f649f1fc-b2de-49f3-93c2-d80cf99182a1user.png
+    |           user.png
+    |           
+    +---img
+    |       .DS_Store
+    |       about_shape.png
+    |       banner_bg.png
+    |       favicon.png
+    |       fevicon.png
+    |       footer_bg.png
+    |       footer_logo.png
+    |       left_sharp.png
+    |       logo.png
+    |       subscribe_area.png
+    |       
+    +---js
+    |       bootstrap.min.js
+    |       custom.js
+    |       jquery-1.12.1.min.js
+    |       jquery.ajaxchimp.min.js
+    |       jquery.counterup.min.js
+    |       jquery.form.js
+    |       jquery.magnific-popup.js
+    |       jquery.nice-select.min.js
+    |       jquery.validate.min.js
+    |       owl.carousel.min.js
+    |       particles.min.js
+    |       slick.min.js
+    |       store.js
+    |       swiper.min.js
+    |       waypoints.min.js
+    |       
+    +---plugins
+    |   +---bootstrap
+    |   |   \---js
+    |   |           bootstrap.bundle.js
+    |   |           bootstrap.bundle.js.map
+    |   |           bootstrap.bundle.min.js
+    |   |           bootstrap.bundle.min.js.map
+    |   |           bootstrap.js
+    |   |           bootstrap.js.map
+    |   |           bootstrap.min.js
+    |   |           bootstrap.min.js.map
+    |   |           
+    |   +---fontawesome-free
+    |   |   +---css
+    |   |   |       all.css
+    |   |   |       all.min.css
+    |   |   |       
+    |   |   \---webfonts
+    |   |           fa-brands-400.eot
+    |   |           fa-brands-400.svg
+    |   |           fa-brands-400.ttf
+    |   |           fa-brands-400.woff
+    |   |           fa-brands-400.woff2
+    |   |           fa-regular-400.eot
+    |   |           fa-regular-400.svg
+    |   |           fa-regular-400.ttf
+    |   |           fa-regular-400.woff
+    |   |           fa-regular-400.woff2
+    |   |           fa-solid-900.eot
+    |   |           fa-solid-900.svg
+    |   |           fa-solid-900.ttf
+    |   |           fa-solid-900.woff
+    |   |           fa-solid-900.woff2
+    |   |           
+    |   \---jquery
+    |           jquery.js
+    |           jquery.min.js
+    |           jquery.min.map
+    |           jquery.slim.js
+    |           jquery.slim.min.js
+    |           jquery.slim.min.map
+    |           
+    +---sass
+    |       style.scss
+    |       _about_us.scss
+    |       _banner.scss
+    |       _best_seller.scss
+    |       _blog.scss
+    |       _blog_part.scss
+    |       _breadcrumb.scss
+    |       _button.scss
+    |       _client_logo.scss
+    |       _common.scss
+    |       _confirmation_part.scss
+    |       _contact.scss
+    |       _copyright_part.scss
+    |       _cource_details.scss
+    |       _cta_part.scss
+    |       _elements.scss
+    |       _extends.scss
+    |       _feature_part.scss
+    |       _footer.scss
+    |       _menu.scss
+    |       _mixins.scss
+    |       _our_offer.scss
+    |       _product.scss
+    |       _product_list.scss
+    |       _review.scss
+    |       _single_blog.scss
+    |       _special_cource.scss
+    |       _subscribe_area.scss
+    |       _variables.scss
+    |       
+    \---webfonts
+            fa-brands-400.eot
+            fa-brands-400.svg
+            fa-brands-400.ttf
+            fa-brands-400.woff
+            fa-brands-400.woff2
+            fa-regular-400.eot
+            fa-regular-400.svg
+            fa-regular-400.ttf
+            fa-regular-400.woff
+            fa-regular-400.woff2
+            fa-solid-900.eot
+            fa-solid-900.svg
+            fa-solid-900.ttf
+            fa-solid-900.woff
+            fa-solid-900.woff2
+            

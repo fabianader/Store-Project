@@ -1,103 +1,226 @@
-# Store Project
-ASP.NET Core MVC Modular E-Commerce App (In Progress)
+# 🛒 StoreProject
 
-# Overview
-Store Project is an ASP.NET Core MVC web application structured using the Feature Folder Architecture (modular pattern). This project is built with scalability and maintainability in mind, making it suitable for medium to large-sized web applications.
+StoreProject is a modular **ASP.NET Core MVC (.NET 8)** web application
+developed for an online store system.
 
-The goal is to build a modern, extensible online store using:
+The project follows a **Feature-Based Modular Architecture** and uses
+**SQL Server** as its database management system.
 
-- ASP.NET Core MVC (.NET 8)
+It includes separate sections for:
 
-- ASP.NET Core Identity for authentication
+-   🛍️ Customers (Storefront)
+-   🛠️ Admin Management Panel
+-   👤 User Panel (Profile & Activities)
+-   📩 Contact System
+-   💳 Demo Payment Section
 
-- Clean architecture practices (DTOs, services, etc.)
+------------------------------------------------------------------------
 
-- Modals and SweetAlert2 for dynamic admin UX
+## 🚀 Technologies Used
 
-- HTML5-based admin and front-end templates
+-   ASP.NET Core MVC (.NET 8)
+-   Entity Framework Core
+-   SQL Server
+-   ASP.NET Core Identity
+-   Razor Views
+-   Feature Folder Architecture
+-   DTO Pattern
+-   Manual Mapper Classes (Per Feature)
+-   AdminLTE 3.2.0 (Admin Panel Template)
+-   Aranoz (User UI Template)
 
-- The project is currently under development.
+------------------------------------------------------------------------
 
-# Features
-#### ✅ Modular Feature Folder Structure
-Each domain (User, Product, Category, etc.) is separated into its own folder with its own controllers, services, views, models, and DTOs.
+## 🏗 Architecture Overview
 
-#### ✅ ASP.NET Core Identity Integration
-Secure user authentication and role management via Identity.
+The project follows a **Feature-Based Modular Structure**, where each
+feature contains:
 
-#### ✅ DTO-based Input/Output Models
-All data passed between UI and logic layers are secured and shaped via Data Transfer Objects.
+-   Controllers\
+-   DTOs\
+-   Models\
+-   Services\
+-   Mapper\
+-   Views
 
-#### ✅ Admin Area
-   - User management via modals and SweetAlert2
-   - Layouts and partial views optimized for reusability
-   - HTML-based AdminLTE UI templates
+### 🔁 Data Flow
 
-#### ✅ Responsive Front-End
-The UI uses responsive HTML5/CSS3 templates for the public-facing store.
+    Controller → Model → DTO → Service → Entity → Database
 
-#### 🔒 Validation & Security
-   - Email validation attribute
-   - Anti-forgery protection
-   - Secure password reset workflows
+Each feature includes its own Mapper class to handle data transformation
+between:
 
-#### 📦 Entity & Domain Models
-Users, Products, Orders, Carts, Categories, Posts, Messages, etc.
+-   Entity classes\
+-   DTOs\
+-   View Models
 
-#### 🗂️ Architecture & Structure
-The solution follows a clean separation of concerns via:
-   - `Features/` (modular areas)
-   - `Entities/` (domain models)
-   - `DTOs/` (for secure communication)
-   - `Common/` (shared helpers, services, attributes)
-   - `Infrastructure/Data/` (DbContext, initializers, EF migrations)
-   - `wwwroot/` (static assets: JS, CSS, images)
+------------------------------------------------------------------------
 
+## 🔐 Authentication & Authorization
 
-# Tech Stack
-|Technology                |	Purpose                        |
-| ------------------------ |:-------------------------------:|
-|ASP.NET Core MVC (.NET 8) |	Web Framework                  | 
-|ASP.NET Core Identity	   |  Authentication & Authorization |
-|Entity Framework Core	   |  Data Access                    |
-|SQL Server	               |  Database                       |
-|HTML/CSS + Bootstrap	   |  Front-End UI                   |
-|AdminLTE Template         |	Admin Panel                    |
-|jQuery, SweetAlert2       |	UI Enhancements                |
-|DTOs                      |	Data Encapsulation             |
-|Feature Folders           |	Modular Architecture           |
+Authentication is implemented using **ASP.NET Core Identity**.
 
-# Getting Started
-⚠️ This project is not yet complete, but to run the current version:
+Two predefined roles:
 
-####  Prerequisites
-   - .NET 8 SDK
-   - SQL Server LocalDB or SQL Server Express
-   - Visual Studio 2022 or later
+-   `Admin`
+-   `User`
 
-####  Run Locally
-1. Clone the repo:
-   - `git clone https://github.com/fabianader/StoreProject.git`
+### 🔑 Admin Login Credentials
 
-2. Navigate to the directory and build:
-   - `cd StoreProject`
-   - `dotnet build`
+    Username: Admin
+    Password: Admin123#
 
-3. Update the database:
-   - `dotnet ef database update`
+⚠️ Change the default admin password in production.
 
-4. Run the app:
-   - `dotnet run`
+------------------------------------------------------------------------
 
+# ⚠️ IMPORTANT -- Database & Migration Setup
 
-# Status
-This project is actively under development and may change rapidly.
-- Basic Identity and User Management
-- DTO integration
-- Front and Admin HTML Template Integration
-- Product Catalog, Cart & Order functionality
-- Role-based Authorization
-- Unit & Integration Tests
+During development, migration inconsistencies occurred and the database
+schema was manually synchronized with the code.
 
-# 🤝 Contributions
-Contributions are welcome once the core functionalities are stable. Until then, suggestions and code reviews are appreciated!
+Because of this:
+
+-   Existing migrations may not fully reflect the final schema
+-   Running `Update-Database` directly may cause errors
+
+To safely run the project after cloning, follow the steps below.
+
+------------------------------------------------------------------------
+
+## 🛠 How to Clone and Run (Recommended Safe Setup)
+
+### 1️⃣ Clone the Repository
+
+``` bash
+git clone https://github.com/yourusername/StoreProject.git
+cd StoreProject
+```
+
+### 2️⃣ Configure Database Connection
+
+Open `appsettings.json` and update the connection string:
+
+``` json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=.;Database=StoreProjectDb;Trusted_Connection=True;TrustServerCertificate=True;"
+}
+```
+
+### 3️⃣ Remove Existing Migrations (Recommended)
+
+Delete the `Migrations` folder manually.
+
+If needed, use:
+
+``` bash
+dotnet ef migrations remove
+```
+
+(Repeat until all migrations are removed.)
+
+### 4️⃣ Create Fresh Migration
+
+``` bash
+dotnet ef migrations add InitialCreate
+```
+
+### 5️⃣ Update Database
+
+``` bash
+dotnet ef database update
+```
+
+### 6️⃣ Run the Project
+
+``` bash
+dotnet run
+```
+
+Or run via **Visual Studio (IIS Express)**.
+
+------------------------------------------------------------------------
+
+## 📂 Main Features
+
+### 🏠 Store (Customer Section)
+
+-   Browse Products
+-   Search Products
+-   Browse Categories
+-   Product Details
+-   Add to Cart
+-   Checkout (Demo Payment)
+-   Favorites
+-   Contact Us
+
+### 👤 User Panel
+
+-   Dashboard
+-   Edit Profile
+-   Change Password
+-   Order History
+-   Cancel Orders
+-   Favorites List
+-   Contact Messages
+
+### 🛠 Admin Management Panel
+
+-   Manage Products
+-   Manage Categories (Tree Structure)
+-   Manage Orders
+-   Manage Users
+-   Contact Message Management
+-   Order Change Logs
+
+------------------------------------------------------------------------
+
+## 📦 Project Structure (Simplified)
+
+    StoreProject
+    │
+    ├── Common
+    ├── Entities
+    ├── Features
+    │   ├── Admin
+    │   ├── Product
+    │   ├── Category
+    │   ├── Cart
+    │   ├── Order
+    │   ├── User
+    │   └── ContactMessage
+    │
+    ├── Infrastructure
+    │   └── Data
+    │
+    ├── Migrations
+    ├── wwwroot
+    └── Program.cs
+
+------------------------------------------------------------------------
+
+## ✨ Design Patterns & Concepts Used
+
+-   Feature Folder Architecture
+-   Separation of Concerns
+-   DTO Pattern
+-   Service Layer Pattern
+-   Manual Mapping
+-   Role-Based Authorization
+-   View Components
+-   Tag Helpers
+
+------------------------------------------------------------------------
+
+## 📌 Notes
+
+-   The payment section is a demo simulation.
+-   Email sending is supported via `EmailSender`.
+-   The architecture is modular and scalable.
+-   Database should be freshly generated when cloning.
+
+------------------------------------------------------------------------
+
+## 📄 License
+
+This project is developed for educational and demonstration purposes.
